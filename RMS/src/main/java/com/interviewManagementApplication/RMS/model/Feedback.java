@@ -16,24 +16,24 @@ public class Feedback {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "feedback_ID")
+    @Column(name = "feedbackid")
     private int feedback_ID;
 
-    @Column(name = "interview_ID")
+    @Column(name = "interviewid")
     private int interviewID;
 
-    @Column(name = "interviewer_ID")
+    @Column(name = "interviewerid")
     private int interviewer_ID;
 
-    @Column(name = "feedback_comment")
+    @Column(name = "details")
     private String comment;
 
-    @Column(name = "overallRating")
+    @Column(name = "overallrating")
     private int overallRating;
 
-    @Column(name = "decisionOnHire")
+    @Column(name = "decisiononhire")
     private boolean decisionOnHire;
 
-    @Column(name = "feedbackDate")
+    @Column(name = "feedbackdate")
     private Date feedbackDate;
 }

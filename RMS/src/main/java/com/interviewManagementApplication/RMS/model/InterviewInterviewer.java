@@ -11,21 +11,18 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@IdClass(InterviewInterviewerId.class)
 public class InterviewInterviewer {
 
     @Id
-    private int interviewid;
-
-    @Id
-    private int interviewerid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @ManyToOne
-    @JoinColumn(name = "interviewid", insertable = false, updatable = false)
+    @JoinColumn(name = "interview")
     private Interview interview;
 
     @ManyToOne
-    @JoinColumn(name = "interviewerid", insertable = false, updatable = false)
+    @JoinColumn(name = "interviewer")
     private Interviewer interviewer;
 
     @OneToOne(mappedBy = "interviewInterviewer", cascade = CascadeType.ALL)

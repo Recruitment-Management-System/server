@@ -20,8 +20,7 @@ public class Feedback {
     private int feedback_ID;
 
     @OneToOne
-    @JoinColumn(name = "interviewid")
-    @JoinColumn(name = "interviewerid")
+    @JoinColumn(name = "id")
     private InterviewInterviewer interviewInterviewer;
 
     @Column(name = "details")

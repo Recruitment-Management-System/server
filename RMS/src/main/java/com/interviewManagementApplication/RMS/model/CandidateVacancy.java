@@ -11,20 +11,17 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@IdClass(CandidateVacancyId.class)
 public class CandidateVacancy {
 
     @Id
-    private int candidateid;
-
-    @Id
-    private int vacancyid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @ManyToOne
-    @JoinColumn(name = "candidateid", insertable = false, updatable = false)
+    @JoinColumn(name = "candidateid")
     private Candidate candidate;
 
     @ManyToOne
-    @JoinColumn(name = "vacancyid", insertable = false, updatable = false)
+    @JoinColumn(name = "vacancyid")
     private Vacancy vacancy;
 }

@@ -20,13 +20,14 @@ public class FeedbackImpl implements FeedbackService {
     private FeedbackRepo feedbackRepo;
 
     @Override
-    public void saveFeedback(Feedback feedback) {
+    public Feedback saveFeedback(Feedback feedback) {
         try{
             feedbackRepo.save(feedback);
         }catch(Exception e){
             logger.error("error - readAllFeedbacks");
             throw e;
         }
+        return feedback;
     }
 
     @Override

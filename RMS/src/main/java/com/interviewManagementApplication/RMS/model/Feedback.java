@@ -19,11 +19,10 @@ public class Feedback {
     @Column(name = "feedbackid")
     private int feedback_ID;
 
-    @Column(name = "interviewid")
-    private int interviewID;
-
-    @Column(name = "interviewerid")
-    private int interviewer_ID;
+    @OneToOne
+    @JoinColumn(name = "interviewid")
+    @JoinColumn(name = "interviewerid")
+    private InterviewInterviewer interviewInterviewer;
 
     @Column(name = "details")
     private String comment;

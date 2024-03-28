@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface FeedbackService {
 
-    void saveFeedback(Feedback feedback);
+    Feedback saveFeedback(Feedback feedback);
 
     List<Feedback> readAllFeedbacks();
 

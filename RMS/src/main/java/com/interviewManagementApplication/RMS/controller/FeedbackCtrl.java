@@ -19,15 +19,15 @@ public class FeedbackCtrl {
     @Autowired
     private FeedbackService feedbackService;
 
-//    @PostMapping("/savefeedback")
-//    public Feedback saveFeedBack(@RequestBody Feedback feedback){
-//        try{
-//            return feedbackService.saveFeedback(feedback);
-//        }catch(Exception e){
-//            logger.error("error - savefeedback");
-//            throw e;
-//        }
-//    }
+    @PostMapping("/savefeedback")
+    public Feedback saveFeedBack(@RequestBody Feedback feedback){
+        try{
+            return feedbackService.saveFeedback(feedback);
+        }catch(Exception e){
+            logger.error("error - savefeedback");
+            throw e;
+        }
+    }
 
     @GetMapping("/")
     public List<Feedback> readAllFeedbacks() {
@@ -39,13 +39,32 @@ public class FeedbackCtrl {
         }
     }
 
-    @GetMapping("/{id}")
-    public Optional<Feedback> readFeedbackById(@PathVariable("id") int id) {
+    @GetMapping("/{feedbackid}")
+    public Optional<Feedback> readFeedbackById(@PathVariable("feedbackid") int feedbackid) {
         try {
-            return feedbackService.readById(id);
+            return feedbackService.readById(feedbackid);
         } catch (Exception e) {
             logger.error("error - readfeedbackById");
             throw e;
+        }
+    }
+
+    @PutMapping("/update")
+    public Feedback updateFeedback(@RequestBody Feedback feedback) {
+        try {
+            return feedbackService.updateFeedback(feedback);
+        }catch(Exception e){
+            logger.error("error - updateFeedback");
+            throw e;
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteFeedback(@PathVariable("id") int id) {
+        try {
+            feedbackService.deleteFeedback(id);
+        }catch(Exception e){
+            logger.error("Delete not succeed");
         }
     }
 }

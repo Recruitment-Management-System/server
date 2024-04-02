@@ -13,5 +13,7 @@ public interface FeedbackService {
 
     Optional<Feedback> readById(int id);
 
-    void updateFeedback(Feedback feedback);
+    Feedback updateFeedback(Feedback feedback);
+
+    void deleteFeedback(int id);
 }

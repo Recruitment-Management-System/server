@@ -1,5 +1,8 @@
 package com.interviewManagementApplication.RMS.model;
 
+
+import com.interviewManagementApplication.RMS.CommentAttributeConverter;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,12 +22,12 @@ public class Feedback {
     @Column(name = "feedbackid")
     private int feedback_ID;
 
-    @OneToOne
-    @JoinColumn(name = "id")
-    private InterviewInterviewer interviewInterviewer;
-
     @Column(name = "details")
-    private String comment;
+    @Convert(converter = CommentAttributeConverter.class)
+    private Comment details;
+
+//    @Column(name = "details")
+//    private String details;
 
     @Column(name = "overallrating")
     private int overallRating;
@@ -34,4 +37,12 @@ public class Feedback {
 
     @Column(name = "feedbackdate")
     private Date feedbackDate;
+
+    @ManyToOne
+    @JoinColumn(name = "interviewid")
+    private Interview interview;
+
+    public boolean getDecisionOnHire() {
+        return false;
+    }
 }

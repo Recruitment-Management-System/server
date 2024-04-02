@@ -51,11 +51,21 @@ public class FeedbackImpl implements FeedbackService {
     }
 
     @Override
-    public void updateFeedback(Feedback feedback) {
+    public Feedback updateFeedback(Feedback feedback) {
         try{
-            feedbackRepo.save(feedback);
+            return feedbackRepo.save(feedback);
         }catch (Exception e){
             logger.error("error - updateFeedback");
+            throw e;
+        }
+    }
+
+    @Override
+    public void deleteFeedback(int id) {
+        try{
+            feedbackRepo.deleteById(id);
+        }catch(Exception e){
+            logger.error("error - delete");
             throw e;
         }
     }

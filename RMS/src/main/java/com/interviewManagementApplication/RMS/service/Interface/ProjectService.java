@@ -1,4 +1,4 @@
-package com.interviewManagementApplication.RMS.service;
+package com.interviewManagementApplication.RMS.service.Interface;
 
 import com.interviewManagementApplication.RMS.model.Project;
 

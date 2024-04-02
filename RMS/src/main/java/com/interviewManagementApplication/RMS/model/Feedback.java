@@ -1,7 +1,7 @@
 package com.interviewManagementApplication.RMS.model;
 
 
-import com.interviewManagementApplication.RMS.CommentAttributeConverter;
+import com.interviewManagementApplication.RMS.converters.CommentAttributeConverter;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

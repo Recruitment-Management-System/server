@@ -24,7 +24,7 @@ public class InterviewInterviewer {
     @ManyToOne
     @JoinColumn(name = "interviewer")
     private Interviewer interviewer;
-
-    @OneToOne(mappedBy = "interviewInterviewer", cascade = CascadeType.ALL)
-    private Feedback feedback;
+//
+//    @OneToOne(mappedBy = "interviewInterviewer", cascade = CascadeType.ALL)
+//    private Feedback feedback;
 }

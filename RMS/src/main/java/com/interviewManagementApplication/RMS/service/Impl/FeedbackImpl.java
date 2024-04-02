@@ -1,6 +1,6 @@
-package com.interviewManagementApplication.RMS.Service.Impl;
+package com.interviewManagementApplication.RMS.service.Impl;
 
-import com.interviewManagementApplication.RMS.Service.Interface.FeedbackService;
+import com.interviewManagementApplication.RMS.service.Interface.FeedbackService;
 import com.interviewManagementApplication.RMS.model.Feedback;
 import com.interviewManagementApplication.RMS.repository.FeedbackRepo;
 import org.slf4j.Logger;

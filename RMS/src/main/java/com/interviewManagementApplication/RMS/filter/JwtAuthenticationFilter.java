@@ -1,6 +1,6 @@
 package com.interviewManagementApplication.RMS.filter;
 
-import com.interviewManagementApplication.RMS.services.imp.UserDetailsServiceImp;
+import com.interviewManagementApplication.RMS.service.Impl.UserDetailsServiceImp;
 import com.interviewManagementApplication.RMS.util.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

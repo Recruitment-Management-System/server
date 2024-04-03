@@ -26,9 +26,6 @@ public class Feedback {
     @Convert(converter = CommentAttributeConverter.class)
     private Comment details;
 
-//    @Column(name = "details")
-//    private String details;
-
     @Column(name = "overallrating")
     private int overallRating;
 
@@ -42,7 +39,10 @@ public class Feedback {
     @JoinColumn(name = "interviewid")
     private Interview interview;
 
-    public boolean getDecisionOnHire() {
-        return false;
-    }
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private User user;
+
+
+
 }

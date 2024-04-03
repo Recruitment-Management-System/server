@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,9 +37,17 @@ public class Vacancy {
     @Enumerated(EnumType.STRING)
     private VacancyStatusType status;
 
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "projectID")
     private Project project;
 
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+            name = "candidateVacancy",
+            joinColumns = @JoinColumn(name = "vacancyid"),
+            inverseJoinColumns = @JoinColumn(name = "candidateid")
+    )
+    private List<Candidate> candidateList;
 }

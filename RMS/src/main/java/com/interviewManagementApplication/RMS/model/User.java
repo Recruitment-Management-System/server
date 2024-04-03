@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Table(name = "usr")
@@ -31,6 +32,12 @@ public class User implements UserDetails {
 
     @Enumerated(value = EnumType.STRING)
     private  Role role;
+
+    @ManyToMany(mappedBy = "userList")
+    private List<Interview> interviewList;
+
+    @OneToMany(mappedBy = "user")
+    private List<Feedback> feedbackListInterviewer;
 
 
     public Integer getId() {

@@ -1,7 +1,9 @@
 package com.interviewManagementApplication.RMS.service.Impl;
 
+import com.interviewManagementApplication.RMS.model.*;
+import com.interviewManagementApplication.RMS.repository.InterviewRepo;
+import com.interviewManagementApplication.RMS.repository.UserRepository;
 import com.interviewManagementApplication.RMS.service.Interface.FeedbackService;
-import com.interviewManagementApplication.RMS.model.Feedback;
 import com.interviewManagementApplication.RMS.repository.FeedbackRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +21,12 @@ public class FeedbackImpl implements FeedbackService {
     @Autowired
     private FeedbackRepo feedbackRepo;
 
+    @Autowired
+    private InterviewRepo interviewRepo;
+
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     public Feedback saveFeedback(Feedback feedback) {
         try{
@@ -29,6 +37,32 @@ public class FeedbackImpl implements FeedbackService {
         }
         return feedback;
     }
+
+//    @Override
+//    public Feedback saveFeedback(int interviewid, int id, Feedback feedback) {
+//        try{
+//            Optional<Interview> existingInterview = interviewRepo.findById(interviewid);
+//            Optional<User> existingInterviewer = userRepository.findById(id);
+//
+//            if (existingInterview.isPresent() && existingInterviewer.isPresent()) {
+//                Interview interview = existingInterview.get();
+//                User interviewer = existingInterviewer.get();
+//                feedback.getFeedbackDate();
+//                feedback.getDetails();
+//                feedback.getOverallRating();
+//                feedback.setInterview(interview);
+//                feedback.setUser(interviewer);
+//                //vacancy.setStatus(VacancyStatusType.CLOSED);
+//                return feedbackRepo.save(feedback);
+//            } else {
+//                throw new IllegalArgumentException("User or interview not exist with requested ID s");
+//            }
+//        }catch(Exception e){
+//            logger.error("error - readAllFeedbacks");
+//            throw e;
+//        }
+//    }
+
 
     @Override
     public List<Feedback> readAllFeedbacks() {

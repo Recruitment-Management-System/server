@@ -1,6 +1,6 @@
 package com.interviewManagementApplication.RMS.controller;
 
-import com.interviewManagementApplication.RMS.Service.Interface.CandidateService;
+import com.interviewManagementApplication.RMS.service.Interface.CandidateService;
 import com.interviewManagementApplication.RMS.model.Candidate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

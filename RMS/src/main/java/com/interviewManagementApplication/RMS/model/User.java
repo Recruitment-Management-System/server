@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Entity
-@Table(name = "usr")
+@Table(name = "users")
 public class User implements UserDetails {
 
     @Id
@@ -38,6 +38,21 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private List<Feedback> feedbackListInterviewer;
+
+
+    @Enumerated(value = EnumType.STRING)
+    private Position position;
+
+    @Column(name = "active", columnDefinition = "int default 0")
+    private int active;
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
 
 
     public Integer getId() {
@@ -83,6 +98,8 @@ public class User implements UserDetails {
         return true;
     }
 
+
+
     @Override
     public boolean isEnabled() {
         return true;
@@ -112,5 +129,13 @@ public class User implements UserDetails {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 }

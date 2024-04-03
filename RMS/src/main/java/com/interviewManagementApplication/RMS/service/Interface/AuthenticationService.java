@@ -1,4 +1,4 @@
-package com.interviewManagementApplication.RMS.services.imp;
+package com.interviewManagementApplication.RMS.service.Interface;
 
 import com.interviewManagementApplication.RMS.model.AuthenticationResponse;
 import com.interviewManagementApplication.RMS.model.User;

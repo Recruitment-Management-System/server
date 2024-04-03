@@ -2,7 +2,7 @@ package com.interviewManagementApplication.RMS.config;
 
 
 import com.interviewManagementApplication.RMS.filter.JwtAuthenticationFilter;
-import com.interviewManagementApplication.RMS.services.imp.UserDetailsServiceImp;
+import com.interviewManagementApplication.RMS.service.Impl.UserDetailsServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

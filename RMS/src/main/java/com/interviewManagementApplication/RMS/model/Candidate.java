@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -41,4 +42,7 @@ public class Candidate {
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Interview> interviews;
+
+    @ManyToMany(mappedBy = "candidateList")
+    private List<Vacancy> vacancyList;
 }

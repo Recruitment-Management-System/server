@@ -1,4 +1,4 @@
-package com.interviewManagementApplication.RMS.services.imp;
+package com.interviewManagementApplication.RMS.service.Impl;
 
 import com.interviewManagementApplication.RMS.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;

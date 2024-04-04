@@ -1,8 +1,7 @@
 package com.interviewManagementApplication.RMS.controller;
 
 import com.interviewManagementApplication.RMS.model.Project;
-import com.interviewManagementApplication.RMS.service.Impl.VacancyServiceImpl;
-import com.interviewManagementApplication.RMS.service.ProjectService;
+import com.interviewManagementApplication.RMS.service.Interface.ProjectService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

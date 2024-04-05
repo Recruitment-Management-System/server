@@ -1,5 +1,6 @@
 package com.interviewManagementApplication.RMS.controller;
 
+import com.interviewManagementApplication.RMS.model.Candidate;
 import com.interviewManagementApplication.RMS.model.Vacancy;
 import com.interviewManagementApplication.RMS.service.Interface.VacancyService;
 import lombok.extern.slf4j.Slf4j;
@@ -62,11 +63,27 @@ public class VacancyController {
     }
 
     @PutMapping("/update/{vacancyID}")
-    public Vacancy updateByIdVacancy(Integer vacancyID, Vacancy vacancy) {
+    public Vacancy updateByIdVacancy(@PathVariable Integer vacancyID, @RequestBody Vacancy vacancy) {
         try{
             return vacancyService.updateVacancyById(vacancyID, vacancy);
         }catch(Exception e){
             LOGGER.error("Cannot update the vacancy");
+            throw e;
+        }
+    }
+
+    @GetMapping("/projects/{projectId}")
+    public List<Vacancy> getVacanciesByProjectId(@PathVariable Integer projectId) {
+        return vacancyService.getVacanciesByProjectId(projectId);
+    }
+
+    @PostMapping("/candidate/{vacancyID}")
+    public void addCandidate(@PathVariable Integer vacancyID, @RequestBody Candidate candidate){
+
+        try{
+            vacancyService.addCandidateToVacancy(vacancyID,candidate);
+        }catch (Exception e){
+            LOGGER.error("Error on adding candidate ");
             throw e;
         }
     }

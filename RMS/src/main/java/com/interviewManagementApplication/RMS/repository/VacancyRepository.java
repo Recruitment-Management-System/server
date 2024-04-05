@@ -9,5 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface VacancyRepository extends JpaRepository<Vacancy, Integer> {
+    List<Vacancy> findByProjectProjectID(Integer projectID);
 
 }

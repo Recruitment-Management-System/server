@@ -12,4 +12,5 @@ public interface VacancyService {
     List<Vacancy> findAll();
     Optional<Vacancy> findByIdVacancy(Integer id);
     Vacancy updateVacancyById(Integer vacancyID, Vacancy vacancy);
+    List<Vacancy> getVacanciesByProjectId(Integer projectId);
 }

@@ -39,7 +39,7 @@ public class Vacancy {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "projectID")
+    @JoinColumn(name = "projectID", referencedColumnName = "projectId")
     private Project project;
 
     @JsonIgnore

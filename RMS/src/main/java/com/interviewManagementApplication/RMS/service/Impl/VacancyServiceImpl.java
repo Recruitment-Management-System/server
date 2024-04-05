@@ -103,4 +103,8 @@ public class VacancyServiceImpl implements VacancyService {
             throw e;
         }
     }
+
+    public List<Vacancy> getVacanciesByProjectId(Integer projectId) {
+        return vacancyRepository.findByProjectProjectID(projectId);
+    }
 }

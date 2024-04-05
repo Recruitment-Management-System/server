@@ -62,12 +62,17 @@ public class VacancyController {
     }
 
     @PutMapping("/update/{vacancyID}")
-    public Vacancy updateByIdVacancy(Integer vacancyID, Vacancy vacancy) {
+    public Vacancy updateByIdVacancy(@PathVariable Integer vacancyID, @RequestBody Vacancy vacancy) {
         try{
             return vacancyService.updateVacancyById(vacancyID, vacancy);
         }catch(Exception e){
             LOGGER.error("Cannot update the vacancy");
             throw e;
         }
+    }
+
+    @GetMapping("/projects/{projectId}")
+    public List<Vacancy> getVacanciesByProjectId(@PathVariable Integer projectId) {
+        return vacancyService.getVacanciesByProjectId(projectId);
     }
 }

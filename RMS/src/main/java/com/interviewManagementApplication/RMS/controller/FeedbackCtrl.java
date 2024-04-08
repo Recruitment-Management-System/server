@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/feedback")
 public class FeedbackCtrl {
 
     private static final Logger logger = LoggerFactory.getLogger(FeedbackCtrl.class);

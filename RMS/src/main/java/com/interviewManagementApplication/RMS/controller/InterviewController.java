@@ -1,23 +1,30 @@
 package com.interviewManagementApplication.RMS.controller;
 
+import com.interviewManagementApplication.RMS.model.Candidate;
+import com.interviewManagementApplication.RMS.model.Vacancy;
+import com.interviewManagementApplication.RMS.service.Interface.CandidateService;
 import com.interviewManagementApplication.RMS.service.Interface.InterviewService;
 import com.interviewManagementApplication.RMS.model.Interview;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/interview")
+@RequestMapping("/api/interview")
 public class InterviewController {
 
     private static final Logger logger = LoggerFactory.getLogger(InterviewController.class);
 
     @Autowired
     private InterviewService interviewService;
+
+    @Autowired
+    private CandidateService candidateService;
 
     @GetMapping("/all_interviews")
     public List<Interview> getAllInterviews() {
@@ -31,9 +38,13 @@ public class InterviewController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Interview> getInterview(@PathVariable Integer id) {
+    public Optional<?> getInterview(@PathVariable Integer id) {
         try {
-            return interviewService.showInterview(id);
+            Optional<Interview> interviews= interviewService.showInterview(id);
+
+            Integer candidateID = Integer.valueOf(interviews.get().getCandidate().getCandidateID());
+            Optional<Candidate> candidates = candidateService.getCandidate(candidateID);
+            return candidates;
         } catch (Exception e) {
             logger.error("Error occurred while retrieving interview with id: {}", id, e);
             // You can handle the exception or rethrow it if needed
@@ -62,4 +73,23 @@ public class InterviewController {
             throw e;
         }
     }
+
+
+    @PostMapping("/assign")
+    public ResponseEntity<String> assignUserToInterview(@RequestParam Integer interviewId, @RequestParam Integer userId) {
+        interviewService.assignUserToInterview(interviewId, userId);
+        return ResponseEntity.ok("User assigned to interview successfully");
+    }
+
+
+    @GetMapping("/interviews/{id}")
+    public List<Interview> getInterviewsByUserId(@PathVariable Integer id) {
+        return interviewService.getAllInterviewsByUserId(id);
+    }
+
+    @GetMapping("candidates/{candidateid}")
+    public List<Interview> getCandidates(@PathVariable Integer candidateid) {
+        return interviewService.getCandidates(candidateid);
+    }
+
 }

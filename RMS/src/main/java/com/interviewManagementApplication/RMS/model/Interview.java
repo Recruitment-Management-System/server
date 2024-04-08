@@ -42,7 +42,7 @@ public class Interview {
     @JsonIgnore
     @ManyToMany
     @JoinTable(
-            name = "interviewInterviewer",
+            name = "interviewUser",
             joinColumns = @JoinColumn(name = "interviewid"),
             inverseJoinColumns = @JoinColumn(name = "id")
     )

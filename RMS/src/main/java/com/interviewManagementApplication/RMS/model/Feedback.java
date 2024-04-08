@@ -27,13 +27,13 @@ public class Feedback {
     private Comment details;
 
     @Column(name = "overallrating")
-    private int overallRating;
+    private int overallrating;
 
-    @Column(name = "decisiononhire")
-    private boolean decisionOnHire;
+    @Column(name = "secondinterview")
+    private boolean secondinterview;
 
     @Column(name = "feedbackdate")
-    private Date feedbackDate;
+    private Date feedbackdate;
 
     @ManyToOne
     @JoinColumn(name = "interviewid")

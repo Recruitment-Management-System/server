@@ -1,5 +1,6 @@
 package com.interviewManagementApplication.RMS.service.Interface;
 
+import com.interviewManagementApplication.RMS.model.Candidate;
 import com.interviewManagementApplication.RMS.model.Vacancy;
 
 import java.util.List;
@@ -12,5 +13,7 @@ public interface VacancyService {
     List<Vacancy> findAll();
     Optional<Vacancy> findByIdVacancy(Integer id);
     Vacancy updateVacancyById(Integer vacancyID, Vacancy vacancy);
+
     List<Vacancy> getVacanciesByProjectId(Integer projectId);
 }
+

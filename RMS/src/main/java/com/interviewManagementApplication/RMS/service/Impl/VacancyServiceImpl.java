@@ -1,7 +1,9 @@
 package com.interviewManagementApplication.RMS.service.Impl;
 
+import com.interviewManagementApplication.RMS.model.Candidate;
 import com.interviewManagementApplication.RMS.model.Project;
 import com.interviewManagementApplication.RMS.model.Vacancy;
+import com.interviewManagementApplication.RMS.repository.CandidateRepo;
 import com.interviewManagementApplication.RMS.repository.ProjectRepository;
 import com.interviewManagementApplication.RMS.repository.VacancyRepository;
 import com.interviewManagementApplication.RMS.service.Interface.VacancyService;
@@ -25,26 +27,29 @@ public class VacancyServiceImpl implements VacancyService {
     private VacancyRepository vacancyRepository;
 
     @Autowired
+    private CandidateRepo candidateRepo;
+
+    @Autowired
     private ProjectRepository projectRepository;
 
     @Override
     public Vacancy createVacancy(int projectID, Vacancy vacancy) {
-       try{
-           Optional<Project> optionalProject = projectRepository.findById(projectID);
+        try{
+            Optional<Project> optionalProject = projectRepository.findById(projectID);
 
-           if (optionalProject.isPresent()) {
-               Project project = optionalProject.get();
-               vacancy.getJobRefCode();
-               vacancy.setProject(project);
-               //vacancy.setStatus(VacancyStatusType.CLOSED);
-               return vacancyRepository.save(vacancy);
-           } else {
-               throw new IllegalArgumentException("Project not found with id: " + projectID);
-           }
-       }catch(Exception e){
-           LOGGER.error("Cannot save vacancy");
-           throw e;
-       }
+            if (optionalProject.isPresent()) {
+                Project project = optionalProject.get();
+                vacancy.getJobRefCode();
+                vacancy.setProject(project);
+                //vacancy.setStatus(VacancyStatusType.CLOSED);
+                return vacancyRepository.save(vacancy);
+            } else {
+                throw new IllegalArgumentException("Project not found with id: " + projectID);
+            }
+        }catch(Exception e){
+            LOGGER.error("Cannot save vacancy");
+            throw e;
+        }
     }
 
     @Override
@@ -108,3 +113,4 @@ public class VacancyServiceImpl implements VacancyService {
         return vacancyRepository.findByProjectProjectID(projectId);
     }
 }
+

@@ -1,6 +1,7 @@
 package com.interviewManagementApplication.RMS.service.Impl;
 
 import com.interviewManagementApplication.RMS.model.*;
+import com.interviewManagementApplication.RMS.repository.FeedbackHRRepo;
 import com.interviewManagementApplication.RMS.repository.InterviewRepo;
 import com.interviewManagementApplication.RMS.repository.UserRepository;
 import com.interviewManagementApplication.RMS.service.Interface.FeedbackService;
@@ -22,46 +23,48 @@ public class FeedbackImpl implements FeedbackService {
     private FeedbackRepo feedbackRepo;
 
     @Autowired
+    private FeedbackHRRepo feedbackHRRepo;
+
+    @Autowired
     private InterviewRepo interviewRepo;
 
     @Autowired
     private UserRepository userRepository;
 
-    @Override
-    public Feedback saveFeedback(Feedback feedback) {
-        try{
-            feedbackRepo.save(feedback);
-        }catch(Exception e){
-            logger.error("error - readAllFeedbacks");
-            throw e;
-        }
-        return feedback;
-    }
-
 //    @Override
-//    public Feedback saveFeedback(int interviewid, int id, Feedback feedback) {
+//    public Feedback saveFeedback(Feedback feedback) {
 //        try{
-//            Optional<Interview> existingInterview = interviewRepo.findById(interviewid);
-//            Optional<User> existingInterviewer = userRepository.findById(id);
-//
-//            if (existingInterview.isPresent() && existingInterviewer.isPresent()) {
-//                Interview interview = existingInterview.get();
-//                User interviewer = existingInterviewer.get();
-//                feedback.getFeedbackDate();
-//                feedback.getDetails();
-//                feedback.getOverallRating();
-//                feedback.setInterview(interview);
-//                feedback.setUser(interviewer);
-//                //vacancy.setStatus(VacancyStatusType.CLOSED);
-//                return feedbackRepo.save(feedback);
-//            } else {
-//                throw new IllegalArgumentException("User or interview not exist with requested ID s");
-//            }
+//            feedbackRepo.save(feedback);
 //        }catch(Exception e){
 //            logger.error("error - readAllFeedbacks");
 //            throw e;
 //        }
+//        return feedback;
 //    }
+
+    @Override
+    public Feedback saveFeedback(int interviewID, Feedback feedback) {
+        try{
+            Optional<Interview> existingInterview = interviewRepo.findById(interviewID);
+            //Optional<User> existingInterviewer = userRepository.findById(id);
+
+            if (existingInterview.isPresent()) {
+                Interview interview = existingInterview.get();
+               // User interviewer = existingInterviewer.get();
+                feedback.getFeedbackdate();
+                feedback.getDetails();
+                feedback.getOverallrating();
+                feedback.setInterview(interview);
+               // feedback.setUser(interviewer);
+                return feedbackRepo.save(feedback);
+            } else {
+                throw new IllegalArgumentException("User or interview not exist with requested ID s");
+            }
+        }catch(Exception e){
+            logger.error("error - readAllFeedbacks");
+            throw e;
+        }
+    }
 
 
     @Override
@@ -100,6 +103,61 @@ public class FeedbackImpl implements FeedbackService {
             feedbackRepo.deleteById(id);
         }catch(Exception e){
             logger.error("error - delete");
+            throw e;
+        }
+    }
+
+    //feedback HR
+    @Override
+    public FeedbackHR saveFeedbackHR(int interviewID, FeedbackHR feedbackhr) {
+        try{
+            Optional<Interview> existingInterview = interviewRepo.findById(interviewID);
+            //Optional<User> existingInterviewer = userRepository.findById(id);
+
+            if (existingInterview.isPresent()) {
+                Interview interview = existingInterview.get();
+                // User interviewer = existingInterviewer.get();
+                feedbackhr.getFeedbackdate();
+                feedbackhr.getComment();
+                feedbackhr.getSalaryexpectation();
+                feedbackhr.setInterview(interview);
+                // feedback.setUser(interviewer);
+                return feedbackHRRepo.save(feedbackhr);
+            } else {
+                throw new IllegalArgumentException("User or interview not exist with requested ID s");
+            }
+        }catch(Exception e){
+            logger.error("error - readAllFeedbacks");
+            throw e;
+        }
+    }
+
+    @Override
+    public List<FeedbackHR> readAllFeedbacksHR() {
+        try{
+            return feedbackHRRepo.findAll();
+        }catch(Exception e){
+            logger.error("error - readAllFeedback");
+            throw e;
+        }
+    }
+
+    @Override
+    public Optional<FeedbackHR> readFeedbackHRById(int id) {
+        try{
+            return feedbackHRRepo.findById(id);
+        }catch (Exception e){
+            logger.error("error - readbyid");
+            throw e;
+        }
+    }
+
+    @Override
+    public FeedbackHR updateFeedbackHR(FeedbackHR feedbackhr) {
+        try{
+            return feedbackHRRepo.save(feedbackhr);
+        }catch (Exception e){
+            logger.error("error - updateFeedback");
             throw e;
         }
     }

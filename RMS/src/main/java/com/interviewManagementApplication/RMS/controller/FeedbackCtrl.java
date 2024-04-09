@@ -1,5 +1,6 @@
 package com.interviewManagementApplication.RMS.controller;
 
+import com.interviewManagementApplication.RMS.model.FeedbackHR;
 import com.interviewManagementApplication.RMS.service.Interface.FeedbackService;
 import com.interviewManagementApplication.RMS.model.Feedback;
 import org.slf4j.Logger;
@@ -19,10 +20,11 @@ public class FeedbackCtrl {
     @Autowired
     private FeedbackService feedbackService;
 
-    @PostMapping("/savefeedback")
-    public Feedback saveFeedBack(@RequestBody Feedback feedback){
+
+    @PostMapping("/{interviewID}/savefeedback")
+    public Feedback saveFeedBack(@PathVariable int interviewID, @RequestBody Feedback feedback){
         try{
-            return feedbackService.saveFeedback(feedback);
+            return feedbackService.saveFeedback(interviewID,feedback);
         }catch(Exception e){
             logger.error("error - savefeedback");
             throw e;
@@ -67,4 +69,17 @@ public class FeedbackCtrl {
             logger.error("Delete not succeed");
         }
     }
+
+
+    //feedback HR
+    @PostMapping("/{interviewID}/savefeedbackhr")
+    public FeedbackHR saveFeedBackHR(@PathVariable int interviewID, @RequestBody FeedbackHR feedbackhr){
+        try{
+            return feedbackService.saveFeedbackHR(interviewID, feedbackhr);
+        }catch(Exception e){
+            logger.error("error - savefeedback");
+            throw e;
+        }
+    }
+
 }

@@ -161,4 +161,11 @@ public class FeedbackImpl implements FeedbackService {
             throw e;
         }
     }
+
+
+    //read feedbacks using interviewId
+
+    public Feedback findFeedbackIdByInterviewId(int interviewid) {
+        return feedbackRepo.findFeedbackByInterviewId(interviewid);
+    }
 }

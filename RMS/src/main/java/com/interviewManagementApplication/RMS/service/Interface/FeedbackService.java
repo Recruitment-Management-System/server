@@ -27,4 +27,9 @@ public interface FeedbackService {
     Optional<FeedbackHR> readFeedbackHRById(int id);
 
     FeedbackHR updateFeedbackHR(FeedbackHR feedbackhr);
+
+
+
+    /////
+    Feedback findFeedbackIdByInterviewId(int interviewid);
 }

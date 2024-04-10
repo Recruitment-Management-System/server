@@ -20,7 +20,7 @@ public class Interview {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "interviewid")
-    private Integer interviewID;
+    private Integer interviewid;
 
     @Column(name = "interview_type")
     private int interviewType;
@@ -36,7 +36,7 @@ public class Interview {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "candidateid")
+    @JoinColumn(name = "candidateid", referencedColumnName = "candidateid")
     private Candidate candidate;
 
     @JsonIgnore
@@ -51,4 +51,7 @@ public class Interview {
     @JsonIgnore
     @OneToMany(mappedBy = "interview")
     private List<Feedback> feedbackList;
+
+//    @OneToOne(mappedBy = "interview")
+//    private Feedback feedback;
 }

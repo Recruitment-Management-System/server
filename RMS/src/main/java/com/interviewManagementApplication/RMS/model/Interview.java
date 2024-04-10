@@ -22,11 +22,13 @@ public class Interview {
     @Column(name = "interviewid")
     private Integer interviewID;
 
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "interview_type")
-    private int interviewType;
+    private InterviewType interviewType;
 
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "interview_status")
-    private int interviewStatus;
+    private InterviewStatus interviewStatus;
 
     @Column(name = "interviewdate")
     private Timestamp interviewdate;
@@ -36,13 +38,13 @@ public class Interview {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "candidateid")
+    @JoinColumn(name = "candidateid", referencedColumnName = "candidateid")
     private Candidate candidate;
 
     @JsonIgnore
     @ManyToMany
     @JoinTable(
-            name = "interviewInterviewer",
+            name = "interviewUser",
             joinColumns = @JoinColumn(name = "interviewid"),
             inverseJoinColumns = @JoinColumn(name = "id")
     )

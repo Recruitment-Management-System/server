@@ -24,7 +24,7 @@ public class User implements UserDetails {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
 
     @Column(name = "password")
@@ -39,7 +39,7 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<Feedback> feedbackListInterviewer;
 
-
+    @Column(name = "position")
     @Enumerated(value = EnumType.STRING)
     private Position position;
 
@@ -137,5 +137,13 @@ public class User implements UserDetails {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public List<Interview> getInterviewList() {
+        return interviewList;
+    }
+
+    public void setInterviewList(List<Interview> interviewList) {
+        this.interviewList = interviewList;
     }
 }

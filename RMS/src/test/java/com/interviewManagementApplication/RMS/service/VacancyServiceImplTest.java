@@ -63,7 +63,7 @@ public class VacancyServiceImplTest {
         vacancy.add(new Vacancy(1, "No-reason", "SE100", "Software Engineer", 2, VacancyStatusType.OPEN, project, candidateList));
 
         when(vacancyRepository.findAll()).thenReturn(vacancy);
-        List<Vacancy> findVacancies = vacancyServiceImpl.findAll();
+        List<Vacancy> findVacancies = vacancyServiceImpl.findAllVacancies();
 
         assertEquals(vacancy, findVacancies);
         verify(vacancyRepository, times(1)).findAll();
@@ -276,7 +276,7 @@ public class VacancyServiceImplTest {
     public void testFindAllVacancies_VacanciesNotFound(){
         when(vacancyRepository.findAll()).thenThrow(new RuntimeException("Cannot fetch all vacancies"));
         RuntimeException exception = assertThrows(
-                RuntimeException.class, ()-> vacancyServiceImpl.findAll());
+                RuntimeException.class, ()-> vacancyServiceImpl.findAllVacancies());
 
         assertEquals("Cannot fetch all vacancies", exception.getMessage());
     }

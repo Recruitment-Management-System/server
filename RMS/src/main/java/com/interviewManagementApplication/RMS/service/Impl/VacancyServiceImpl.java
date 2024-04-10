@@ -67,7 +67,7 @@ public class VacancyServiceImpl implements VacancyService {
     }
 
     @Override
-    public List<Vacancy> findAll() {
+    public List<Vacancy> findAllVacancies() {
         try{
             return vacancyRepository.findAll();
         }catch(Exception e){

@@ -44,7 +44,7 @@ public class VacancyController {
     @GetMapping
     public List<Vacancy> findAll(){
         try{
-            return vacancyService.findAll();
+            return vacancyService.findAllVacancies();
         }catch(Exception e){
             LOGGER.error("Cannot fetch all vacancies");
             throw e;

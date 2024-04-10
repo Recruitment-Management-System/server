@@ -19,17 +19,12 @@ public interface FeedbackService {
     void deleteFeedback(int id);
 
 
-    //feedback HR
-    FeedbackHR saveFeedbackHR(int interviewID, FeedbackHR feedbackhr);
 
-    List<FeedbackHR> readAllFeedbacksHR();
-
-    Optional<FeedbackHR> readFeedbackHRById(int id);
-
-    FeedbackHR updateFeedbackHR(FeedbackHR feedbackhr);
 
 
 
     /////
     Feedback findFeedbackIdByInterviewId(int interviewid);
+
+
 }

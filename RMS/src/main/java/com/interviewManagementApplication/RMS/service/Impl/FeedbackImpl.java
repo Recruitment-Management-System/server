@@ -22,8 +22,7 @@ public class FeedbackImpl implements FeedbackService {
     @Autowired
     private FeedbackRepo feedbackRepo;
 
-    @Autowired
-    private FeedbackHRRepo feedbackHRRepo;
+
 
     @Autowired
     private InterviewRepo interviewRepo;
@@ -107,60 +106,7 @@ public class FeedbackImpl implements FeedbackService {
         }
     }
 
-    //feedback HR
-    @Override
-    public FeedbackHR saveFeedbackHR(int interviewID, FeedbackHR feedbackhr) {
-        try{
-            Optional<Interview> existingInterview = interviewRepo.findById(interviewID);
-            //Optional<User> existingInterviewer = userRepository.findById(id);
 
-            if (existingInterview.isPresent()) {
-                Interview interview = existingInterview.get();
-                // User interviewer = existingInterviewer.get();
-                feedbackhr.getFeedbackdate();
-                feedbackhr.getComment();
-                feedbackhr.getSalaryexpectation();
-                feedbackhr.setInterview(interview);
-                // feedback.setUser(interviewer);
-                return feedbackHRRepo.save(feedbackhr);
-            } else {
-                throw new IllegalArgumentException("User or interview not exist with requested ID s");
-            }
-        }catch(Exception e){
-            logger.error("error - readAllFeedbacks");
-            throw e;
-        }
-    }
-
-    @Override
-    public List<FeedbackHR> readAllFeedbacksHR() {
-        try{
-            return feedbackHRRepo.findAll();
-        }catch(Exception e){
-            logger.error("error - readAllFeedback");
-            throw e;
-        }
-    }
-
-    @Override
-    public Optional<FeedbackHR> readFeedbackHRById(int id) {
-        try{
-            return feedbackHRRepo.findById(id);
-        }catch (Exception e){
-            logger.error("error - readbyid");
-            throw e;
-        }
-    }
-
-    @Override
-    public FeedbackHR updateFeedbackHR(FeedbackHR feedbackhr) {
-        try{
-            return feedbackHRRepo.save(feedbackhr);
-        }catch (Exception e){
-            logger.error("error - updateFeedback");
-            throw e;
-        }
-    }
 
 
     //read feedbacks using interviewId
@@ -168,4 +114,6 @@ public class FeedbackImpl implements FeedbackService {
     public Feedback findFeedbackIdByInterviewId(int interviewid) {
         return feedbackRepo.findFeedbackByInterviewId(interviewid);
     }
+
+
 }

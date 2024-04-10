@@ -73,16 +73,7 @@ public class FeedbackCtrl {
     }
 
 
-    //feedback HR
-    @PostMapping("/{interviewID}/savefeedbackhr")
-    public FeedbackHR saveFeedBackHR(@PathVariable int interviewID, @RequestBody FeedbackHR feedbackhr){
-        try{
-            return feedbackService.saveFeedbackHR(interviewID, feedbackhr);
-        }catch(Exception e){
-            logger.error("error - savefeedback");
-            throw e;
-        }
-    }
+
 
     @GetMapping("/interview/{interviewid}")
     public ResponseEntity<Feedback> getFeedbackByInterviewId(@PathVariable int interviewid) {

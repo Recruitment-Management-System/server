@@ -20,5 +20,5 @@ public interface InterviewService {
 
     void assignUserToInterview(Integer interviewId, Integer userId);
     List<Interview> getAllInterviewsByUserId(Integer userId);
-    List<Interview> getCandidates(Integer candidateId);
+    List<Interview> getCandidates(int candidateid);
 }

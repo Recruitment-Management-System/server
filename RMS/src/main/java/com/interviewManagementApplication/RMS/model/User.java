@@ -36,8 +36,7 @@ public class User implements UserDetails {
     @ManyToMany(mappedBy = "userList")
     private List<Interview> interviewList;
 
-    @OneToMany(mappedBy = "user")
-    private List<Feedback> feedbackListInterviewer;
+
 
     @Column(name = "position")
     @Enumerated(value = EnumType.STRING)

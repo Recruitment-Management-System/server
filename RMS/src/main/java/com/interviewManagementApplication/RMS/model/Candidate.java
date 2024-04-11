@@ -39,6 +39,9 @@ public class Candidate {
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "status")
+    private String status;
+
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Interview> interviews;

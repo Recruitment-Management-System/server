@@ -73,4 +73,31 @@ public class CandidateServiceImpl implements CandidateService {
             logger.error("Error occurred while adding candidate", e);
         }
     }
+
+    //update candidate status
+    //hire
+    @Override
+    public String hireCandidate(int candidateid) {
+
+        Optional<Candidate> existingCandidate = candidateRepo.findById(candidateid);
+        if (existingCandidate.isPresent()) {
+            Candidate updatedCandidate = existingCandidate.get();
+            updatedCandidate.setStatus("Hired");
+            candidateRepo.save(updatedCandidate);
+        }
+        return null;
+    }
+
+    @Override
+    public String rejectCandidate(int candidateid) {
+
+        Optional<Candidate> existingCandidate = candidateRepo.findById(candidateid);
+        if (existingCandidate.isPresent()) {
+            Candidate updatedCandidate = existingCandidate.get();
+            updatedCandidate.setStatus("Rejected");
+            candidateRepo.save(updatedCandidate);
+        }
+        return null;
+    }
 }
+

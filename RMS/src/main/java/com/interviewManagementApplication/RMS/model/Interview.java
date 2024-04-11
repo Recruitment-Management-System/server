@@ -52,6 +52,7 @@ public class Interview {
     @OneToMany(mappedBy = "interview")
     private List<Feedback> feedbackList;
 
-//    @OneToOne(mappedBy = "interview")
-//    private Feedback feedback;
+    @JsonIgnore
+    @OneToMany(mappedBy = "interview")
+    private List<FeedbackHR> feedbackhrList;
 }

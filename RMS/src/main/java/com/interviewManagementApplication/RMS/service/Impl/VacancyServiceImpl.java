@@ -1,16 +1,19 @@
 package com.interviewManagementApplication.RMS.service.Impl;
 
+import com.interviewManagementApplication.RMS.model.Candidate;
 import com.interviewManagementApplication.RMS.model.Project;
 import com.interviewManagementApplication.RMS.model.Vacancy;
 import com.interviewManagementApplication.RMS.repository.ProjectRepository;
 import com.interviewManagementApplication.RMS.repository.VacancyRepository;
 import com.interviewManagementApplication.RMS.service.Interface.VacancyService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -106,5 +109,13 @@ public class VacancyServiceImpl implements VacancyService {
 
     public List<Vacancy> getVacanciesByProjectId(Integer projectId) {
         return vacancyRepository.findByProjectProjectID(projectId);
+    }
+
+
+    //fetch candidate details using vacancy id
+    public List<Candidate> findCandidatesForVacancy(int vacancyid) {
+        Vacancy vacancy = vacancyRepository.findById(vacancyid)
+                .orElseThrow(() -> new EntityNotFoundException("Vacancy not found with id: " + vacancyid));
+        return new ArrayList<>(vacancy.getCandidateList());
     }
 }

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/candidate")
+@RequestMapping("/api/candidate")
 public class CandidateController {
 
     private static final Logger logger = LoggerFactory.getLogger(CandidateController.class);
@@ -63,5 +63,17 @@ public class CandidateController {
             logger.error("Error occurred while updating candidate with id: {}", id, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+
+    //hire or reject candidate
+    @PutMapping("/hire/{candidateid}")
+    public String hire(@PathVariable("candidateid") int candidateid) {
+        return candidateService.hireCandidate(candidateid);
+    }
+
+    @PutMapping("/reject/{candidateid}")
+    public String reject(@PathVariable("candidateid") int candidateid) {
+        return candidateService.rejectCandidate(candidateid);
     }
 }

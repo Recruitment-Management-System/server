@@ -118,9 +118,10 @@ public class InterviewServiceImpl implements InterviewService {
         return interviewRepo.findAllByUserList_Id(userId);
     }
 
+    //interviews for candidate
     @Override
-    public List<Interview> getCandidates(Integer candidateId) {
-        return interviewRepo.findByCandidateCandidateID(candidateId);
+    public List<Interview> getCandidates(int candidateid) {
+        return interviewRepo.findByCandidateCandidateID(candidateid);
     }
 
 }

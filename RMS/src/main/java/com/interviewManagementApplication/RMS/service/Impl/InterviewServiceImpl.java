@@ -93,34 +93,25 @@ public class InterviewServiceImpl implements InterviewService {
         }
     }
 
-
-
-    public void assignUserToInterview(Integer interviewId, Integer userId) {
-        Optional<Interview> optionalInterview = interviewRepo.findById(interviewId);
-        Optional<User> optionalUser = userRepository.findById(userId);
-
-        if (optionalInterview.isPresent() && optionalUser.isPresent()) {
-            Interview interview = optionalInterview.get();
-            User user = optionalUser.get();
-
-            interview.getUserList().add(user);
-            user.getInterviewList().add(interview);
-
-            interviewRepo.save(interview);
-            userRepository.save(user);
-        } else {
-            // Handle invalid interviewId or userId
-            throw new IllegalArgumentException("Invalid interviewId or userId");
-        }
-    }
     @Override
     public List<Interview> getAllInterviewsByUserId(Integer userId) {
-        return interviewRepo.findAllByUserList_Id(userId);
+        try{
+            return interviewRepo.findAllByUserList_Id(userId);
+
+        }catch(Exception e){
+            logger.error("Error occurred while getting all interviews with id {}", userId);
+            throw e;
+        }
     }
 
     @Override
-    public List<Interview> getCandidates(Integer candidateId) {
-        return interviewRepo.findByCandidateCandidateID(candidateId);
+    public List<Interview> getInterviewsByCandidate(Integer candidateId) {
+       try{
+           return interviewRepo.findByCandidateCandidateID(candidateId);
+       }catch(Exception e){
+           logger.error("Error occurred while getting all candidates with id {}", candidateId);
+           throw e;
+       }
     }
 
 }

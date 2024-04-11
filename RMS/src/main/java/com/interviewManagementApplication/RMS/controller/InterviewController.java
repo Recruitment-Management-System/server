@@ -75,12 +75,6 @@ public class InterviewController {
     }
 
 
-    @PostMapping("/assign")
-    public ResponseEntity<String> assignUserToInterview(@RequestParam Integer interviewId, @RequestParam Integer userId) {
-        interviewService.assignUserToInterview(interviewId, userId);
-        return ResponseEntity.ok("User assigned to interview successfully");
-    }
-
 
     @GetMapping("/interviews/{id}")
     public List<Interview> getInterviewsByUserId(@PathVariable Integer id) {
@@ -89,7 +83,7 @@ public class InterviewController {
 
     @GetMapping("candidates/{candidateid}")
     public List<Interview> getCandidates(@PathVariable Integer candidateid) {
-        return interviewService.getCandidates(candidateid);
+        return interviewService.getInterviewsByCandidate(candidateid);
     }
 
 }

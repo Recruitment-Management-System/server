@@ -17,5 +17,5 @@ public interface FeedbackHRService {
 
     Optional<FeedbackHR> readFeedbackHRById(int id);
 
-    FeedbackHR updateFeedbackHR(FeedbackHR feedbackhr);
+    FeedbackHR updateFeedbackHR(int feedbackidhr, FeedbackHR feedbackHR);
 }

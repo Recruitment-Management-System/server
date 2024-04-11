@@ -43,15 +43,7 @@ public class FeedbackCtrl {
         }
     }
 
-    @GetMapping("/{feedbackid}")
-    public Optional<Feedback> readFeedbackById(@PathVariable("feedbackid") int feedbackid) {
-        try {
-            return feedbackService.readById(feedbackid);
-        } catch (Exception e) {
-            logger.error("error - readfeedbackById");
-            throw e;
-        }
-    }
+
 
     @PutMapping("/update")
     public Feedback updateFeedback(@RequestBody Feedback feedback) {

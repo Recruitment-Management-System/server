@@ -76,12 +76,29 @@ public class FeedbackHRImpl implements FeedbackHRService {
         }
     }
 
+//    @Override
+//    public FeedbackHR updateFeedbackHR(FeedbackHR feedbackhr) {
+//        try{
+//            return feedbackHRRepo.save(feedbackhr);
+//        }catch (Exception e){
+//            logger.error("error - updateFeedback");
+//            throw e;
+//        }
+//    }
+
     @Override
-    public FeedbackHR updateFeedbackHR(FeedbackHR feedbackhr) {
+    public FeedbackHR updateFeedbackHR(int feedbackidhr, FeedbackHR feedbackHR) {
         try{
-            return feedbackHRRepo.save(feedbackhr);
-        }catch (Exception e){
-            logger.error("error - updateFeedback");
+            FeedbackHR feedbackHR1 = feedbackHRRepo.findById(feedbackidhr)
+                    .orElseThrow(() -> new RuntimeException("Feedback not found"));
+
+            feedbackHR1.setFeedbackdate(feedbackHR.getFeedbackdate());
+            feedbackHR1.setSalaryexpectation(feedbackHR.getSalaryexpectation());
+            feedbackHR1.setComment(feedbackHR.getComment());
+
+            return feedbackHRRepo.save(feedbackHR1);
+        }catch(Exception e){
+            logger.error("error - update feedback");
             throw e;
         }
     }

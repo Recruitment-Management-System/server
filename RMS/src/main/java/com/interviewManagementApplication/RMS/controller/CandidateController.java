@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/candidate")
+@RequestMapping("api/candidate")
 public class CandidateController {
 
     private static final Logger logger = LoggerFactory.getLogger(CandidateController.class);

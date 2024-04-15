@@ -16,4 +16,6 @@ public interface VacancyService {
 
     void addCandidateToVacancy(Integer vacancyID, Candidate candidate);
     List<Vacancy> getVacanciesByProjectId(Integer projectId);
+
+    List<Candidate> getCandidatesForVacancy(Integer vacancyID);
 }

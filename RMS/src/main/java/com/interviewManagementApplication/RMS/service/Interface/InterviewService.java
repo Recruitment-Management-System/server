@@ -14,4 +14,6 @@ public interface InterviewService {
     Optional<Interview> showInterview(Integer interviewID);
 
     void updateInterview(Integer id, Interview interview);
+
+    void addInterviewer(Integer candidateID, List<Integer> userIDs, Interview interview);
 }

@@ -1,5 +1,9 @@
 package com.interviewManagementApplication.RMS.service.Impl;
 
+import com.interviewManagementApplication.RMS.model.Candidate;
+import com.interviewManagementApplication.RMS.model.User;
+import com.interviewManagementApplication.RMS.repository.CandidateRepo;
+import com.interviewManagementApplication.RMS.repository.UserRepository;
 import com.interviewManagementApplication.RMS.service.Interface.InterviewService;
 import com.interviewManagementApplication.RMS.model.Interview;
 import com.interviewManagementApplication.RMS.repository.InterviewRepo;
@@ -8,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +23,12 @@ public class InterviewServiceImpl implements InterviewService {
 
     @Autowired
     private InterviewRepo interviewRepo;
+
+    @Autowired
+    private CandidateRepo candidateRepo;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public List<Interview> getAllInterviews() {
@@ -57,7 +68,7 @@ public class InterviewServiceImpl implements InterviewService {
                 Interview updatedInterview = existingInterview.get();
 
                 updatedInterview.setInterviewTime(interview.getInterviewTime());
-                updatedInterview.setInterviewdate(interview.getInterviewdate());
+                updatedInterview.setInterviewDate(interview.getInterviewDate());
                 updatedInterview.setInterviewStatus(interview.getInterviewStatus());
                 updatedInterview.setCandidate(interview.getCandidate());
                 updatedInterview.setInterviewType(interview.getInterviewType());
@@ -68,4 +79,29 @@ public class InterviewServiceImpl implements InterviewService {
             logger.error("Error occurred while updating interview with id: {}", id, e);
         }
     }
+
+    @Override
+    public void addInterviewer(Integer candidateID, List<Integer> userIDs, Interview interview) {
+        Optional<Candidate> candidateOptional = candidateRepo.findById(candidateID);
+        if (candidateOptional.isPresent()) {
+            Candidate savedCandidate = candidateOptional.get();
+            interview.setCandidate(savedCandidate);
+
+            if (interview.getUserList() == null) {
+                interview.setUserList(new ArrayList<>());
+            }
+
+            List<User> userList = interview.getUserList();
+
+            for (Integer userID : userIDs) {
+                Optional<User> userOptional = userRepository.findById(userID);
+                userOptional.ifPresent(userList::add);
+            }
+
+            interviewRepo.save(interview);
+        } else {
+            logger.error("Candidate not found");
+        }
+    }
+
 }

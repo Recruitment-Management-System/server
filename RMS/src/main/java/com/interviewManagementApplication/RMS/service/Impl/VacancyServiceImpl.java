@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -117,6 +118,9 @@ public class VacancyServiceImpl implements VacancyService {
             Vacancy vacancy = optionalVacancy.get();
             Candidate savedCandidate = candidateRepo.save(candidate);
             List<Candidate> candidateList = vacancy.getCandidateList();
+            if (vacancy.getCandidateList() == null) {
+                vacancy.setCandidateList(new ArrayList<>());
+            }
             candidateList.add(savedCandidate);
             vacancy.setCandidateList(candidateList);
             vacancyRepository.save(vacancy);
@@ -128,5 +132,12 @@ public class VacancyServiceImpl implements VacancyService {
 
     public List<Vacancy> getVacanciesByProjectId(Integer projectId) {
         return vacancyRepository.findByProjectProjectID(projectId);
+    }
+
+    @Override
+    public List<Candidate> getCandidatesForVacancy(Integer vacancyID) {
+        Optional<Vacancy> optionalVacancy =  vacancyRepository.findById(vacancyID);
+        Vacancy vacancy = optionalVacancy.get();
+        return vacancy.getCandidateList();
     }
 }

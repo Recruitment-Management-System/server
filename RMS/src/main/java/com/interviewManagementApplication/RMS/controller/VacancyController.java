@@ -52,6 +52,17 @@ public class VacancyController {
         }
     }
 
+    //find candidates for a vacancy
+    @GetMapping("/candidates/{vacancyID}")
+    public List<Candidate> findCandidatesForVacancy(@PathVariable Integer vacancyID){
+        try {
+            return vacancyService.getCandidatesForVacancy(vacancyID);
+        }catch (Exception e){
+            LOGGER.error("Error when fetching candidate list");
+            throw e;
+        }
+    }
+
     @GetMapping("/{vacancyID}")
     public Optional<Vacancy> findByVacancy(@PathVariable Integer vacancyID){
         try{
@@ -77,7 +88,8 @@ public class VacancyController {
         return vacancyService.getVacanciesByProjectId(projectId);
     }
 
-    @PostMapping("/candidate/{vacancyID}")
+    //add candidate to the system
+    @PostMapping("/addcandidate/{vacancyID}")
     public void addCandidate(@PathVariable Integer vacancyID, @RequestBody Candidate candidate){
 
         try{

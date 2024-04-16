@@ -39,6 +39,8 @@ public class Feedback {
     @JoinColumn(name = "interviewid")
     private Interview interview;
 
+
+
 //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "interviewid", referencedColumnName = "interviewid")
 //    private Interview interview;

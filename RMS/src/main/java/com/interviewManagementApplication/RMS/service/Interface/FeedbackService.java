@@ -10,13 +10,11 @@ public interface FeedbackService {
 
     Feedback saveFeedback(int interviewID, Feedback feedback);
 
-    List<Feedback> readAllFeedbacks();
+    // Optional<Feedback> readById(int id);
 
-    Optional<Feedback> readById(int id);
+   // Feedback updateFeedback(Feedback feedback);
 
-    Feedback updateFeedback(Feedback feedback);
-
-    void deleteFeedback(int id);
+   // void deleteFeedback(int id);
 
 
 

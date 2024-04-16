@@ -57,7 +57,7 @@ public class FeedbackImpl implements FeedbackService {
                // feedback.setUser(interviewer);
                 return feedbackRepo.save(feedback);
             } else {
-                throw new IllegalArgumentException("User or interview not exist with requested ID s");
+                throw new IllegalArgumentException("Interview not exist with requested ID s");
             }
         }catch(Exception e){
             logger.error("error - readAllFeedbacks");
@@ -66,45 +66,37 @@ public class FeedbackImpl implements FeedbackService {
     }
 
 
-    @Override
-    public List<Feedback> readAllFeedbacks() {
-        try{
-            return feedbackRepo.findAll();
-        }catch(Exception e){
-            logger.error("error - readAllFeedback");
-            throw e;
-        }
-    }
 
-    @Override
-    public Optional<Feedback> readById(int id) {
-        try{
-            return feedbackRepo.findById(id);
-        }catch (Exception e){
-            logger.error("error - readbyid");
-            throw e;
-        }
-    }
 
-    @Override
-    public Feedback updateFeedback(Feedback feedback) {
-        try{
-            return feedbackRepo.save(feedback);
-        }catch (Exception e){
-            logger.error("error - updateFeedback");
-            throw e;
-        }
-    }
+//    @Override
+//    public Optional<Feedback> readById(int id) {
+//        try{
+//            return feedbackRepo.findById(id);
+//        }catch (Exception e){
+//            logger.error("error - readbyid");
+//            throw e;
+//        }
+//    }
 
-    @Override
-    public void deleteFeedback(int id) {
-        try{
-            feedbackRepo.deleteById(id);
-        }catch(Exception e){
-            logger.error("error - delete");
-            throw e;
-        }
-    }
+//    @Override
+//    public Feedback updateFeedback(Feedback feedback) {
+//        try{
+//            return feedbackRepo.save(feedback);
+//        }catch (Exception e){
+//            logger.error("error - updateFeedback");
+//            throw e;
+//        }
+//    }
+
+//    @Override
+//    public void deleteFeedback(int id) {
+//        try{
+//            feedbackRepo.deleteById(id);
+//        }catch(Exception e){
+//            logger.error("error - delete");
+//            throw e;
+//        }
+//    }
 
 
 
@@ -112,7 +104,12 @@ public class FeedbackImpl implements FeedbackService {
     //read feedbacks using interviewId
 
     public Feedback findFeedbackIdByInterviewId(int interviewid) {
-        return feedbackRepo.findFeedbackByInterviewId(interviewid);
+        try {
+            return feedbackRepo.findFeedbackByInterviewId(interviewid);
+        }catch (Exception e){
+            logger.error("error - findFeedbackIdByInterviewId");
+            throw e;
+        }
     }
 
 

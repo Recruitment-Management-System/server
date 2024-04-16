@@ -33,36 +33,36 @@ public class FeedbackCtrl {
         }
     }
 
-    @GetMapping("/")
-    public List<Feedback> readAllFeedbacks() {
-        try {
-            return feedbackService.readAllFeedbacks();
-        }catch(Exception e){
-            logger.error("error - readallFeedbacks");
-            throw e;
-        }
-    }
+//    @GetMapping("/")
+//    public List<Feedback> readAllFeedbacks() {
+//        try {
+//            return feedbackService.readAllFeedbacks();
+//        }catch(Exception e){
+//            logger.error("error - readallFeedbacks");
+//            throw e;
+//        }
+//    }
 
 
 
-    @PutMapping("/update")
-    public Feedback updateFeedback(@RequestBody Feedback feedback) {
-        try {
-            return feedbackService.updateFeedback(feedback);
-        }catch(Exception e){
-            logger.error("error - updateFeedback");
-            throw e;
-        }
-    }
+//    @PutMapping("/update")
+//    public Feedback updateFeedback(@RequestBody Feedback feedback) {
+//        try {
+//            return feedbackService.updateFeedback(feedback);
+//        }catch(Exception e){
+//            logger.error("error - updateFeedback");
+//            throw e;
+//        }
+//    }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteFeedback(@PathVariable("id") int id) {
-        try {
-            feedbackService.deleteFeedback(id);
-        }catch(Exception e){
-            logger.error("Delete not succeed");
-        }
-    }
+//    @DeleteMapping("/delete/{id}")
+//    public void deleteFeedback(@PathVariable("id") int id) {
+//        try {
+//            feedbackService.deleteFeedback(id);
+//        }catch(Exception e){
+//            logger.error("Delete not succeed");
+//        }
+//    }
 
 
 

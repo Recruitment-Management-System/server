@@ -13,9 +13,9 @@ public interface FeedbackHRService {
     //feedback HR
     FeedbackHR saveFeedbackHR(int interviewID, FeedbackHR feedbackhr);
 
-    List<FeedbackHR> readAllFeedbacksHR();
+   // List<FeedbackHR> readAllFeedbacksHR();
 
-    Optional<FeedbackHR> readFeedbackHRById(int id);
+   // Optional<FeedbackHR> readFeedbackHRById(int id);
 
-    FeedbackHR updateFeedbackHR(int feedbackidhr, FeedbackHR feedbackHR);
+   // FeedbackHR updateFeedbackHR(int feedbackidhr, FeedbackHR feedbackHR);
 }

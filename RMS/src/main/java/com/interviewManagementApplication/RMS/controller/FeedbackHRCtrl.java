@@ -32,15 +32,15 @@ public class FeedbackHRCtrl {
         }
     }
 
-    @GetMapping("/{feedbackhrid}")
-    public Optional<FeedbackHR> readFeedbackhrById(@PathVariable("feedbackhrid") int feedbackhrid) {
-        try {
-            return feedbackHRService.readFeedbackHRById(feedbackhrid);
-        } catch (Exception e) {
-            logger.error("error - readfeedbackById");
-            throw e;
-        }
-    }
+//    @GetMapping("/{feedbackhrid}")
+//    public Optional<FeedbackHR> readFeedbackhrById(@PathVariable("feedbackhrid") int feedbackhrid) {
+//        try {
+//            return feedbackHRService.readFeedbackHRById(feedbackhrid);
+//        } catch (Exception e) {
+//            logger.error("error - readfeedbackById");
+//            throw e;
+//        }
+//    }
 
     @GetMapping("/interview/{interviewid}")
     public ResponseEntity<FeedbackHR> getFeedbackByInterviewId(@PathVariable int interviewid) {
@@ -62,13 +62,13 @@ public class FeedbackHRCtrl {
 //        }
 //    }
 
-    @PutMapping("/updatehr/{feedbackidhr}")
-    public FeedbackHR updateFeedbackhr(@PathVariable int feedbackidhr, @RequestBody FeedbackHR feedbackhr) {
-        try{
-            return feedbackHRService.updateFeedbackHR(feedbackidhr, feedbackhr);
-        }catch(Exception e){
-            logger.error("error - updateFeedback");
-            throw e;
-        }
-    }
+//    @PutMapping("/updatehr/{feedbackidhr}")
+//    public FeedbackHR updateFeedbackhr(@PathVariable int feedbackidhr, @RequestBody FeedbackHR feedbackhr) {
+//        try{
+//            return feedbackHRService.updateFeedbackHR(feedbackidhr, feedbackhr);
+//        }catch(Exception e){
+//            logger.error("error - updateFeedback");
+//            throw e;
+//        }
+//    }
 }

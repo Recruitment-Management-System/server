@@ -48,7 +48,7 @@ public class FeedbackHRImpl implements FeedbackHRService {
                 // feedback.setUser(interviewer);
                 return feedbackHRRepo.save(feedbackhr);
             } else {
-                throw new IllegalArgumentException("User or interview not exist with requested ID s");
+                throw new IllegalArgumentException("Interview not exist with requested ID s");
             }
         }catch(Exception e){
             logger.error("error - readAllFeedbacks");
@@ -56,25 +56,25 @@ public class FeedbackHRImpl implements FeedbackHRService {
         }
     }
 
-    @Override
-    public List<FeedbackHR> readAllFeedbacksHR() {
-        try{
-            return feedbackHRRepo.findAll();
-        }catch(Exception e){
-            logger.error("error - readAllFeedback");
-            throw e;
-        }
-    }
+//    @Override
+//    public List<FeedbackHR> readAllFeedbacksHR() {
+//        try{
+//            return feedbackHRRepo.findAll();
+//        }catch(Exception e){
+//            logger.error("error - readAllFeedback");
+//            throw e;
+//        }
+//    }
 
-    @Override
-    public Optional<FeedbackHR> readFeedbackHRById(int id) {
-        try{
-            return feedbackHRRepo.findById(id);
-        }catch (Exception e){
-            logger.error("error - readbyid");
-            throw e;
-        }
-    }
+//    @Override
+//    public Optional<FeedbackHR> readFeedbackHRById(int id) {
+//        try{
+//            return feedbackHRRepo.findById(id);
+//        }catch (Exception e){
+//            logger.error("error - readbyid");
+//            throw e;
+//        }
+//    }
 
 //    @Override
 //    public FeedbackHR updateFeedbackHR(FeedbackHR feedbackhr) {
@@ -86,20 +86,20 @@ public class FeedbackHRImpl implements FeedbackHRService {
 //        }
 //    }
 
-    @Override
-    public FeedbackHR updateFeedbackHR(int feedbackidhr, FeedbackHR feedbackHR) {
-        try{
-            FeedbackHR feedbackHR1 = feedbackHRRepo.findById(feedbackidhr)
-                    .orElseThrow(() -> new RuntimeException("Feedback not found"));
-
-            feedbackHR1.setFeedbackdate(feedbackHR.getFeedbackdate());
-            feedbackHR1.setSalaryexpectation(feedbackHR.getSalaryexpectation());
-            feedbackHR1.setComment(feedbackHR.getComment());
-
-            return feedbackHRRepo.save(feedbackHR1);
-        }catch(Exception e){
-            logger.error("error - update feedback");
-            throw e;
-        }
-    }
+//    @Override
+//    public FeedbackHR updateFeedbackHR(int feedbackidhr, FeedbackHR feedbackHR) {
+//        try{
+//            FeedbackHR feedbackHR1 = feedbackHRRepo.findById(feedbackidhr)
+//                    .orElseThrow(() -> new RuntimeException("Feedback not found"));
+//
+//            feedbackHR1.setFeedbackdate(feedbackHR.getFeedbackdate());
+//            feedbackHR1.setSalaryexpectation(feedbackHR.getSalaryexpectation());
+//            feedbackHR1.setComment(feedbackHR.getComment());
+//
+//            return feedbackHRRepo.save(feedbackHR1);
+//        }catch(Exception e){
+//            logger.error("error - update feedback");
+//            throw e;
+//        }
+//    }
 }

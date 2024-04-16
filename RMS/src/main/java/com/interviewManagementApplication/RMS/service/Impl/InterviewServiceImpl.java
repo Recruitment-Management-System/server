@@ -4,9 +4,7 @@ import com.interviewManagementApplication.RMS.model.*;
 import com.interviewManagementApplication.RMS.repository.CandidateRepo;
 import com.interviewManagementApplication.RMS.repository.UserRepository;
 import com.interviewManagementApplication.RMS.constants.Consts;
-import com.interviewManagementApplication.RMS.model.InterviewStatus;
 import com.interviewManagementApplication.RMS.model.User;
-import com.interviewManagementApplication.RMS.repository.UserRepository;
 import com.interviewManagementApplication.RMS.service.Interface.InterviewService;
 import com.interviewManagementApplication.RMS.model.Interview;
 import com.interviewManagementApplication.RMS.repository.InterviewRepo;
@@ -17,8 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import javax.crypto.SecretKey;
-import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -148,7 +144,6 @@ public class InterviewServiceImpl implements InterviewService {
 
     //interviews for candidate
     @Override
-
     public List<Interview> getCandidates(int candidateid) {
         return interviewRepo.findByCandidateCandidateID(candidateid);
     }
@@ -165,7 +160,7 @@ public class InterviewServiceImpl implements InterviewService {
                 Interview updatedInterview = existingInterview.get();
 
 
-                updatedInterview.setInterviewStatus(2);
+                updatedInterview.setInterviewStatus(InterviewStatus.ENDED);
 
                 interviewRepo.save(updatedInterview);
             }
@@ -173,19 +168,8 @@ public class InterviewServiceImpl implements InterviewService {
             logger.error("error - updating interview Status");
         }
     }
-        }}
 
 
-    @Override
-
-//    @Override
-//    public List<Interview> getInterviewsByCandidate(Integer candidateId){
-//        try {
-//            return interviewRepo.findByCandidateCandidateID(candidateId);
-//        } catch (Exception e) {
-//            logger.error("Error occurred while getting all candidates with id {}", candidateId);
-//            throw e;
-//        }
 
         @Override
     public List<Interview> getInterviewsByCandidate(Integer candidateId) {

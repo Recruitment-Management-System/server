@@ -38,8 +38,6 @@ public class CandidateServiceImpl implements CandidateService, Consts {
     @Autowired
     private VacancyService vacancyService;
 
-    @Autowired
-    private final VacancyRepository vacancyRepository;
 
     @Autowired
     public CandidateServiceImpl(CandidateRepo candidateRepo, VacancyRepository vacancyRepository) {
@@ -93,7 +91,7 @@ public class CandidateServiceImpl implements CandidateService, Consts {
     public Candidate addCandidate(Candidate candidate, MultipartFile file, int vacancyID) throws IOException{
         try {
             // Save file to disk
-            String filePath = "/home/kpremarathne/Desktop/Trainings/Task14/files/" + file.getOriginalFilename(); // Modify path as needed
+            String filePath = remoteDirectory + file.getOriginalFilename(); // Modify path as needed
             byte[] bytes = file.getBytes();
             Path path = Paths.get(filePath);
             Files.write(path, bytes);

@@ -70,7 +70,7 @@ public class CandidateController {
 
     //hire or reject candidate
     @PutMapping("/hire/{candidateid}")
-    public String hire(@PathVariable("candidateid") int candidateid) {
+    public String hire(@PathVariable int candidateid) {
         return candidateService.hireCandidate(candidateid);
     }
 

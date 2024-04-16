@@ -20,6 +20,9 @@ public interface InterviewService {
 
     List<Interview> getAllInterviewsByUserId(Integer userId);
 
+    //interviews for candidate
+    List<Interview> getCandidates(int candidateid);
+
     //update interview status
     void updateInterviewStatus(int interviewID) throws Exception;
     List<Interview> getInterviewsByCandidate(Integer candidateId);

@@ -1,26 +1,23 @@
 package com.interviewManagementApplication.RMS.service;
 
 import com.interviewManagementApplication.RMS.constants.Consts;
+import com.interviewManagementApplication.RMS.controller.CandidateController;
 import com.interviewManagementApplication.RMS.util.FTPUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
-public class FileService {
+public class FileService implements Consts{
 
+    private static final Logger logger = LoggerFactory.getLogger(FileService.class);
     @Autowired
     private FTPUtils ftpUtils;
 
     public void uploadFile(String filePath) {
-        String server = "localhost";
-        int port = 21;
-        String username = "kpremarathne";
-        String password = "charuni40##K";
-        String remoteDirectory = "/home/kpremarathne/Desktop/Trainings/Task14/files/";
-
-        // ftpUtils.uploadFile(server, port, username, password, filePath, remoteDirectory);
 
 
         try {

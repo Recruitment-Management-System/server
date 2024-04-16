@@ -1,15 +1,12 @@
 package com.interviewManagementApplication.RMS.service.Impl;
 
-import com.interviewManagementApplication.RMS.model.Candidate;
-import com.interviewManagementApplication.RMS.model.User;
+import com.interviewManagementApplication.RMS.model.*;
 import com.interviewManagementApplication.RMS.repository.CandidateRepo;
 import com.interviewManagementApplication.RMS.repository.UserRepository;
 import com.interviewManagementApplication.RMS.constants.Consts;
 import com.interviewManagementApplication.RMS.model.User;
-import com.interviewManagementApplication.RMS.model.Vacancy;
 import com.interviewManagementApplication.RMS.repository.UserRepository;
 import com.interviewManagementApplication.RMS.service.Interface.InterviewService;
-import com.interviewManagementApplication.RMS.model.Interview;
 import com.interviewManagementApplication.RMS.repository.InterviewRepo;
 import com.interviewManagementApplication.RMS.util.JwtService;
 import io.jsonwebtoken.Claims;
@@ -50,9 +47,6 @@ public class InterviewServiceImpl implements InterviewService {
 
     @Autowired
     private CandidateRepo candidateRepo;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Override
     public List<Interview> getAllInterviews() {
@@ -158,14 +152,15 @@ public class InterviewServiceImpl implements InterviewService {
                 Interview updatedInterview = existingInterview.get();
 
 
-                updatedInterview.setInterviewStatus(2);
+                updatedInterview.setInterviewStatus(InterviewStatus.ENDED);
 
                 interviewRepo.save(updatedInterview);
             }
         } catch (Exception e) {
             logger.error("error - updating interview Status");
-        }
+        }}
 
+        @Override
     public List<Interview> getInterviewsByCandidate(Integer candidateId) {
        try{
            return interviewRepo.findByCandidateCandidateID(candidateId);

@@ -14,6 +14,8 @@ public interface VacancyService {
     Optional<Vacancy> findByIdVacancy(Integer id);
     Vacancy updateVacancyById(Integer vacancyID, Vacancy vacancy);
 
+    void addCandidateToVacancy(Integer vacancyID, Candidate candidate);
+
     List<Vacancy> getVacanciesByProjectId(Integer projectId);
 
     List<Candidate> getCandidatesForVacancy(Integer vacancyID);

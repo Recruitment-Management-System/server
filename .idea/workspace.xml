@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe956f1e-390d-4efa-af97-9aecb2b55274" name="Changes" comment="merged with kaushalya">
+    <list default="true" id="fe956f1e-390d-4efa-af97-9aecb2b55274" name="Changes" comment="ftp server configured">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/controller/CandidateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/controller/CandidateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/model/Candidate.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/model/Candidate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/model/Interview.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/model/Interview.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/service/FileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/service/Impl/CandidateServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/service/Impl/CandidateServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/service/Impl/InterviewServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/service/Impl/InterviewServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/service/Impl/VacancyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/service/Impl/VacancyServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/service/Interface/CandidateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/service/Interface/CandidateService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RMS/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +190,21 @@
       <option name="project" value="LOCAL" />
       <updated>1713236959194</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="ftp server configured">
+      <created>1713258320262</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1713258320262</updated>
+    </task>
+    <task id="LOCAL-00013" summary="ftp server configured">
+      <created>1713258348035</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1713258348035</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -234,6 +239,7 @@
     <MESSAGE value="candidate adding part done" />
     <MESSAGE value="interview handling part added" />
     <MESSAGE value="merged with kaushalya" />
-    <option name="LAST_COMMIT_MESSAGE" value="merged with kaushalya" />
+    <MESSAGE value="ftp server configured" />
+    <option name="LAST_COMMIT_MESSAGE" value="ftp server configured" />
   </component>
 </project>

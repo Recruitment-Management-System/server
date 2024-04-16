@@ -20,7 +20,7 @@ public class Interview {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "interviewid")
-    private Integer interviewID;
+    private Integer interviewid;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "interview_type")
@@ -53,4 +53,8 @@ public class Interview {
     @JsonIgnore
     @OneToMany(mappedBy = "interview")
     private List<Feedback> feedbackList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "interview")
+    private List<FeedbackHR> feedbackhrList;
 }

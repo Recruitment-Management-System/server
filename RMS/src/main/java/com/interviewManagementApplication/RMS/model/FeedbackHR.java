@@ -31,8 +31,4 @@ public class FeedbackHR {
     @ManyToOne
     @JoinColumn(name = "interviewid")
     private Interview interview;
-
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private User user;
 }

@@ -6,6 +6,8 @@ import com.interviewManagementApplication.RMS.model.Feedback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,55 +33,47 @@ public class FeedbackCtrl {
         }
     }
 
-    @GetMapping("/")
-    public List<Feedback> readAllFeedbacks() {
-        try {
-            return feedbackService.readAllFeedbacks();
-        }catch(Exception e){
-            logger.error("error - readallFeedbacks");
-            throw e;
+//    @GetMapping("/")
+//    public List<Feedback> readAllFeedbacks() {
+//        try {
+//            return feedbackService.readAllFeedbacks();
+//        }catch(Exception e){
+//            logger.error("error - readallFeedbacks");
+//            throw e;
+//        }
+//    }
+
+
+
+//    @PutMapping("/update")
+//    public Feedback updateFeedback(@RequestBody Feedback feedback) {
+//        try {
+//            return feedbackService.updateFeedback(feedback);
+//        }catch(Exception e){
+//            logger.error("error - updateFeedback");
+//            throw e;
+//        }
+//    }
+
+//    @DeleteMapping("/delete/{id}")
+//    public void deleteFeedback(@PathVariable("id") int id) {
+//        try {
+//            feedbackService.deleteFeedback(id);
+//        }catch(Exception e){
+//            logger.error("Delete not succeed");
+//        }
+//    }
+
+
+
+
+    @GetMapping("/interview/{interviewid}")
+    public ResponseEntity<Feedback> getFeedbackByInterviewId(@PathVariable int interviewid) {
+        Feedback feedback = feedbackService.findFeedbackIdByInterviewId(interviewid);
+        if (feedback != null) {
+            return new ResponseEntity<>(feedback, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
-    @GetMapping("/{feedbackid}")
-    public Optional<Feedback> readFeedbackById(@PathVariable("feedbackid") int feedbackid) {
-        try {
-            return feedbackService.readById(feedbackid);
-        } catch (Exception e) {
-            logger.error("error - readfeedbackById");
-            throw e;
-        }
-    }
-
-    @PutMapping("/update")
-    public Feedback updateFeedback(@RequestBody Feedback feedback) {
-        try {
-            return feedbackService.updateFeedback(feedback);
-        }catch(Exception e){
-            logger.error("error - updateFeedback");
-            throw e;
-        }
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public void deleteFeedback(@PathVariable("id") int id) {
-        try {
-            feedbackService.deleteFeedback(id);
-        }catch(Exception e){
-            logger.error("Delete not succeed");
-        }
-    }
-
-
-    //feedback HR
-    @PostMapping("/{interviewID}/savefeedbackhr")
-    public FeedbackHR saveFeedBackHR(@PathVariable int interviewID, @RequestBody FeedbackHR feedbackhr){
-        try{
-            return feedbackService.saveFeedbackHR(interviewID, feedbackhr);
-        }catch(Exception e){
-            logger.error("error - savefeedback");
-            throw e;
-        }
-    }
-
 }

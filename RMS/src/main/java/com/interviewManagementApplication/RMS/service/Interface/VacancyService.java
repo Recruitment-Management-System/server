@@ -15,5 +15,9 @@ public interface VacancyService {
     Vacancy updateVacancyById(Integer vacancyID, Vacancy vacancy);
 
     List<Vacancy> getVacanciesByProjectId(Integer projectId);
+
+
+    //fetch candidate details using vacancy id
+    List<Candidate> findCandidatesForVacancy(int vacancyid);
 }
 

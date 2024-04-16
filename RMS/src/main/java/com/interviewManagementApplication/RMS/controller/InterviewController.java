@@ -86,4 +86,13 @@ public class InterviewController {
         return interviewService.getInterviewsByCandidate(candidateid);
     }
 
+    //update interview status
+    @PutMapping("/{interviewID}/updateStatus")
+    public void updateInterviewStatus(@PathVariable int interviewID){
+        try{
+            interviewService.updateInterviewStatus(interviewID);
+        }catch(Exception e){
+            throw e;
+        }
+    }
 }

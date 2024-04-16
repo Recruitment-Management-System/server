@@ -22,8 +22,7 @@ public class FeedbackImpl implements FeedbackService {
     @Autowired
     private FeedbackRepo feedbackRepo;
 
-    @Autowired
-    private FeedbackHRRepo feedbackHRRepo;
+
 
     @Autowired
     private InterviewRepo interviewRepo;
@@ -58,7 +57,7 @@ public class FeedbackImpl implements FeedbackService {
                // feedback.setUser(interviewer);
                 return feedbackRepo.save(feedback);
             } else {
-                throw new IllegalArgumentException("User or interview not exist with requested ID s");
+                throw new IllegalArgumentException("Interview not exist with requested ID s");
             }
         }catch(Exception e){
             logger.error("error - readAllFeedbacks");
@@ -67,98 +66,51 @@ public class FeedbackImpl implements FeedbackService {
     }
 
 
-    @Override
-    public List<Feedback> readAllFeedbacks() {
-        try{
-            return feedbackRepo.findAll();
-        }catch(Exception e){
-            logger.error("error - readAllFeedback");
-            throw e;
-        }
-    }
 
-    @Override
-    public Optional<Feedback> readById(int id) {
-        try{
-            return feedbackRepo.findById(id);
+
+//    @Override
+//    public Optional<Feedback> readById(int id) {
+//        try{
+//            return feedbackRepo.findById(id);
+//        }catch (Exception e){
+//            logger.error("error - readbyid");
+//            throw e;
+//        }
+//    }
+
+//    @Override
+//    public Feedback updateFeedback(Feedback feedback) {
+//        try{
+//            return feedbackRepo.save(feedback);
+//        }catch (Exception e){
+//            logger.error("error - updateFeedback");
+//            throw e;
+//        }
+//    }
+
+//    @Override
+//    public void deleteFeedback(int id) {
+//        try{
+//            feedbackRepo.deleteById(id);
+//        }catch(Exception e){
+//            logger.error("error - delete");
+//            throw e;
+//        }
+//    }
+
+
+
+
+    //read feedbacks using interviewId
+
+    public Feedback findFeedbackIdByInterviewId(int interviewid) {
+        try {
+            return feedbackRepo.findFeedbackByInterviewId(interviewid);
         }catch (Exception e){
-            logger.error("error - readbyid");
+            logger.error("error - findFeedbackIdByInterviewId");
             throw e;
         }
     }
 
-    @Override
-    public Feedback updateFeedback(Feedback feedback) {
-        try{
-            return feedbackRepo.save(feedback);
-        }catch (Exception e){
-            logger.error("error - updateFeedback");
-            throw e;
-        }
-    }
 
-    @Override
-    public void deleteFeedback(int id) {
-        try{
-            feedbackRepo.deleteById(id);
-        }catch(Exception e){
-            logger.error("error - delete");
-            throw e;
-        }
-    }
-
-    //feedback HR
-    @Override
-    public FeedbackHR saveFeedbackHR(int interviewID, FeedbackHR feedbackhr) {
-        try{
-            Optional<Interview> existingInterview = interviewRepo.findById(interviewID);
-            //Optional<User> existingInterviewer = userRepository.findById(id);
-
-            if (existingInterview.isPresent()) {
-                Interview interview = existingInterview.get();
-                // User interviewer = existingInterviewer.get();
-                feedbackhr.getFeedbackdate();
-                feedbackhr.getComment();
-                feedbackhr.getSalaryexpectation();
-                feedbackhr.setInterview(interview);
-                // feedback.setUser(interviewer);
-                return feedbackHRRepo.save(feedbackhr);
-            } else {
-                throw new IllegalArgumentException("User or interview not exist with requested ID s");
-            }
-        }catch(Exception e){
-            logger.error("error - readAllFeedbacks");
-            throw e;
-        }
-    }
-
-    @Override
-    public List<FeedbackHR> readAllFeedbacksHR() {
-        try{
-            return feedbackHRRepo.findAll();
-        }catch(Exception e){
-            logger.error("error - readAllFeedback");
-            throw e;
-        }
-    }
-
-    @Override
-    public Optional<FeedbackHR> readFeedbackHRById(int id) {
-        try{
-            return feedbackHRRepo.findById(id);
-        }catch (Exception e){
-            logger.error("error - readbyid");
-            throw e;
-        }
-    }
-
-    @Override
-    public FeedbackHR updateFeedbackHR(FeedbackHR feedbackhr) {
-        try{
-            return feedbackHRRepo.save(feedbackhr);
-        }catch (Exception e){
-            logger.error("error - updateFeedback");
-            throw e;
-        }
-    }
 }

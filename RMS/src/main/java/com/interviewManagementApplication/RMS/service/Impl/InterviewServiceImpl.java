@@ -104,7 +104,32 @@ public class InterviewServiceImpl implements InterviewService {
         }
     }
 
+    //interviews for candidate
     @Override
+
+    public List<Interview> getCandidates(int candidateid) {
+        return interviewRepo.findByCandidateCandidateID(candidateid);
+    }
+
+
+    //update interview status
+    @Override
+    public void updateInterviewStatus(int interviewID) {
+        try {
+            Optional<Interview> existingInterview = interviewRepo.findById(interviewID);
+
+            if (existingInterview.isPresent()) {
+                Interview updatedInterview = existingInterview.get();
+
+
+                updatedInterview.setInterviewStatus(2);
+
+                interviewRepo.save(updatedInterview);
+            }
+        } catch (Exception e) {
+            logger.error("error - updating interview Status");
+        }
+
     public List<Interview> getInterviewsByCandidate(Integer candidateId) {
        try{
            return interviewRepo.findByCandidateCandidateID(candidateId);

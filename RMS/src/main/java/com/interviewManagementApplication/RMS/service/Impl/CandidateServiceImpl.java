@@ -7,7 +7,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +43,7 @@ public class CandidateServiceImpl implements CandidateService {
     public void updateCandidate(Integer id, Candidate candidate) {
         try {
             Optional<Candidate> existingCandidate = candidateRepo.findById(id);
-            if (existingCandidate.isPresent()){
+            if (existingCandidate.isPresent()) {
                 Candidate updatedCandidate = existingCandidate.get();
 
                 updatedCandidate.setFirstname(candidate.getFirstname());
@@ -66,11 +71,29 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public void addCandidate(Candidate candidate) {
+    public Candidate addCandidate(Candidate candidate, MultipartFile file) throws IOException{
         try {
-            candidateRepo.save(candidate);
-        } catch (Exception e) {
+            // Save file to disk
+            String filePath = "/home/kpremarathne/Desktop/Trainings/Task14/files/" + file.getOriginalFilename(); // Modify path as needed
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(filePath);
+            Files.write(path, bytes);
+
+            candidate.setNic(candidate.getNic());
+            candidate.setFirstname(candidate.getFirstname());
+            candidate.setLastname(candidate.getLastname());
+            candidate.setDescription(candidate.getDescription());
+            candidate.setExperience(candidate.getExperience());
+            candidate.setQualification(candidate.getQualification());
+            candidate.setCv(filePath);
+
+            // Save candidate to database
+            return candidateRepo.save(candidate);
+        }
+
+        catch (Exception e) {
             logger.error("Error occurred while adding candidate", e);
+            throw e;
         }
     }
 

@@ -7,7 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,9 +46,9 @@ public class CandidateController {
     }
 
     @PostMapping("/add_candidate")
-    public ResponseEntity<Void> addCandidate(@RequestBody Candidate candidate) {
+    public ResponseEntity<Void> addCandidate(@Validated @ModelAttribute Candidate candidate, @RequestParam("file") MultipartFile file) {
         try {
-            candidateService.addCandidate(candidate);
+            candidateService.addCandidate(candidate, file);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             logger.error("Error occurred while adding candidate", e);

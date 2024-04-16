@@ -1,16 +1,16 @@
 package com.interviewManagementApplication.RMS.service.Interface;
 
 import com.interviewManagementApplication.RMS.model.Candidate;
-import com.interviewManagementApplication.RMS.model.Feedback;
-import com.interviewManagementApplication.RMS.model.FeedbackHR;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 public interface CandidateService {
     List<Candidate> getAllCandidates();
 
-    void addCandidate(Candidate candidate);
+    Candidate addCandidate(Candidate candidate, MultipartFile file) throws IOException;
 
     Optional<Candidate> getCandidate(Integer id);
 

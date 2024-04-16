@@ -43,11 +43,12 @@ public class Interview {
     @JsonIgnore
     @ManyToMany
     @JoinTable(
-            name = "interviewUser",
+            name = "interviewInterviewer",
             joinColumns = @JoinColumn(name = "interviewid"),
             inverseJoinColumns = @JoinColumn(name = "id")
     )
     private List<User> userList;
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "interview")

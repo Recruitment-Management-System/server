@@ -136,7 +136,9 @@ public class VacancyServiceImpl implements VacancyService {
 
     @Override
     public List<Candidate> getCandidatesForVacancy(Integer vacancyID) {
-        return null;
+        Vacancy vacancy = vacancyRepository.findById(vacancyID)
+                .orElseThrow(() -> new EntityNotFoundException("Vacancy not found with id: " + vacancyID));
+        return new ArrayList<>(vacancy.getCandidateList());
     }
 
 

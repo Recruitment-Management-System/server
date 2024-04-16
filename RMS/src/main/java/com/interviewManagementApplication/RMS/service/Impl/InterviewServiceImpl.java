@@ -154,17 +154,17 @@ public class InterviewServiceImpl implements InterviewService {
         } catch (Exception e) {
             logger.error("error - updating interview Status");
         }}
-        }
-    }
 
-    @Override
-    public List<Interview> getInterviewsByCandidate(Integer candidateId){
-        try {
-            return interviewRepo.findByCandidateCandidateID(candidateId);
-        } catch (Exception e) {
-            logger.error("Error occurred while getting all candidates with id {}", candidateId);
-            throw e;
-        }
+
+
+//    @Override
+//    public List<Interview> getInterviewsByCandidate(Integer candidateId){
+//        try {
+//            return interviewRepo.findByCandidateCandidateID(candidateId);
+//        } catch (Exception e) {
+//            logger.error("Error occurred while getting all candidates with id {}", candidateId);
+//            throw e;
+//        }
 
         @Override
     public List<Interview> getInterviewsByCandidate(Integer candidateId) {

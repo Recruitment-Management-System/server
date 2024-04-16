@@ -1,8 +1,7 @@
 package com.interviewManagementApplication.RMS.util;
 
-import org.apache.commons.net.ftp.FTP;
-import org.apache.commons.net.ftp.FTPClient;
 
+import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.stereotype.Component;
 
 import java.io.File;

@@ -43,7 +43,7 @@ public class SecurityConfig {
 
                                 .permitAll()
                                 .requestMatchers("/admin_only/**").hasAuthority("ADMIN")
-                                .requestMatchers("/api/projects", "/api/feedback/**").hasAnyAuthority("INTERVIEWER", "ADMIN")
+                                .requestMatchers("/api/projects", "/api/feedback/**").hasAnyAuthority("INTERVIEWER", "ADMIN", "PROJECT_MANAGER")
                                 .anyRequest()
                                 .authenticated()).userDetailsService(userDetailsServiceImp)
                 .sessionManagement(session->session

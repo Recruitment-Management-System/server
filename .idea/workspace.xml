@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe956f1e-390d-4efa-af97-9aecb2b55274" name="Changes" comment="ftp server configured">
+    <list default="true" id="27d9bfce-91bf-484b-94d0-72af5793d075" name="Changes" comment="merged with kaushalya">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/config/SecurityConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +109,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="fe956f1e-390d-4efa-af97-9aecb2b55274" name="Changes" comment="" />
+      <changelist id="27d9bfce-91bf-484b-94d0-72af5793d075" name="Changes" comment="" />
       <created>1711546088670</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -205,6 +207,14 @@
       <updated>1713258348035</updated>
     </task>
     <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00012" summary="merged with kaushalya">
+      <created>1713374848922</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1713374848925</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -241,5 +251,42 @@
     <MESSAGE value="merged with kaushalya" />
     <MESSAGE value="ftp server configured" />
     <option name="LAST_COMMIT_MESSAGE" value="ftp server configured" />
+    <option name="LAST_COMMIT_MESSAGE" value="merged with kaushalya" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.interviewManagementApplication.RMS.model.Interview" memberName="candidate" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/server$VacancyServiceImplTest_testGetVacanciesByProjectId.ic" NAME="VacancyServiceImplTest.testGetVacanciesByProjectId Coverage Results" MODIFIED="1712696960261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$VacancyServiceImplTest_testFindAllVacancies_VacanciesNotFound.ic" NAME="VacancyServiceImplTest.testFindAllVacancies_VacanciesNotFound Coverage Results" MODIFIED="1712718320468" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$VacancyServiceImplTest_testFindVacancy_Failure_VacancyNotNull.ic" NAME="VacancyServiceImplTest.testFindVacancy_Failure_VacancyNotNull Coverage Results" MODIFIED="1712698047018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$VacancyServiceImplTest_testDeleteVacancy_Failure_VacancyNotFound.ic" NAME="VacancyServiceImplTest.testDeleteVacancy_Failure_VacancyNotFound Coverage Results" MODIFIED="1712698382259" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$ProjectServiceImplTest.ic" NAME="ProjectServiceImplTest Coverage Results" MODIFIED="1712717647160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$RmsApplicationTests.ic" NAME="RmsApplicationTests Coverage Results" MODIFIED="1712696992992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$VacancyServiceImplTest.ic" NAME="VacancyServiceImplTest Coverage Results" MODIFIED="1712721861230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$InterviewServiceImplTest_testGetAllInterviewsByCandidateId.ic" NAME="InterviewServiceImplTest.testGetAllInterviewsByCandidateId Coverage Results" MODIFIED="1712721043807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$VacancyServiceImplTest_testFindVacancy_Failure_VacancyNotFound.ic" NAME="VacancyServiceImplTest.testFindVacancy_Failure_VacancyNotFound Coverage Results" MODIFIED="1712697794105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
+    </SUITE>
   </component>
 </project>

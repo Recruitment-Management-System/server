@@ -12,10 +12,10 @@ public class FileService {
 
     public void uploadFile(String filePath) {
         String server = "localhost";
-        int port = 21;
-        String username = "kpremarathne";
-        String password = "charuni40##K";
-        String remoteDirectory = "/home/kpremarathne/Desktop/Trainings/Task14/files/";
+        int port = 22;
+        String username = "hsudusinghe";
+        String password = "HansakaJayawarna123@";
+        String remoteDirectory = "/home/hsudusinghe/Downloads/Sample";
 
         // ftpUtils.uploadFile(server, port, username, password, filePath, remoteDirectory);
 

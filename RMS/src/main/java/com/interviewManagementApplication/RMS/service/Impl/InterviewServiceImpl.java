@@ -1,6 +1,7 @@
 package com.interviewManagementApplication.RMS.service.Impl;
 
 import com.interviewManagementApplication.RMS.constants.Consts;
+import com.interviewManagementApplication.RMS.model.InterviewStatus;
 import com.interviewManagementApplication.RMS.model.User;
 import com.interviewManagementApplication.RMS.model.Vacancy;
 import com.interviewManagementApplication.RMS.repository.UserRepository;
@@ -104,12 +105,6 @@ public class InterviewServiceImpl implements InterviewService {
         }
     }
 
-    //interviews for candidate
-    @Override
-
-    public List<Interview> getCandidates(int candidateid) {
-        return interviewRepo.findByCandidateCandidateID(candidateid);
-    }
 
 
     //update interview status
@@ -122,21 +117,24 @@ public class InterviewServiceImpl implements InterviewService {
                 Interview updatedInterview = existingInterview.get();
 
 
-                updatedInterview.setInterviewStatus(2);
+                updatedInterview.setInterviewStatus(InterviewStatus.ENDED);
 
                 interviewRepo.save(updatedInterview);
             }
         } catch (Exception e) {
             logger.error("error - updating interview Status");
         }
+    }
 
-    public List<Interview> getInterviewsByCandidate(Integer candidateId) {
-       try{
-           return interviewRepo.findByCandidateCandidateID(candidateId);
-       }catch(Exception e){
-           logger.error("Error occurred while getting all candidates with id {}", candidateId);
-           throw e;
-       }
+    @Override
+    public List<Interview> getInterviewsByCandidate(Integer candidateId){
+        try {
+            return interviewRepo.findByCandidateCandidateID(candidateId);
+        } catch (Exception e) {
+            logger.error("Error occurred while getting all candidates with id {}", candidateId);
+            throw e;
+        }
+
     }
 
 }

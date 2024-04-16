@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Set;
@@ -42,7 +43,7 @@ public class Candidate {
     @Column(name = "status")
     private String status;
 
-    @Lob
+
     @Column(name = "cv")
     private String cv;
 

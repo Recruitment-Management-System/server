@@ -71,10 +71,10 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public Candidate addCandidate(Candidate candidate, MultipartFile file) throws IOException{
+    public Candidate addCandidate(Candidate candidate, MultipartFile  file) throws IOException{
         try {
             // Save file to disk
-            String filePath = "/home/kpremarathne/Desktop/Trainings/Task14/files/" + file.getOriginalFilename(); // Modify path as needed
+            String filePath = "/home/hsudusinghe/Downloads/Sample/" + file.getOriginalFilename(); // Modify path as needed
             byte[] bytes = file.getBytes();
             Path path = Paths.get(filePath);
             Files.write(path, bytes);
@@ -86,6 +86,7 @@ public class CandidateServiceImpl implements CandidateService {
             candidate.setExperience(candidate.getExperience());
             candidate.setQualification(candidate.getQualification());
             candidate.setCv(filePath);
+
 
             // Save candidate to database
             return candidateRepo.save(candidate);

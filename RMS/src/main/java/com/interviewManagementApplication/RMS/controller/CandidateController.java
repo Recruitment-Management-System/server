@@ -46,7 +46,7 @@ public class CandidateController {
     }
 
     @PostMapping("/add_candidate/{vacancyID}")
-    public ResponseEntity<Void> addCandidate(@Validated @ModelAttribute Candidate candidate, @RequestParam("file") MultipartFile file, @PathVariable Integer vacancyID) {
+    public ResponseEntity<Void> addCandidate(@Validated @ModelAttribute Candidate candidate, @RequestParam("file") MultipartFile file, @PathVariable int vacancyID) {
         try {
             candidateService.addCandidate(candidate, file, vacancyID);
             return ResponseEntity.status(HttpStatus.CREATED).build();

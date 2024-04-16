@@ -8,20 +8,12 @@ import com.interviewManagementApplication.RMS.model.InterviewStatus;
 import com.interviewManagementApplication.RMS.model.User;
 import com.interviewManagementApplication.RMS.repository.UserRepository;
 import com.interviewManagementApplication.RMS.service.Interface.InterviewService;
+import com.interviewManagementApplication.RMS.model.Interview;
 import com.interviewManagementApplication.RMS.repository.InterviewRepo;
 import com.interviewManagementApplication.RMS.util.JwtService;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -29,7 +21,6 @@ import javax.crypto.SecretKey;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class InterviewServiceImpl implements InterviewService {
@@ -99,6 +90,26 @@ public class InterviewServiceImpl implements InterviewService {
         }
     }
 
+
+
+    public void assignUserToInterview(Integer interviewId, Integer userId) {
+        Optional<Interview> optionalInterview = interviewRepo.findById(interviewId);
+        Optional<User> optionalUser = userRepository.findById(userId);
+
+        if (optionalInterview.isPresent() && optionalUser.isPresent()) {
+            Interview interview = optionalInterview.get();
+            User user = optionalUser.get();
+
+            interview.getUserList().add(user);
+            user.getInterviewList().add(interview);
+
+            interviewRepo.save(interview);
+            userRepository.save(user);
+        } else {
+            // Handle invalid interviewId or userId
+            throw new IllegalArgumentException("Invalid interviewId or userId");
+        }
+    }
     @Override
     public void addInterviewer(Integer candidateID, List<Integer> userIDs, Interview interview) {
         Optional<Candidate> candidateOptional = candidateRepo.findById(candidateID);
@@ -135,6 +146,13 @@ public class InterviewServiceImpl implements InterviewService {
         }
     }
 
+    //interviews for candidate
+    @Override
+
+    public List<Interview> getCandidates(int candidateid) {
+        return interviewRepo.findByCandidateCandidateID(candidateid);
+    }
+
 
 
     //update interview status
@@ -147,15 +165,18 @@ public class InterviewServiceImpl implements InterviewService {
                 Interview updatedInterview = existingInterview.get();
 
 
-                updatedInterview.setInterviewStatus(InterviewStatus.ENDED);
+                updatedInterview.setInterviewStatus(2);
 
                 interviewRepo.save(updatedInterview);
             }
         } catch (Exception e) {
             logger.error("error - updating interview Status");
+        }
+    }
         }}
 
 
+    @Override
 
 //    @Override
 //    public List<Interview> getInterviewsByCandidate(Integer candidateId){
@@ -168,12 +189,25 @@ public class InterviewServiceImpl implements InterviewService {
 
         @Override
     public List<Interview> getInterviewsByCandidate(Integer candidateId) {
-       try{
-           return interviewRepo.findByCandidateCandidateID(candidateId);
-       }catch(Exception e){
-           logger.error("Error occurred while getting all candidates with id {}", candidateId);
-           throw e;
-       }
+        try{
+            return interviewRepo.findByCandidateCandidateID(candidateId);
+        }catch(Exception e){
+            logger.error("Error occurred while getting all candidates with id {}", candidateId);
+            throw e;
+        }
     }
 
+
+
+        @Override
+    //get candidate id of the interview
+    public int getCandidateIdOfInterview(int interviewid) throws Exception {
+        Optional<Interview> interviewOptional = interviewRepo.findById(interviewid);
+
+            if (interviewOptional.isPresent()) {
+                Interview interview = interviewOptional.get();
+                return interview.getCandidate().getCandidateID();
+            }
+            throw new Exception("Interview with id " + interviewid + " not found");
+    }
 }

@@ -1,11 +1,15 @@
 package com.interviewManagementApplication.RMS.controller;
 
 import com.interviewManagementApplication.RMS.dto.AddInterviewerRequest;
+import com.interviewManagementApplication.RMS.model.Candidate;
+import com.interviewManagementApplication.RMS.model.Vacancy;
+import com.interviewManagementApplication.RMS.service.Interface.CandidateService;
 import com.interviewManagementApplication.RMS.service.Interface.InterviewService;
 import com.interviewManagementApplication.RMS.model.Interview;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +25,9 @@ public class InterviewController {
     private InterviewService interviewService;
 
     //get all interviews
+    @Autowired
+    private CandidateService candidateService;
+
     @GetMapping("/all_interviews")
     public List<Interview> getAllInterviews() {
         try {
@@ -34,9 +41,13 @@ public class InterviewController {
 
     //get the details of a given id
     @GetMapping("/{id}")
-    public Optional<Interview> getInterview(@PathVariable Integer id) {
+    public Optional<?> getInterview(@PathVariable Integer id) {
         try {
-            return interviewService.showInterview(id);
+            Optional<Interview> interviews= interviewService.showInterview(id);
+
+            Integer candidateID = Integer.valueOf(interviews.get().getCandidate().getCandidateID());
+            Optional<Candidate> candidates = candidateService.getCandidate(candidateID);
+            return candidates;
         } catch (Exception e) {
             logger.error("Error occurred while retrieving interview with id: {}", id, e);
             // You can handle the exception or rethrow it if needed
@@ -79,6 +90,28 @@ public class InterviewController {
             interviewService.addInterviewer(candidateID,userIDs,interview);
         }catch (Exception e){
             logger.error("Error in adding interviewer" + e);
+        }
+    }
+
+
+
+    @GetMapping("/interviews/{id}")
+    public List<Interview> getInterviewsByUserId(@PathVariable Integer id) {
+        return interviewService.getAllInterviewsByUserId(id);
+    }
+
+    @GetMapping("candidates/{candidateid}")
+    public List<Interview> getCandidates(@PathVariable Integer candidateid) {
+        return interviewService.getInterviewsByCandidate(candidateid);
+    }
+
+    //update interview status
+    @PutMapping("/{interviewID}/updateStatus")
+    public void updateInterviewStatus(@PathVariable int interviewID){
+        try{
+            interviewService.updateInterviewStatus(interviewID);
+        }catch(Exception e){
+            throw e;
         }
     }
 }

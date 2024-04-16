@@ -1,6 +1,5 @@
 package com.interviewManagementApplication.RMS.controller;
 
-import com.interviewManagementApplication.RMS.model.Candidate;
 import com.interviewManagementApplication.RMS.model.Vacancy;
 import com.interviewManagementApplication.RMS.service.Interface.VacancyService;
 import lombok.extern.slf4j.Slf4j;
@@ -45,7 +44,7 @@ public class VacancyController {
     @GetMapping
     public List<Vacancy> findAll(){
         try{
-            return vacancyService.findAll();
+            return vacancyService.findAllVacancies();
         }catch(Exception e){
             LOGGER.error("Cannot fetch all vacancies");
             throw e;

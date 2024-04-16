@@ -39,6 +39,13 @@ public class Candidate {
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "status")
+    private String status;
+
+    @Lob
+    @Column(name = "cv")
+    private String cv;
+
 
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
     @JsonIgnore

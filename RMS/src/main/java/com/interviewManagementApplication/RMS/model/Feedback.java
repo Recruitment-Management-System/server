@@ -20,29 +20,29 @@ public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "feedbackid")
-    private int feedback_ID;
+    private int feedbackid;
 
     @Column(name = "details")
     @Convert(converter = CommentAttributeConverter.class)
     private Comment details;
 
     @Column(name = "overallrating")
-    private int overallRating;
+    private int overallrating;
 
-    @Column(name = "decisiononhire")
-    private boolean decisionOnHire;
+    @Column(name = "secondinterview")
+    private boolean secondinterview;
 
     @Column(name = "feedbackdate")
-    private Date feedbackDate;
+    private Date feedbackdate;
 
     @ManyToOne
     @JoinColumn(name = "interviewid")
     private Interview interview;
 
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private User user;
 
 
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "interviewid", referencedColumnName = "interviewid")
+//    private Interview interview;
 
 }

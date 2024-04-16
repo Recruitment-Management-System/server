@@ -7,6 +7,7 @@ import com.interviewManagementApplication.RMS.repository.CandidateRepo;
 import com.interviewManagementApplication.RMS.repository.ProjectRepository;
 import com.interviewManagementApplication.RMS.repository.VacancyRepository;
 import com.interviewManagementApplication.RMS.service.Interface.VacancyService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,7 +69,7 @@ public class VacancyServiceImpl implements VacancyService {
     }
 
     @Override
-    public List<Vacancy> findAll() {
+    public List<Vacancy> findAllVacancies() {
         try{
             return vacancyRepository.findAll();
         }catch(Exception e){
@@ -134,10 +135,12 @@ public class VacancyServiceImpl implements VacancyService {
         return vacancyRepository.findByProjectProjectID(projectId);
     }
 
-    @Override
-    public List<Candidate> getCandidatesForVacancy(Integer vacancyID) {
-        Optional<Vacancy> optionalVacancy =  vacancyRepository.findById(vacancyID);
-        Vacancy vacancy = optionalVacancy.get();
-        return vacancy.getCandidateList();
+
+    //fetch candidate details using vacancy id
+    public List<Candidate> findCandidatesForVacancy(int vacancyid) {
+        Vacancy vacancy = vacancyRepository.findById(vacancyid)
+                .orElseThrow(() -> new EntityNotFoundException("Vacancy not found with id: " + vacancyid));
+        return new ArrayList<>(vacancy.getCandidateList());
     }
 }
+

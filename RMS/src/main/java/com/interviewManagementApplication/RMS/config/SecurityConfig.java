@@ -39,7 +39,7 @@ public class SecurityConfig {
 
                       
 
-                        req->req.requestMatchers("api/login/**", "api/register/**")
+                        req->req.requestMatchers("api/login/**", "api/register/**", "api/candidate/add_candidate/**")
 
                                 .permitAll()
                                 .requestMatchers("/admin_only/**").hasAuthority("ADMIN")
@@ -62,4 +62,5 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
+
 }

@@ -1,5 +1,6 @@
 package com.interviewManagementApplication.RMS.controller;
 
+import com.interviewManagementApplication.RMS.model.Candidate;
 import com.interviewManagementApplication.RMS.model.Vacancy;
 import com.interviewManagementApplication.RMS.service.Interface.VacancyService;
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +52,17 @@ public class VacancyController {
         }
     }
 
+    //find candidates for a vacancy
+    @GetMapping("/candidates/{vacancyID}")
+    public List<Candidate> findCandidatesForVacancy(@PathVariable Integer vacancyID){
+        try {
+            return vacancyService.getCandidatesForVacancy(vacancyID);
+        }catch (Exception e){
+            LOGGER.error("Error when fetching candidate list");
+            throw e;
+        }
+    }
+
     @GetMapping("/{vacancyID}")
     public Optional<Vacancy> findByVacancy(@PathVariable Integer vacancyID){
         try{
@@ -74,5 +86,17 @@ public class VacancyController {
     @GetMapping("/projects/{projectId}")
     public List<Vacancy> getVacanciesByProjectId(@PathVariable Integer projectId) {
         return vacancyService.getVacanciesByProjectId(projectId);
+    }
+
+    //add candidate to the system
+    @PostMapping("/addcandidate/{vacancyID}")
+    public void addCandidate(@PathVariable Integer vacancyID, @RequestBody Candidate candidate){
+
+        try{
+            vacancyService.addCandidateToVacancy(vacancyID,candidate);
+        }catch (Exception e){
+            LOGGER.error("Error on adding candidate ");
+            throw e;
+        }
     }
 }

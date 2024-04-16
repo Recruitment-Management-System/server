@@ -7,13 +7,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/candidate")
+@RequestMapping("api/candidate")
 public class CandidateController {
 
     private static final Logger logger = LoggerFactory.getLogger(CandidateController.class);
@@ -43,10 +45,10 @@ public class CandidateController {
         }
     }
 
-    @PostMapping("/add_candidate")
-    public ResponseEntity<Void> addCandidate(@RequestBody Candidate candidate) {
+    @PostMapping("/add_candidate/{vacancyID}")
+    public ResponseEntity<Void> addCandidate(@Validated @ModelAttribute Candidate candidate, @RequestParam("file") MultipartFile file, @PathVariable Integer vacancyID) {
         try {
-            candidateService.addCandidate(candidate);
+            candidateService.addCandidate(candidate, file, vacancyID);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             logger.error("Error occurred while adding candidate", e);
@@ -63,5 +65,17 @@ public class CandidateController {
             logger.error("Error occurred while updating candidate with id: {}", id, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+
+    //hire or reject candidate
+    @PutMapping("/hire/{candidateid}")
+    public String hire(@PathVariable("candidateid") int candidateid) {
+        return candidateService.hireCandidate(candidateid);
+    }
+
+    @PutMapping("/reject/{candidateid}")
+    public String reject(@PathVariable("candidateid") int candidateid) {
+        return candidateService.rejectCandidate(candidateid);
     }
 }

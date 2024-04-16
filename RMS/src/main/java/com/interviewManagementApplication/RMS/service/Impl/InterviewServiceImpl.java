@@ -1,11 +1,13 @@
 package com.interviewManagementApplication.RMS.service.Impl;
 
+import com.interviewManagementApplication.RMS.model.*;
+import com.interviewManagementApplication.RMS.repository.CandidateRepo;
+import com.interviewManagementApplication.RMS.repository.UserRepository;
 import com.interviewManagementApplication.RMS.constants.Consts;
+import com.interviewManagementApplication.RMS.model.InterviewStatus;
 import com.interviewManagementApplication.RMS.model.User;
-import com.interviewManagementApplication.RMS.model.Vacancy;
 import com.interviewManagementApplication.RMS.repository.UserRepository;
 import com.interviewManagementApplication.RMS.service.Interface.InterviewService;
-import com.interviewManagementApplication.RMS.model.Interview;
 import com.interviewManagementApplication.RMS.repository.InterviewRepo;
 import com.interviewManagementApplication.RMS.util.JwtService;
 import io.jsonwebtoken.Claims;
@@ -22,6 +24,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import javax.crypto.SecretKey;
 import java.util.Base64;
 import java.util.List;
@@ -42,6 +45,9 @@ public class InterviewServiceImpl implements InterviewService {
 
     @Autowired
     private JwtService jwtService;
+
+    @Autowired
+    private CandidateRepo candidateRepo;
 
     @Override
     public List<Interview> getAllInterviews() {
@@ -81,7 +87,7 @@ public class InterviewServiceImpl implements InterviewService {
                 Interview updatedInterview = existingInterview.get();
 
                 updatedInterview.setInterviewTime(interview.getInterviewTime());
-                updatedInterview.setInterviewdate(interview.getInterviewdate());
+                updatedInterview.setInterviewDate(interview.getInterviewDate());
                 updatedInterview.setInterviewStatus(interview.getInterviewStatus());
                 updatedInterview.setCandidate(interview.getCandidate());
                 updatedInterview.setInterviewType(interview.getInterviewType());
@@ -94,6 +100,31 @@ public class InterviewServiceImpl implements InterviewService {
     }
 
     @Override
+    public void addInterviewer(Integer candidateID, List<Integer> userIDs, Interview interview) {
+        Optional<Candidate> candidateOptional = candidateRepo.findById(candidateID);
+        if (candidateOptional.isPresent()) {
+            Candidate savedCandidate = candidateOptional.get();
+            interview.setCandidate(savedCandidate);
+
+            if (interview.getUserList() == null) {
+                interview.setUserList(new ArrayList<>());
+            }
+
+            List<User> userList = interview.getUserList();
+
+            for (Integer userID : userIDs) {
+                Optional<User> userOptional = userRepository.findById(userID);
+                userOptional.ifPresent(userList::add);
+            }
+
+            interviewRepo.save(interview);
+        } else {
+            logger.error("Candidate not found");
+        }
+    }
+
+
+    @Override
     public List<Interview> getAllInterviewsByUserId(Integer userId) {
         try{
             return interviewRepo.findAllByUserList_Id(userId);
@@ -104,7 +135,38 @@ public class InterviewServiceImpl implements InterviewService {
         }
     }
 
+
+
+    //update interview status
     @Override
+    public void updateInterviewStatus(int interviewID) {
+        try {
+            Optional<Interview> existingInterview = interviewRepo.findById(interviewID);
+
+            if (existingInterview.isPresent()) {
+                Interview updatedInterview = existingInterview.get();
+
+
+                updatedInterview.setInterviewStatus(InterviewStatus.ENDED);
+
+                interviewRepo.save(updatedInterview);
+            }
+        } catch (Exception e) {
+            logger.error("error - updating interview Status");
+        }}
+
+
+
+//    @Override
+//    public List<Interview> getInterviewsByCandidate(Integer candidateId){
+//        try {
+//            return interviewRepo.findByCandidateCandidateID(candidateId);
+//        } catch (Exception e) {
+//            logger.error("Error occurred while getting all candidates with id {}", candidateId);
+//            throw e;
+//        }
+
+        @Override
     public List<Interview> getInterviewsByCandidate(Integer candidateId) {
        try{
            return interviewRepo.findByCandidateCandidateID(candidateId);

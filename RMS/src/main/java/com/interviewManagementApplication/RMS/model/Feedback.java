@@ -20,7 +20,7 @@ public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "feedbackid")
-    private int feedback_ID;
+    private int feedbackid;
 
     @Column(name = "details")
     @Convert(converter = CommentAttributeConverter.class)
@@ -39,10 +39,10 @@ public class Feedback {
     @JoinColumn(name = "interviewid")
     private Interview interview;
 
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private User user;
 
 
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "interviewid", referencedColumnName = "interviewid")
+//    private Interview interview;
 
 }

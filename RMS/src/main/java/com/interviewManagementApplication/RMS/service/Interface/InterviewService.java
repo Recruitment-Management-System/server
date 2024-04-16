@@ -20,8 +20,6 @@ public interface InterviewService {
 
     List<Interview> getAllInterviewsByUserId(Integer userId);
 
-    List<Interview> getCandidates(int candidateid);
-
     //update interview status
     void updateInterviewStatus(int interviewID);
     List<Interview> getInterviewsByCandidate(Integer candidateId);

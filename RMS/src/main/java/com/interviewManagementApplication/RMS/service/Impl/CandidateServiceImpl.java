@@ -1,10 +1,14 @@
 package com.interviewManagementApplication.RMS.service.Impl;
 
+import com.interviewManagementApplication.RMS.constants.Consts;
+import com.interviewManagementApplication.RMS.model.Vacancy;
+import com.interviewManagementApplication.RMS.repository.VacancyRepository;
 import com.interviewManagementApplication.RMS.model.Vacancy;
 import com.interviewManagementApplication.RMS.repository.VacancyRepository;
 import com.interviewManagementApplication.RMS.service.Interface.CandidateService;
 import com.interviewManagementApplication.RMS.model.Candidate;
 import com.interviewManagementApplication.RMS.repository.CandidateRepo;
+import com.interviewManagementApplication.RMS.service.Interface.VacancyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +22,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
-public class CandidateServiceImpl implements CandidateService {
+public class CandidateServiceImpl implements CandidateService, Consts {
 
     private static final Logger logger = LoggerFactory.getLogger(CandidateServiceImpl.class);
 
@@ -28,7 +33,11 @@ public class CandidateServiceImpl implements CandidateService {
     private final CandidateRepo candidateRepo;
 
     @Autowired
-    private final VacancyRepository vacancyRepository;
+    private VacancyRepository vacancyRepository;
+
+    @Autowired
+    private VacancyService vacancyService;
+
 
     @Autowired
     public CandidateServiceImpl(CandidateRepo candidateRepo, VacancyRepository vacancyRepository) {
@@ -79,41 +88,67 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public Candidate addCandidate(Candidate candidate, MultipartFile file, Integer vacancyID) throws IOException {
+    public Candidate addCandidate(Candidate candidate, MultipartFile file, int vacancyID) throws IOException{
         try {
-            Optional<Vacancy> vacancyOptional = vacancyRepository.findById(vacancyID);
+            // Save file to disk
+            String filePath = remoteDirectory + file.getOriginalFilename(); // Modify path as needed
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(filePath);
+            Files.write(path, bytes);
+
+            candidate.setCv(filePath);
+
+            if (candidate.getVacancyList() == null) {
+                candidate.setVacancyList(new ArrayList<>());
+            }
+
+                Optional<Vacancy> vacancyOptional = vacancyRepository.findById(vacancyID);
             if (vacancyOptional.isPresent()) {
                 Vacancy vacancy = vacancyOptional.get();
-                if (vacancy.getCandidateList() == null) {
-                    vacancy.setCandidateList(new ArrayList<>());
-                }
-                List<Candidate> candidateList = vacancy.getCandidateList();
+                candidate.getVacancyList().add(vacancy); // Add the vacancy to the candidate's vacancy list
+                vacancy.getCandidateList().add(candidate); // Add the candidate to the vacancy's candidate list
 
-                // Save file to disk
-                String filePath = "/home/kmedagoda/Desktop/" + file.getOriginalFilename(); // Modify path as needed
-                byte[] bytes = file.getBytes();
-                Path path = Paths.get(filePath);
-                Files.write(path, bytes);
-
-//            candidate.setNic(candidate.getNic());
-//            candidate.setFirstname(candidate.getFirstname());
-//            candidate.setLastname(candidate.getLastname());
-//            candidate.setDescription(candidate.getDescription());
-//            candidate.setExperience(candidate.getExperience());
-//            candidate.setQualification(candidate.getQualification());
-                candidate.setCv(filePath);
-                candidateList.add(candidate);
+                // Save candidate and vacancy to update the relationship
+                candidateRepo.save(candidate);
                 vacancyRepository.save(vacancy);
-           }
+            } else {
+                throw new IllegalArgumentException("Vacancy with ID " + vacancyID + " not found.");
+            }
 
             // Save candidate to database
             return candidateRepo.save(candidate);
+        }
 
-        } catch (Exception e) {
+        catch (Exception e) {
             logger.error("Error occurred while adding candidate", e);
             throw e;
         }
     }
+
+//    public Candidate saveCustomer(Candidate candidate, MultipartFile file, int vacancyID) throws IOException{
+//
+//        String filePath = "/home/kpremarathne/Desktop/Trainings/Task14/files/" + file.getOriginalFilename(); // Modify path as needed
+//            byte[] bytes = file.getBytes();
+//            Path path = Paths.get(filePath);
+//            Files.write(path, bytes);
+//
+//            candidate.setCv(filePath);
+//
+//        if (candidate.getVacancyList() == null) {
+//            candidate.setVacancyList(new ArrayList<>());
+//        }
+//
+//        candidate.getVacancyList()
+//                .addAll(candidate
+//                        .getVacancyList()
+//                        .stream()
+//                        .map(v -> {
+//                            Vacancy vacancy = vacancyService.findVacancyById(vacancyID);
+//                            vacancy.getCandidateList().add(candidate);
+//                            return vacancy;
+//                        }).collect(Collectors.toList()));
+//        return candidateRepo.save(candidate);
+//    }
 
     //update candidate status
     //hire

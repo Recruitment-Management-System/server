@@ -1,8 +1,7 @@
 package com.interviewManagementApplication.RMS.util;
 
-import org.apache.commons.net.ftp.FTP;
-import org.apache.commons.net.ftp.FTPClient;
 
+import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -44,5 +43,15 @@ public class FTPUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean directoryExists(String directoryPath) {
+        boolean exists = false;
+        try {
+            exists = ftp.changeWorkingDirectory(directoryPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return exists;
     }
 }

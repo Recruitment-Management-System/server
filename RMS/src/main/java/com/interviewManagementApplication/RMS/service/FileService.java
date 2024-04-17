@@ -1,37 +1,42 @@
 package com.interviewManagementApplication.RMS.service;
 
+import com.interviewManagementApplication.RMS.constants.Consts;
+import com.interviewManagementApplication.RMS.controller.CandidateController;
 import com.interviewManagementApplication.RMS.util.FTPUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
-public class FileService {
+public class FileService implements Consts{
 
+    private static final Logger logger = LoggerFactory.getLogger(FileService.class);
     @Autowired
     private FTPUtils ftpUtils;
 
     public void uploadFile(String filePath) {
-        String server = "localhost";
-        int port = 21;
-        String username = "kmedagoda";
-        String password = "20001211";
-        String remoteDirectory = "/home/kmedagoda/Desktop";
-
-        // ftpUtils.uploadFile(server, port, username, password, filePath, remoteDirectory);
 
 
         try {
             // Check FTP connection before uploading
             if (ftpUtils.connect(server, port, username, password)) {
-                ftpUtils.uploadFile(filePath, remoteDirectory);
-                ftpUtils.disconnect();
+                // Check if remote directory exists before uploading
+                if (ftpUtils.directoryExists(remoteDirectory)) {
+                    ftpUtils.uploadFile(filePath, remoteDirectory);
+                    ftpUtils.disconnect();
+                } else {
+                    logger.warn("Remote directory does not exist.");
+                }
             } else {
                 // Handle connection failure
-                System.err.println("Failed to connect to FTP server.");
+                logger.warn("Failed to connect to FTP server.");
             }
         } catch (Exception e) {
             // Handle exception appropriately, log or propagate
-            System.out.println("failed ------------------------------------------");
+            logger.warn("Failed to upload file to FTP server.");
             e.printStackTrace();
         }
     }

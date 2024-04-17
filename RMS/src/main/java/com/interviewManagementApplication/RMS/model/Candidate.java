@@ -43,9 +43,9 @@ public class Candidate {
     @Column(name = "status")
     private String status;
 
-
     @Column(name = "cv")
     private String cv;
+
 
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
     @JsonIgnore

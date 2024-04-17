@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/candidate")
+@RequestMapping("api/candidate")
 public class CandidateController {
 
     private static final Logger logger = LoggerFactory.getLogger(CandidateController.class);
@@ -45,10 +45,10 @@ public class CandidateController {
         }
     }
 
-    @PostMapping("/add_candidate")
-    public ResponseEntity<Void> addCandidate(@Validated @ModelAttribute Candidate candidate, @RequestParam("file") MultipartFile file) {
+    @PostMapping("/add_candidate/{vacancyID}")
+    public ResponseEntity<Void> addCandidate(@Validated @ModelAttribute Candidate candidate, @RequestParam("file") MultipartFile file, @PathVariable Integer vacancyID) {
         try {
-            candidateService.addCandidate(candidate, file);
+            candidateService.addCandidate(candidate, file, vacancyID);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             logger.error("Error occurred while adding candidate", e);

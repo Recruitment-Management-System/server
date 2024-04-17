@@ -1,5 +1,6 @@
 package com.interviewManagementApplication.RMS.controller;
 
+import com.interviewManagementApplication.RMS.dto.AddInterviewerRequest;
 import com.interviewManagementApplication.RMS.model.Candidate;
 import com.interviewManagementApplication.RMS.model.Vacancy;
 import com.interviewManagementApplication.RMS.service.Interface.CandidateService;
@@ -23,6 +24,7 @@ public class InterviewController {
     @Autowired
     private InterviewService interviewService;
 
+    //get all interviews
     @Autowired
     private CandidateService candidateService;
 
@@ -37,6 +39,7 @@ public class InterviewController {
         }
     }
 
+    //get the details of a given id
     @GetMapping("/{id}")
     public Optional<?> getInterview(@PathVariable Integer id) {
         try {
@@ -52,6 +55,7 @@ public class InterviewController {
         }
     }
 
+    //add interview to system
     @PostMapping("/add_interview")
     public void addInterview(@RequestBody Interview interview) {
         try {
@@ -63,6 +67,8 @@ public class InterviewController {
         }
     }
 
+
+    //update interview by it's id
     @PutMapping("/{id}")
     public void changeInterview(@PathVariable Integer id, @RequestBody Interview interview) {
         try {
@@ -71,6 +77,19 @@ public class InterviewController {
             logger.error("Error occurred while updating interview with id: {}", id, e);
             // You can handle the exception or rethrow it if needed
             throw e;
+        }
+    }
+
+
+    //add interviewers to interview
+    @PostMapping("/interviewer/{candidateID}")
+    public void addInterviewer(@PathVariable Integer candidateID, @RequestBody AddInterviewerRequest addInterviewerRequest){
+        try {
+            List<Integer> userIDs = addInterviewerRequest.getUserIDs();
+            Interview interview = addInterviewerRequest.getInterview();
+            interviewService.addInterviewer(candidateID,userIDs,interview);
+        }catch (Exception e){
+            logger.error("Error in adding interviewer" + e);
         }
     }
 

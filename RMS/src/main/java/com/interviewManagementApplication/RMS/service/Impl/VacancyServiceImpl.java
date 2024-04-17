@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -111,8 +110,35 @@ public class VacancyServiceImpl implements VacancyService {
         }
     }
 
+    @Override
+    public void addCandidateToVacancy(Integer vacancyID, Candidate candidate){
+        Optional<Vacancy> optionalVacancy = vacancyRepository.findById(vacancyID);
+
+        if (optionalVacancy.isPresent()){
+            Vacancy vacancy = optionalVacancy.get();
+            Candidate savedCandidate = candidateRepo.save(candidate);
+            List<Candidate> candidateList = vacancy.getCandidateList();
+            if (vacancy.getCandidateList() == null) {
+                vacancy.setCandidateList(new ArrayList<>());
+            }
+            candidateList.add(savedCandidate);
+            vacancy.setCandidateList(candidateList);
+            vacancyRepository.save(vacancy);
+        }
+        else{
+            LOGGER.error("Vacancy not found!");
+        }
+    }
+
     public List<Vacancy> getVacanciesByProjectId(Integer projectId) {
         return vacancyRepository.findByProjectProjectID(projectId);
+    }
+
+    @Override
+    public List<Candidate> getCandidatesForVacancy(Integer vacancyID) {
+        Vacancy vacancy = vacancyRepository.findById(vacancyID)
+                .orElseThrow(() -> new EntityNotFoundException("Vacancy not found with id: " + vacancyID));
+        return new ArrayList<>(vacancy.getCandidateList());
     }
 
 

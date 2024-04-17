@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface CandidateService {
     List<Candidate> getAllCandidates();
 
-    Candidate addCandidate(Candidate candidate, MultipartFile file) throws IOException;
+    Candidate addCandidate(Candidate candidate, MultipartFile file, Integer vacancyID) throws IOException;
 
     Optional<Candidate> getCandidate(Integer id);
 

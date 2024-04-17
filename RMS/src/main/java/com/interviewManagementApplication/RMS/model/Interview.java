@@ -5,9 +5,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.sql.Timestamp;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -28,13 +27,13 @@ public class Interview {
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "interview_status")
-    private InterviewStatus interviewStatus;
+    private InterviewStatus interviewStatus = InterviewStatus.PENDING;
 
-    @Column(name = "interviewdate")
-    private Timestamp interviewdate;
+    @Column(name = "interview_date")
+    private LocalDate interviewDate;
 
     @Column(name = "interview_time")
-    private Timestamp interviewTime;
+    private LocalTime interviewTime;
 
     @JsonIgnore
     @ManyToOne
@@ -44,11 +43,12 @@ public class Interview {
     @JsonIgnore
     @ManyToMany
     @JoinTable(
-            name = "interviewUser",
+            name = "interviewInterviewer",
             joinColumns = @JoinColumn(name = "interviewid"),
             inverseJoinColumns = @JoinColumn(name = "id")
     )
     private List<User> userList;
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "interview")

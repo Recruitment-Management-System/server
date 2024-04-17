@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27d9bfce-91bf-484b-94d0-72af5793d075" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_fileupload_commons_fileupload_1_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_11_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_net_commons_net_3_8_0.xml" beforeDir="false" />
+    <list default="true" id="27d9bfce-91bf-484b-94d0-72af5793d075" name="Changes" comment="merged with kaushalya">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RMS/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/service/FileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/service/Impl/CandidateServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/service/Impl/CandidateServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/util/FTPUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/util/FTPUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RMS/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/config/SecurityConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713236959194</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="merged with kaushalya">
+      <created>1713374848922</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1713374848925</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

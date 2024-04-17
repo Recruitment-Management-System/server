@@ -90,7 +90,7 @@ public class CandidateServiceImpl implements CandidateService {
                 List<Candidate> candidateList = vacancy.getCandidateList();
 
                 // Save file to disk
-                String filePath = "/home/kmedagoda/Desktop/" + file.getOriginalFilename(); // Modify path as needed
+                String filePath = "/home/hsudusinghe/Downloads/Sample/" + file.getOriginalFilename(); // Modify path as needed
                 byte[] bytes = file.getBytes();
                 Path path = Paths.get(filePath);
                 Files.write(path, bytes);

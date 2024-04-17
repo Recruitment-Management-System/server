@@ -45,4 +45,14 @@ public class FTPUtils {
             e.printStackTrace();
         }
     }
+
+    public boolean directoryExists(String directoryPath) {
+        boolean exists = false;
+        try {
+            exists = ftp.changeWorkingDirectory(directoryPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return exists;
+    }
 }

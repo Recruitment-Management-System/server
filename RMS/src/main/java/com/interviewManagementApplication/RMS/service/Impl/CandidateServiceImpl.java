@@ -74,7 +74,7 @@ public class CandidateServiceImpl implements CandidateService {
     public Candidate addCandidate(Candidate candidate, MultipartFile file) throws IOException{
         try {
             // Save file to disk
-            String filePath = "/home/kpremarathne/Desktop/Trainings/Task14/files/" + file.getOriginalFilename(); // Modify path as needed
+            String filePath = "/home/kpremarathne/Desktop/Trainings/Task14/files" + file.getOriginalFilename(); // Modify path as needed
             byte[] bytes = file.getBytes();
             Path path = Paths.get(filePath);
             Files.write(path, bytes);

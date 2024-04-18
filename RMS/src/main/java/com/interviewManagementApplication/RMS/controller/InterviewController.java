@@ -92,7 +92,11 @@ public class InterviewController {
         try{
             interviewService.updateInterviewStatus(interviewID);
         }catch(Exception e){
-            throw e;
+            try {
+                throw e;
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 

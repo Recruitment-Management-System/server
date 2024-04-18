@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="27d9bfce-91bf-484b-94d0-72af5793d075" name="Changes" comment="merged with kaushalya">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/model/Vacancy.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/model/Vacancy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/model/VacancyStatusType.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/model/VacancyStatusType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713374848925</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="merged with kaushalya">
+      <created>1713376108624</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1713376108624</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

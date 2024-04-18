@@ -21,25 +21,25 @@ public class Vacancy {
     @Column(name = "vacancyid")
     private Integer vacancyID;
 
-    @Column(name = "reason")
+    @Column(name = "reason" , nullable = false)
     private String reason;
 
-    @Column(name = "jobrefcode")
+    @Column(name = "jobrefcode", nullable = false)
     private String jobRefCode;
 
-    @Column(name = "jobrole")
+    @Column(name = "jobrole" , nullable = false)
     private String jobRole;
 
-    @Column
+    @Column(nullable = false)
     private int openings;
 
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private VacancyStatusType status;
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "projectID", referencedColumnName = "projectId")
+    @JoinColumn(name = "projectID", referencedColumnName = "projectId", nullable = false)
     private Project project;
 
     @JsonIgnore

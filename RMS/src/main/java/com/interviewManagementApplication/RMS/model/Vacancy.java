@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name  = "vacancy")
+@Table(name = "vacancy")
 public class Vacancy {
 
     @Id
@@ -42,12 +42,6 @@ public class Vacancy {
     @JoinColumn(name = "projectID", referencedColumnName = "projectId", nullable = false)
     private Project project;
 
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(
-            name = "candidateVacancy",
-            joinColumns = @JoinColumn(name = "vacancyid"),
-            inverseJoinColumns = @JoinColumn(name = "candidateid")
-    )
+    @ManyToMany(mappedBy = "vacancyList")
     private List<Candidate> candidateList;
 }

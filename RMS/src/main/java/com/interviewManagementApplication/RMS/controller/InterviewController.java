@@ -111,7 +111,18 @@ public class InterviewController {
         try{
             interviewService.updateInterviewStatus(interviewID);
         }catch(Exception e){
-            throw e;
+            try {
+                throw e;
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
         }
+    }
+
+    //get candidate id of the interview
+    @GetMapping("/{interviewid}/candidateId")
+    public ResponseEntity<Integer> getCandidateIdByInterviewId(@PathVariable int interviewid) throws Exception {
+        int candidateId = interviewService.getCandidateIdOfInterview(interviewid);
+        return ResponseEntity.ok().body(candidateId);
     }
 }

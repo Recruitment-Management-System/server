@@ -51,6 +51,13 @@ public class Candidate {
     @JsonIgnore
     private Set<Interview> interviews;
 
-    @ManyToMany(mappedBy = "candidateList")
+
+   @JsonIgnore
+   @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
+   @JoinTable(
+           name = "candidateVacancy",
+           joinColumns = @JoinColumn(name = "candidateid"),
+           inverseJoinColumns = @JoinColumn(name = "vacancyid")
+   )
     private List<Vacancy> vacancyList;
 }

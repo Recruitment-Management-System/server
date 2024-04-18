@@ -22,4 +22,7 @@ public interface InterviewService {
 
     //update interview status
     void updateInterviewStatus(int interviewID);
+
+    //get candidate id of the interview
+    int getCandidateIdOfInterview(int interviewid) throws Exception;
 }

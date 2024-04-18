@@ -1,5 +1,6 @@
 package com.interviewManagementApplication.RMS.service.Impl;
 
+import com.interviewManagementApplication.RMS.constants.Consts;
 import com.interviewManagementApplication.RMS.model.Vacancy;
 import com.interviewManagementApplication.RMS.repository.VacancyRepository;
 import com.interviewManagementApplication.RMS.service.Interface.CandidateService;
@@ -22,7 +23,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class CandidateServiceImpl implements CandidateService {
+public class CandidateServiceImpl implements CandidateService, Consts {
 
     private static final Logger logger = LoggerFactory.getLogger(CandidateServiceImpl.class);
 
@@ -86,7 +87,7 @@ public class CandidateServiceImpl implements CandidateService {
     public Candidate addCandidate(Candidate candidate, MultipartFile file, int vacancyID) throws IOException{
         try {
             // Save file to disk
-            String filePath = "/home/kpremarathne/Desktop/Trainings/Task14/files/" + file.getOriginalFilename(); // Modify path as needed
+            String filePath = remoteDirectory + file.getOriginalFilename(); // Modify path as needed
             byte[] bytes = file.getBytes();
             Path path = Paths.get(filePath);
             Files.write(path, bytes);

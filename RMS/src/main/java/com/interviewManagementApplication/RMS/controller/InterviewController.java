@@ -101,4 +101,11 @@ public class InterviewController {
             throw e;
         }
     }
+
+    //get candidate id of the interview
+    @GetMapping("/{interviewid}/candidateId")
+    public ResponseEntity<Integer> getCandidateIdByInterviewId(@PathVariable int interviewid) throws Exception {
+        int candidateId = interviewService.getCandidateIdOfInterview(interviewid);
+        return ResponseEntity.ok().body(candidateId);
+    }
 }

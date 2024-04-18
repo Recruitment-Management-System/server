@@ -29,4 +29,9 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Vacancy> vacancyList;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private User users;
 }

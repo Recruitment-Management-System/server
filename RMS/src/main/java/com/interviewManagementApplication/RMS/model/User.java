@@ -1,5 +1,6 @@
 package com.interviewManagementApplication.RMS.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -44,6 +45,11 @@ public class User implements UserDetails {
 
     @Column(name = "active", columnDefinition = "int default 0")
     private int active;
+
+
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Project> projects;
 
     public int getActive() {
         return active;

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface InterviewerService {
     List<User> getAllInterviewers();
+    List<User> getAllProjectManagers();
 }

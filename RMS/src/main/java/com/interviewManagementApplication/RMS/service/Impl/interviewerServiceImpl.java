@@ -19,4 +19,9 @@ public class interviewerServiceImpl implements InterviewerService {
         return userRepository.findByRole(Role.INTERVIEWER);
     }
 
+    @Override
+    public List<User> getAllProjectManagers() {
+        return userRepository.findByRole(Role.PROJECT_MANAGER);
+    }
+
 }

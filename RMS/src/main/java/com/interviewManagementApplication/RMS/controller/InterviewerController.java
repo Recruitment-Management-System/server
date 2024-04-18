@@ -20,4 +20,9 @@ public class InterviewerController {
     public List<User> getAllInterviewers() {
         return interviewerService.getAllInterviewers();
     }
+
+    @GetMapping("/projectManagers")
+    public List<User> getAllProjectManagers() {
+        return interviewerService.getAllProjectManagers();
+    }
 }

@@ -16,12 +16,14 @@ public interface InterviewService {
     void updateInterview(Integer id, Interview interview);
 
 
-    void assignUserToInterview(Integer interviewId, Integer userId);
     List<Interview> getAllInterviewsByUserId(Integer userId);
+
     List<Interview> getCandidates(int candidateid);
 
     //update interview status
     void updateInterviewStatus(int interviewID);
+    List<Interview> getInterviewsByCandidate(Integer candidateId);
+
 
     //get candidate id of the interview
     int getCandidateIdOfInterview(int interviewid) throws Exception;

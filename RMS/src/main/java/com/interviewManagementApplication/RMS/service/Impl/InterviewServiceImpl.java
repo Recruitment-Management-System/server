@@ -94,6 +94,7 @@ public class InterviewServiceImpl implements InterviewService {
     }
 
 
+
     public void assignUserToInterview(Integer interviewId, Integer userId) {
         Optional<Interview> optionalInterview = interviewRepo.findById(interviewId);
         Optional<User> optionalUser = userRepository.findById(userId);
@@ -112,14 +113,20 @@ public class InterviewServiceImpl implements InterviewService {
             throw new IllegalArgumentException("Invalid interviewId or userId");
         }
     }
-
     @Override
     public List<Interview> getAllInterviewsByUserId(Integer userId) {
-        return interviewRepo.findAllByUserList_Id(userId);
+        try{
+            return interviewRepo.findAllByUserList_Id(userId);
+
+        }catch(Exception e){
+            logger.error("Error occurred while getting all interviews with id {}", userId);
+            throw e;
+        }
     }
 
     //interviews for candidate
     @Override
+
     public List<Interview> getCandidates(int candidateid) {
         return interviewRepo.findByCandidateCandidateID(candidateid);
     }
@@ -142,6 +149,14 @@ public class InterviewServiceImpl implements InterviewService {
         } catch (Exception e) {
             logger.error("error - updating interview Status");
         }
+
+    public List<Interview> getInterviewsByCandidate(Integer candidateId) {
+       try{
+           return interviewRepo.findByCandidateCandidateID(candidateId);
+       }catch(Exception e){
+           logger.error("Error occurred while getting all candidates with id {}", candidateId);
+           throw e;
+       }
     }
 
     //get candidate id of the interview

@@ -10,12 +10,14 @@ public interface VacancyService {
 
     Vacancy createVacancy(int projectID, Vacancy vacancy);
     void deleteVacancy(Integer vacancyID);
-    List<Vacancy> findAll();
+    List<Vacancy> findAllVacancies();
     Optional<Vacancy> findByIdVacancy(Integer id);
     Vacancy updateVacancyById(Integer vacancyID, Vacancy vacancy);
+
     List<Vacancy> getVacanciesByProjectId(Integer projectId);
 
 
     //fetch candidate details using vacancy id
     List<Candidate> findCandidatesForVacancy(int vacancyid);
 }
+

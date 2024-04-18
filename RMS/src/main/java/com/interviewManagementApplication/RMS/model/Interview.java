@@ -22,11 +22,13 @@ public class Interview {
     @Column(name = "interviewid")
     private Integer interviewid;
 
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "interview_type")
-    private int interviewType;
+    private InterviewType interviewType;
 
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "interview_status")
-    private int interviewStatus;
+    private InterviewStatus interviewStatus;
 
     @Column(name = "interviewdate")
     private Timestamp interviewdate;

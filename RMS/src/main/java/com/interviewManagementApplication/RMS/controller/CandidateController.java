@@ -78,4 +78,17 @@ public class CandidateController {
     public String reject(@PathVariable("candidateid") int candidateid) {
         return candidateService.rejectCandidate(candidateid);
     }
+
+    //retrieve candidate details of second interviews
+    @GetMapping("/secondinterview")
+    public List<Candidate> getCandidatesWithSecondInterviewFeedback() {
+        try {
+            List<Candidate> candidates = candidateService.getCandidatesWithSecondInterviewFeedback();
+
+            return candidates;
+        } catch (Exception e) {
+            logger.error("error - fetch candidates for second interviews");
+            throw e;
+        }
+    }
 }

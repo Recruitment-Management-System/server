@@ -16,6 +16,9 @@ public interface CandidateService {
 
     void updateCandidate(Integer id, Candidate candidate);
 
+    //retrive candidate details of second interviews
+    List<Candidate> getCandidatesWithSecondInterviewFeedback();
+
 
 
     //hire or reject candidate

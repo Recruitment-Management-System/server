@@ -1,7 +1,9 @@
 package com.interviewManagementApplication.RMS.service.Impl;
 
 import com.interviewManagementApplication.RMS.constants.Consts;
+import com.interviewManagementApplication.RMS.model.Feedback;
 import com.interviewManagementApplication.RMS.model.Vacancy;
+import com.interviewManagementApplication.RMS.repository.FeedbackRepo;
 import com.interviewManagementApplication.RMS.repository.VacancyRepository;
 import com.interviewManagementApplication.RMS.service.FileService;
 import com.interviewManagementApplication.RMS.service.Interface.CandidateService;
@@ -19,6 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CandidateServiceImpl implements CandidateService, Consts {
@@ -33,6 +36,9 @@ public class CandidateServiceImpl implements CandidateService, Consts {
 
     @Autowired
     private VacancyService vacancyService;
+
+    @Autowired
+    private FeedbackRepo feedbackRepo;
 
     @Autowired
     private FileService fileService;
@@ -171,6 +177,16 @@ public class CandidateServiceImpl implements CandidateService, Consts {
             candidateRepo.save(updatedCandidate);
         }
         return null;
+    }
+
+    //retrieve candidate details of second interviews
+    @Override
+    public List<Candidate> getCandidatesWithSecondInterviewFeedback() {
+        List<Feedback> feedbacks = feedbackRepo.findBySecondinterviewTrue();
+        List<Candidate> candidates = feedbacks.stream()
+                .map(feedback -> feedback.getInterview().getCandidate())
+                .collect(Collectors.toList());
+        return candidates;
     }
 }
 

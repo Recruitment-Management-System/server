@@ -5,12 +5,14 @@ public interface Consts {
 
     //FTP server properties
 
-    public final String server = "localhost";
-    public final String remoteDirectory = "/home/kpremarathne/Desktop/Trainings/Task14/files/";
+    public final String SERVER = "localhost";
+    public final String REMOTE_DIRECTORY = "/home/kpremarathne/Desktop/Trainings/Task14/files/";
 
-    public final String username = "kpremarathne";
+    public final String USERNAME = "kpremarathne";
 
-    public final String password = "charuni40##K";
+    public final String PASSWORD = "charuni40##K";
+
+    public final String PATH_NAME = "/home/kpremarathne/Desktop/Trainings/Task14/files/fetch";
 
     public final int port = 21;
 }

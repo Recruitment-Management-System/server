@@ -80,13 +80,21 @@ public class ProjectServiceImpl implements ProjectService {
             existingProject.setProjectCode(project.getProjectCode());
 
             // Update user ID
-          //  existingProject.setUsers(User.class.get());
+            Integer userId = request.getUserID();
+            Optional<User> userOptional = userRepository.findById(userId);
+            if (userOptional.isPresent()) {
+                User user = userOptional.get();
+                existingProject.setUsers(user);
+            } else {
+                throw new IllegalArgumentException("User with ID " + userId + " not found.");
+            }
 
             // Save the updated project
-           return projectRepository.save(existingProject);
+            return projectRepository.save(existingProject);
         } else {
             // Handle case where project with given ID does not exist
             throw new EntityNotFoundException("Project not found with ID: " + projectId);
         }
     }
+
 }

@@ -1,14 +1,16 @@
 package com.interviewManagementApplication.RMS.service.Interface;
 
 import com.interviewManagementApplication.RMS.model.Feedback;
-import com.interviewManagementApplication.RMS.model.FeedbackHR;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface FeedbackService {
 
     Feedback saveFeedback(int interviewID, Feedback feedback);
+
+    List<Feedback> findAllFeedbacks();
+
+    List<Feedback> findByUserid(Integer userid);
 
     // Optional<Feedback> readById(int id);
 

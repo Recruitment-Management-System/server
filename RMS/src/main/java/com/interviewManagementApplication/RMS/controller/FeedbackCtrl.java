@@ -1,6 +1,5 @@
 package com.interviewManagementApplication.RMS.controller;
 
-import com.interviewManagementApplication.RMS.model.FeedbackHR;
 import com.interviewManagementApplication.RMS.service.Interface.FeedbackService;
 import com.interviewManagementApplication.RMS.model.Feedback;
 import org.slf4j.Logger;
@@ -11,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/feedback")
@@ -33,16 +31,25 @@ public class FeedbackCtrl {
         }
     }
 
-//    @GetMapping("/")
-//    public List<Feedback> readAllFeedbacks() {
-//        try {
-//            return feedbackService.readAllFeedbacks();
-//        }catch(Exception e){
-//            logger.error("error - readallFeedbacks");
-//            throw e;
-//        }
-//    }
+    @GetMapping("/")
+    public List<Feedback> readAllFeedbacks() {
+        try {
+            return feedbackService.findAllFeedbacks();
+        }catch(Exception e){
+            logger.error("error - readallFeedbacks");
+            throw e;
+        }
+    }
 
+    @GetMapping("/{userid}")
+    public List<Feedback> readAllFeedbacksForUser(Integer userid){
+        try{
+            return feedbackService.findByUserid(userid);
+        }catch (Exception e){
+            logger.error("error - find by user id");
+            throw e;
+        }
+    }
 
 
 //    @PutMapping("/update")

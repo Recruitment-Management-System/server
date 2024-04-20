@@ -17,4 +17,6 @@ public interface ProjectService {
     List<Object[]> findAllProjectsWithUserName();
 
     Project updateProject(Integer projectId, AddProjectManagerRequest request);
+
+    void deleteProject(Integer projectId);
 }

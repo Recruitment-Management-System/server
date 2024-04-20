@@ -83,4 +83,9 @@ public class ProjectController {
         Project updatedProject = projectService.updateProject(projectId, addProjectManagerRequest);
         return ResponseEntity.ok(updatedProject);
     }
+
+    @DeleteMapping("/delete/{projectId}")
+    public void deleteProject(@PathVariable Integer projectId){
+        projectService.deleteProject(projectId);
+    }
 }

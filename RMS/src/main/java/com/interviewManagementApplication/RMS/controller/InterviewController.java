@@ -125,4 +125,10 @@ public class InterviewController {
         int candidateId = interviewService.getCandidateIdOfInterview(interviewid);
         return ResponseEntity.ok().body(candidateId);
     }
+
+    //update interview status
+    @GetMapping("/updateInterviewStatus/{interviewid}")
+    public void updateInterviewStatus (@PathVariable Integer interviewid) throws Exception {
+        interviewService.updateInterviewStatus(interviewid);
+    }
 }

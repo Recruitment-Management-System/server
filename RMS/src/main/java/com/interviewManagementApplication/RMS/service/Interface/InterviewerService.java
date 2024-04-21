@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface InterviewerService {
     List<User> getAllInterviewers();
+
+    //update interviewStatus
+    void updateInterviewStatus(Integer interviewid);
 }

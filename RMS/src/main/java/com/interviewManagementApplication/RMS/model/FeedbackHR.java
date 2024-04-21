@@ -31,4 +31,7 @@ public class FeedbackHR {
     @ManyToOne
     @JoinColumn(name = "interviewid")
     private Interview interview;
+
+    @Column(name = "userId")
+    private int userId;
 }

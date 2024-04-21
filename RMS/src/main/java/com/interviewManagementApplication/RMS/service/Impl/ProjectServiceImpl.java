@@ -67,6 +67,10 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Project createProject(User user, Project project) {
+        if (projectRepository.existsByProjectCode(project.getProjectCode())) {
+            throw new IllegalArgumentException("Project with code " + project.getProjectCode() + " already exists.");
+        }
+        project.setUsers(user);
         return projectRepository.save(project);
     }
 

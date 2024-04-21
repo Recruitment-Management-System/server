@@ -41,6 +41,9 @@ public class VacancyServiceImpl implements VacancyService {
             if (optionalProject.isPresent()) {
                 Project project = optionalProject.get();
                 vacancy.getJobRefCode();
+                if (vacancyRepository.existsByProjectAndJobRefCode(project, vacancy.getJobRefCode())) {
+                    throw new IllegalArgumentException("Vacancy with jobRefCode " + vacancy.getJobRefCode() + " already exists for project: " + project.getProjectName());
+                }
                 vacancy.setProject(project);
                 //vacancy.setStatus(VacancyStatusType.CLOSED);
                 return vacancyRepository.save(vacancy);
@@ -52,6 +55,7 @@ public class VacancyServiceImpl implements VacancyService {
             throw e;
         }
     }
+
 
     @Override
     public void deleteVacancy(Integer vacancyID) {

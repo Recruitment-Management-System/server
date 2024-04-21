@@ -40,6 +40,7 @@ public class ProjectController {
     @GetMapping("/{projectID}")
     public Optional<Project> findProject(@PathVariable Integer projectID){
         try{
+
             return projectService.findProject(projectID);
 
         }catch (Exception e){

@@ -30,8 +30,8 @@ public class Project {
     @JsonIgnore
     private List<Vacancy> vacancyList;
 
-    @JsonIgnore
+
     @ManyToOne
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "id")
     private User users;
 }

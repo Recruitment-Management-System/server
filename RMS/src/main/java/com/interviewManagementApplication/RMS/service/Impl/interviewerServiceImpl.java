@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class interviewerServiceImpl implements InterviewerService {
@@ -23,5 +24,11 @@ public class interviewerServiceImpl implements InterviewerService {
     public List<User> getAllProjectManagers() {
         return userRepository.findByRole(Role.PROJECT_MANAGER);
     }
+
+    @Override
+    public Optional<User> getProjectManger(Integer userId) {
+        return userRepository.findById(userId);
+    }
+
 
 }

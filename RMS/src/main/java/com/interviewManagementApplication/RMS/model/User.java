@@ -47,7 +47,7 @@ public class User implements UserDetails {
     private int active;
 
 
-    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "users")
     @JsonIgnore
     private List<Project> projects;
 

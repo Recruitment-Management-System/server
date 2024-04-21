@@ -40,10 +40,18 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Optional<Project> findProject(Integer projectID) {
-        try{
-            return projectRepository.findById(projectID);
-        }catch(Exception e){
-            LOGGER.error("Cannot find the project" + projectID);
+        try {
+            Optional<Project> optionalProject = projectRepository.findById(projectID);
+            if (optionalProject.isPresent()) {
+                Project project = optionalProject.get();
+                project.getUsers().getId();
+                project.setUsers(project.getUsers());
+                return projectRepository.findById(project.getProjectID()) ;
+            } else {
+                return Optional.empty();
+            }
+        } catch(Exception e) {
+            LOGGER.error("Cannot find the project " + projectID, e);
             throw e;
         }
     }

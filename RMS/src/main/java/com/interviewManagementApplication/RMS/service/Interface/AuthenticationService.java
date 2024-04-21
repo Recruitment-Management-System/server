@@ -55,7 +55,13 @@ public class AuthenticationService {
             ));
 
             User user = userRepository.findByUsername(request.getUsername()).orElseThrow(() -> new RuntimeException("User not found"));
+
+            if(user.getActive()==0){
+                throw new RuntimeException("User is still not active");
+            }
+
             String token = jwtService.generateToken(user);
+
 
             return new AuthenticationResponse(token);
         } catch (Exception e) {

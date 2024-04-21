@@ -1,7 +1,6 @@
 package com.interviewManagementApplication.RMS.service.Impl;
 
 import com.interviewManagementApplication.RMS.model.*;
-import com.interviewManagementApplication.RMS.repository.FeedbackHRRepo;
 import com.interviewManagementApplication.RMS.repository.InterviewRepo;
 import com.interviewManagementApplication.RMS.repository.UserRepository;
 import com.interviewManagementApplication.RMS.service.Interface.FeedbackService;
@@ -66,7 +65,25 @@ public class FeedbackImpl implements FeedbackService {
     }
 
 
+    @Override
+    public List<Feedback> findAllFeedbacks(){
+        try{
+            return feedbackRepo.findAll();
+        }catch(Exception e){
+            logger.error("error - find all feedbacks");
+            throw e;
+        }
+    }
 
+    @Override
+    public List<Feedback> findByUserid(Integer userid){
+        try{
+            return feedbackRepo.findByUserid(userid);
+        }catch (Exception e){
+            logger.error("error - find bu user id");
+            throw e;
+        }
+    }
 
 //    @Override
 //    public Optional<Feedback> readById(int id) {

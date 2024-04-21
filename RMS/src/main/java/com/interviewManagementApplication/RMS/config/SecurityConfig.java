@@ -39,11 +39,11 @@ public class SecurityConfig {
 
                       
 
-                        req->req.requestMatchers("api/login/**", "api/register/**", "api/candidate/add_candidate/**")
+                        req->req.requestMatchers("api/login/**", "api/register/**", "api/candidate/add_candidate/**", "/api/projects/**")
 
                                 .permitAll()
                                 .requestMatchers("/admin_only/**").hasAuthority("ADMIN")
-                                .requestMatchers("/api/projects", "/api/feedback/**").hasAnyAuthority("INTERVIEWER", "ADMIN", "PROJECT_MANAGER")
+                                .requestMatchers( "/api/feedback/**").hasAnyAuthority("INTERVIEWER", "ADMIN", "PROJECT_MANAGER")
                                 .anyRequest()
                                 .authenticated()).userDetailsService(userDetailsServiceImp)
                 .sessionManagement(session->session

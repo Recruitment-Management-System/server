@@ -13,7 +13,7 @@ public interface InterviewService {
 
     Optional<Interview> showInterview(Integer interviewID);
 
-    void updateInterview(Integer id, Interview interview);
+    void updateInterview(Integer candidateID,Integer interviewid,List<Integer> userIDs, Interview interview);
 
     void addInterviewer(Integer candidateID, List<Integer> userIDs, Interview interview);
 
@@ -31,5 +31,5 @@ public interface InterviewService {
     //get candidate id of the interview
     int getCandidateIdOfInterview(int interviewid) throws Exception;
 
-
+    List<Integer> getAllInterviewersForAnInterview(int interviewid) throws Exception;
 }

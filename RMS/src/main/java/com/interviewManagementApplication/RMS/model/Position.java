@@ -1,6 +1,7 @@
 package com.interviewManagementApplication.RMS.model;
 
 public enum Position {
+    USER,
     SOFTWARE_ENGINEER,
     QA_ENGINEER,
     DEV_OPS_ENGINEER,

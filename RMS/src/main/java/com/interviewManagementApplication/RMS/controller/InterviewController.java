@@ -24,6 +24,7 @@ public class InterviewController {
     @Autowired
     private InterviewService interviewService;
 
+
     //get all interviews
     @Autowired
     private CandidateService candidateService;
@@ -39,6 +40,28 @@ public class InterviewController {
         }
     }
 
+
+//get all interviewers for a particular interview
+    @GetMapping("/interviewer/{interviewid}")
+    public List<Integer> interviewers(@PathVariable Integer interviewid) throws Exception {
+        try {
+            return interviewService.getAllInterviewersForAnInterview(interviewid);
+        } catch (Exception e) {
+            logger.error("Error occurred while retrieving interview with id: {}", interviewid, e);
+            throw e;
+        }
+    }
+
+@GetMapping("/interview-details/{interviewid}")
+public Optional<Interview> getInterviewDetails(@PathVariable Integer interviewid){
+    try {
+        Optional<Interview> interview= interviewService.showInterview(interviewid);
+        return interview;
+    } catch (Exception e) {
+        logger.error("Error occurred while retrieving interview with id: {}", interviewid, e);
+        throw e;
+    }
+}
     //get the details of a given id
     @GetMapping("/{id}")
     public Optional<?> getInterview(@PathVariable Integer id) {
@@ -50,7 +73,6 @@ public class InterviewController {
             return candidates;
         } catch (Exception e) {
             logger.error("Error occurred while retrieving interview with id: {}", id, e);
-            // You can handle the exception or rethrow it if needed
             throw e;
         }
     }
@@ -69,14 +91,14 @@ public class InterviewController {
 
 
     //update interview by it's id
-    @PutMapping("/{id}")
-    public void changeInterview(@PathVariable Integer id, @RequestBody Interview interview) {
+    @PutMapping("/interviewer/{candidateID}/{interviewid}")
+    public void changeInterview(@PathVariable Integer candidateID,@PathVariable Integer interviewid, @RequestBody AddInterviewerRequest addInterviewerRequest) {
         try {
-            interviewService.updateInterview(id, interview);
-        } catch (Exception e) {
-            logger.error("Error occurred while updating interview with id: {}", id, e);
-            // You can handle the exception or rethrow it if needed
-            throw e;
+            List<Integer> userIDs = addInterviewerRequest.getUserIDs();
+            Interview interview = addInterviewerRequest.getInterview();
+            interviewService.updateInterview(candidateID,interviewid, userIDs,interview);
+        }catch (Exception e){
+            logger.error("Error in updating interview" + e);
         }
     }
 

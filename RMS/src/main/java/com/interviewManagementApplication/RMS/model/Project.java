@@ -20,10 +20,10 @@ public class Project {
     @Column(name = "projectid")
     private int projectID;
 
-    @Column(name = "projectname")
+    @Column(name = "projectname", nullable = false)
     private String projectName;
 
-    @Column(name = "projectcode")
+    @Column(name = "projectcode", nullable = false)
     private String projectCode;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
@@ -32,6 +32,6 @@ public class Project {
 
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id", nullable = false)
     private User users;
 }

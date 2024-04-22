@@ -18,26 +18,26 @@ public class Interview {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "interviewid")
+    @Column(name = "interviewid", nullable = false)
     private Integer interviewid;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "interview_type")
+    @Column(name = "interview_type", nullable = false)
     private InterviewType interviewType;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "interview_status")
+    @Column(name = "interview_status", nullable = false)
     private InterviewStatus interviewStatus = InterviewStatus.PENDING;
 
-    @Column(name = "interview_date")
+    @Column(name = "interview_date", nullable = false)
     private LocalDate interviewDate;
 
-    @Column(name = "interview_time")
+    @Column(name = "interview_time", nullable = false)
     private LocalTime interviewTime;
 
 
     @ManyToOne
-    @JoinColumn(name = "candidateid", referencedColumnName = "candidateid")
+    @JoinColumn(name = "candidateid", referencedColumnName = "candidateid", nullable = false)
     private Candidate candidate;
 
     @JsonIgnore

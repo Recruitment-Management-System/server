@@ -22,24 +22,24 @@ public class Feedback {
     @Column(name = "feedbackid")
     private int feedbackid;
 
-    @Column(name = "details")
+    @Column(name = "details", nullable = false)
     @Convert(converter = CommentAttributeConverter.class)
     private Comment details;
 
-    @Column(name = "overallrating")
+    @Column(name = "overallrating", nullable = false)
     private int overallrating;
 
-    @Column(name = "secondinterview")
+    @Column(name = "secondinterview", nullable = false)
     private boolean secondinterview;
 
-    @Column(name = "feedbackdate")
+    @Column(name = "feedbackdate", nullable = false)
     private Date feedbackdate;
 
     @ManyToOne
-    @JoinColumn(name = "interviewid")
+    @JoinColumn(name = "interviewid", nullable = false)
     private Interview interview;
 
-    @Column(name = "userid")
+    @Column(name = "userid", nullable = false)
     private Integer userid;
 
 

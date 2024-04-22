@@ -22,28 +22,28 @@ public class Candidate {
     @Column(name = "candidateid")
     private int candidateID;
 
-    @Column(name = "nic")
+    @Column(name = "nic", nullable = false)
     private String nic;
 
-    @Column(name = "firstname")
+    @Column(name = "firstname", nullable = false)
     private String firstname;
 
-    @Column(name = "lastname")
+    @Column(name = "lastname", nullable = false)
     private String lastname;
 
-    @Column(name = "experience")
+    @Column(name = "experience", nullable = false)
     private int experience;
 
-    @Column(name = "qualification", columnDefinition = "TEXT")
+    @Column(name = "qualification", columnDefinition = "TEXT", nullable = false)
     private String qualification;
 
-    @Column(name = "description", columnDefinition = "TEXT")
+    @Column(name = "description", columnDefinition = "TEXT", nullable = false)
     private String description;
 
     @Column(name = "status")
     private String status;
 
-    @Column(name = "cv")
+    @Column(name = "cv", nullable = false)
     private String cv;
 
     @Column(name = "cvpath")

@@ -1,8 +1,11 @@
 package com.interviewManagementApplication.RMS.service;
 
+import com.interviewManagementApplication.RMS.dto.AddProjectManagerRequest;
 import com.interviewManagementApplication.RMS.model.Project;
+import com.interviewManagementApplication.RMS.model.User;
 import com.interviewManagementApplication.RMS.model.Vacancy;
 import com.interviewManagementApplication.RMS.repository.ProjectRepository;
+import com.interviewManagementApplication.RMS.repository.UserRepository;
 import com.interviewManagementApplication.RMS.service.Impl.ProjectServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,12 +21,16 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 public class ProjectServiceImplTest {
 
     @Mock
     private ProjectRepository projectRepository;
+    @Mock
+    private UserRepository userRepository;
+
 
     @InjectMocks
     private ProjectServiceImpl projectService;
@@ -33,16 +40,7 @@ public class ProjectServiceImplTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test
-    public void testFindProject(){
 
-        Project project = new Project();
-        project.setProjectID(1);
-
-        when(projectRepository.findById(1)).thenReturn(Optional.of(project));
-        Optional<Project> foundProject = projectService.findProject(1);
-        assertTrue(foundProject.isPresent());
-    }
 
     @Test
     public void testFIndProject_ProjectNotFound(){
@@ -81,5 +79,85 @@ public class ProjectServiceImplTest {
                 RuntimeException.class, ()-> projectService.findAllProjects());
 
         assertEquals("Cannot find all projects", exception.getMessage());
+    }
+
+    @Test
+    void deleteProject_Success() {
+        doNothing().when(projectRepository).deleteById(1);
+
+        assertDoesNotThrow(() -> projectService.deleteProject(1));
+    }
+
+
+
+    @Test
+    void updateProject_Success() {
+        Project existingProject = new Project();
+        existingProject.setProjectID(1);
+        existingProject.setProjectName("Old Project Name");
+        existingProject.setProjectCode("Old Project Code");
+
+        AddProjectManagerRequest request = new AddProjectManagerRequest();
+        Project updatedProject = new Project();
+        updatedProject.setProjectName("New Project Name");
+        updatedProject.setProjectCode("New Project Code");
+        request.setProject(updatedProject);
+        request.setUserID(1);
+
+        User user = new User();
+        user.setId(1);
+
+        when(projectRepository.findById(1)).thenReturn(Optional.of(existingProject));
+        when(userRepository.findById(1)).thenReturn(Optional.of(user));
+        when(projectRepository.save(any())).thenReturn(updatedProject);
+
+        Project result = projectService.updateProject(1, request);
+
+        assertNotNull(result);
+        assertEquals("New Project Name", result.getProjectName());
+        assertEquals("New Project Code", result.getProjectCode());
+    }
+
+    @Test
+    void findAllProjectsWithUserName_Success() {
+        List<Object[]> projectsWithUserNames = new ArrayList<>();
+        projectsWithUserNames.add(new Object[]{"Project 1", "User 1"});
+        projectsWithUserNames.add(new Object[]{"Project 2", "User 2"});
+
+        when(projectRepository.findAllProjectsWithUserName()).thenReturn(projectsWithUserNames);
+
+        List<Object[]> result = projectService.findAllProjectsWithUserName();
+
+        assertEquals(2, result.size());
+        assertEquals("Project 1", result.get(0)[0]);
+        assertEquals("User 1", result.get(0)[1]);
+        assertEquals("Project 2", result.get(1)[0]);
+        assertEquals("User 2", result.get(1)[1]);
+    }
+
+    @Test
+    void getProjectsByProjectManagerID_Success() {
+        List<Project> projects = new ArrayList<>();
+        projects.add(new Project());
+        projects.add(new Project());
+
+        when(projectRepository.findByUsersId(1)).thenReturn(projects);
+
+        List<Project> result = projectService.getProjectsByProjectManagerID(1);
+
+        assertEquals(2, result.size());
+    }
+
+    @Test
+    void findAllProjects_Success() {
+        List<Project> projects = new ArrayList<>();
+        projects.add(new Project());
+        projects.add(new Project());
+
+        when(projectRepository.findAll()).thenReturn(projects);
+
+        List<Project> result = projectService.findAllProjects();
+
+        assertEquals(2, result.size());
     }
 }

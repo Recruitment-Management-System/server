@@ -2,6 +2,8 @@ package com.interviewManagementApplication.RMS.service.Impl;
 
 import com.interviewManagementApplication.RMS.model.Feedback;
 import com.interviewManagementApplication.RMS.model.Interview;
+import com.interviewManagementApplication.RMS.model.InterviewStatus;
+import com.interviewManagementApplication.RMS.model.InterviewType;
 import com.interviewManagementApplication.RMS.repository.FeedbackRepo;
 import com.interviewManagementApplication.RMS.repository.InterviewRepo;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,8 +42,8 @@ class FeedbackImplTest {
 
     @Test
     public void readByIdTest(){
-        Interview interview = new Interview(1, 1, 1, null, null, null, null, null, null);
-        Feedback expectedFeedback = new Feedback(1, null, 4, true, new Date(), interview);
+        Interview interview = new Interview(1, InterviewType.TECHNICAL, InterviewStatus.ENDED, null, null, null, null, null, null);
+        Feedback expectedFeedback = new Feedback(1, null, 4, true, new Date(), interview, 1);
 
         // Mock - findById method
         when(feedbackRepo.findFeedbackByInterviewId(interview.getInterviewid())).thenReturn(expectedFeedback);
@@ -55,7 +57,7 @@ class FeedbackImplTest {
 
     @Test
     public void saveFeedbackTest(){
-        Interview interview = new Interview(1, 1, 1, null, null, null, null, null, null);
+        Interview interview = new Interview(1, InterviewType.TECHNICAL, InterviewStatus.ENDED, null, null, null, null, null, null);
 
         Feedback feedback = new Feedback();
         feedback.setFeedbackid(1);

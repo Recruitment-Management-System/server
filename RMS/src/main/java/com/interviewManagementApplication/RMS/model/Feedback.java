@@ -39,6 +39,9 @@ public class Feedback {
     @JoinColumn(name = "interviewid")
     private Interview interview;
 
+    @Column(name = "userid")
+    private Integer userid;
+
 
 
 //    @OneToOne(cascade = CascadeType.ALL)

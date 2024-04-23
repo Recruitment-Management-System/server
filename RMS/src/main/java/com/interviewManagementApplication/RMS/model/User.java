@@ -41,7 +41,7 @@ public class User implements UserDetails {
 
     @Column(name = "position")
     @Enumerated(value = EnumType.STRING)
-    private Position position;
+    private Position position = Position.USER;
 
     @Column(name = "active", columnDefinition = "int default 0")
     private int active;

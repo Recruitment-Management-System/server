@@ -35,7 +35,7 @@ public class Vacancy {
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
-    private VacancyStatusType status;
+    private VacancyStatusType status = VacancyStatusType.OPEN;
 
     @JsonIgnore
     @ManyToOne

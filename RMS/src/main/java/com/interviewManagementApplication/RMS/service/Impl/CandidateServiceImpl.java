@@ -1,14 +1,16 @@
 package com.interviewManagementApplication.RMS.service.Impl;
 
 import com.interviewManagementApplication.RMS.constants.Consts;
+import com.interviewManagementApplication.RMS.model.Feedback;
 import com.interviewManagementApplication.RMS.model.Vacancy;
+import com.interviewManagementApplication.RMS.repository.FeedbackRepo;
 import com.interviewManagementApplication.RMS.repository.VacancyRepository;
-import com.interviewManagementApplication.RMS.model.Vacancy;
-import com.interviewManagementApplication.RMS.repository.VacancyRepository;
+import com.interviewManagementApplication.RMS.service.FileService;
 import com.interviewManagementApplication.RMS.service.Interface.CandidateService;
 import com.interviewManagementApplication.RMS.model.Candidate;
 import com.interviewManagementApplication.RMS.repository.CandidateRepo;
 import com.interviewManagementApplication.RMS.service.Interface.VacancyService;
+import com.interviewManagementApplication.RMS.util.FTPUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -38,6 +37,15 @@ public class CandidateServiceImpl implements CandidateService, Consts {
     @Autowired
     private VacancyService vacancyService;
 
+    @Autowired
+    private FeedbackRepo feedbackRepo;
+
+    @Autowired
+    private FileService fileService;
+
+    @Autowired
+    private FTPUtils ftpUtils;
+
 
     @Autowired
     public CandidateServiceImpl(CandidateRepo candidateRepo, VacancyRepository vacancyRepository) {
@@ -45,15 +53,36 @@ public class CandidateServiceImpl implements CandidateService, Consts {
         this.vacancyRepository = vacancyRepository;
     }
 
+//    @Override
+//    public Optional<Candidate> getCandidate(Integer id) {
+//        try {
+//            return candidateRepo.findById(id);
+//        } catch (Exception e) {
+//            logger.error("Error occurred while getting candidate with id: {}", id, e);
+//            return Optional.empty();
+//        }
+//    }
+
     @Override
     public Optional<Candidate> getCandidate(Integer id) {
         try {
-            return candidateRepo.findById(id);
+            Optional<Candidate> candidateOptional = candidateRepo.findById(id);
+            candidateOptional.ifPresent(candidate -> {
+                String cvPath = candidate.getCv();
+                if (cvPath != null) {
+                    // Fetch the CV file from the FTP server
+                    byte[] fileContent = fileService.getCVFile(cvPath);
+                    // Set the file content to the Candidate object
+                    candidate.setCvpath(fileContent);
+                }
+            });
+            return candidateOptional;
         } catch (Exception e) {
             logger.error("Error occurred while getting candidate with id: {}", id, e);
             return Optional.empty();
         }
     }
+
 
 
     @Override
@@ -90,11 +119,10 @@ public class CandidateServiceImpl implements CandidateService, Consts {
     @Override
     public Candidate addCandidate(Candidate candidate, MultipartFile file, int vacancyID) throws IOException{
         try {
-            // Save file to disk
-            String filePath = remoteDirectory + file.getOriginalFilename(); // Modify path as needed
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get(filePath);
-            Files.write(path, bytes);
+            String filePath = REMOTE_DIRECTORY + ftpUtils.generateUniqueFilename(file.getOriginalFilename());
+
+            //upload file to ftp server
+            fileService.uploadFile(file.getInputStream(), filePath);
 
             candidate.setCv(filePath);
 
@@ -125,31 +153,6 @@ public class CandidateServiceImpl implements CandidateService, Consts {
         }
     }
 
-//    public Candidate saveCustomer(Candidate candidate, MultipartFile file, int vacancyID) throws IOException{
-//
-//        String filePath = "/home/kpremarathne/Desktop/Trainings/Task14/files/" + file.getOriginalFilename(); // Modify path as needed
-//            byte[] bytes = file.getBytes();
-//            Path path = Paths.get(filePath);
-//            Files.write(path, bytes);
-//
-//            candidate.setCv(filePath);
-//
-//        if (candidate.getVacancyList() == null) {
-//            candidate.setVacancyList(new ArrayList<>());
-//        }
-//
-//        candidate.getVacancyList()
-//                .addAll(candidate
-//                        .getVacancyList()
-//                        .stream()
-//                        .map(v -> {
-//                            Vacancy vacancy = vacancyService.findVacancyById(vacancyID);
-//                            vacancy.getCandidateList().add(candidate);
-//                            return vacancy;
-//                        }).collect(Collectors.toList()));
-//        return candidateRepo.save(candidate);
-//    }
-
     //update candidate status
     //hire
     @Override
@@ -174,6 +177,16 @@ public class CandidateServiceImpl implements CandidateService, Consts {
             candidateRepo.save(updatedCandidate);
         }
         return null;
+    }
+
+    //retrieve candidate details of second interviews
+    @Override
+    public List<Candidate> getCandidatesWithSecondInterviewFeedback() {
+        List<Feedback> feedbacks = feedbackRepo.findBySecondinterviewTrue();
+        List<Candidate> candidates = feedbacks.stream()
+                .map(feedback -> feedback.getInterview().getCandidate())
+                .collect(Collectors.toList());
+        return candidates;
     }
 }
 

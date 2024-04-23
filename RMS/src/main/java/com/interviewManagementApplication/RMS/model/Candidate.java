@@ -46,6 +46,9 @@ public class Candidate {
     @Column(name = "cv")
     private String cv;
 
+    @Column(name = "cvpath")
+    private byte[] cvpath;
+
 
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
     @JsonIgnore

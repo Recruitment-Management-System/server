@@ -7,7 +7,13 @@ import java.util.Optional;
 
 public interface InterviewerService {
     List<User> getAllInterviewers();
+
     List<User> getAllProjectManagers();
 
     Optional<User> getProjectManger(Integer userId);
+
+
+    //update interviewStatus
+    void updateInterviewStatus(Integer interviewid);
+
 }

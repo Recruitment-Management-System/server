@@ -2,9 +2,10 @@ package com.interviewManagementApplication.RMS.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class InterviewInterviewerRepo {
@@ -20,5 +21,11 @@ public class InterviewInterviewerRepo {
         Query query = entityManager.createNativeQuery("SELECT COUNT(*) FROM interview_interviewer WHERE interviewid = :interviewid");
         query.setParameter("interviewid", interviewid);
         return ((Number)query.getSingleResult()).intValue();
+    }
+
+    public List getInterviewerListForAnInterview(Integer interviewid){
+        Query query = entityManager.createNativeQuery("SELECT id FROM interview_interviewer WHERE interviewid = :interviewid");
+        query.setParameter("interviewid", interviewid);
+        return (query.getResultList());
     }
 }

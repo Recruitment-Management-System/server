@@ -35,7 +35,7 @@ public class Interview {
     @Column(name = "interview_time")
     private LocalTime interviewTime;
 
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "candidateid", referencedColumnName = "candidateid")
     private Candidate candidate;

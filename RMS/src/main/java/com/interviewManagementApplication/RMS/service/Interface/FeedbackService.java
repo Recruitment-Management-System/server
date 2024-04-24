@@ -3,6 +3,7 @@ package com.interviewManagementApplication.RMS.service.Interface;
 import com.interviewManagementApplication.RMS.model.Feedback;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface FeedbackService {
 
@@ -10,9 +11,9 @@ public interface FeedbackService {
 
     List<Feedback> findAllFeedbacks();
 
-    List<Feedback> findByUserid(Integer userid);
+    List<Feedback> findByUserId(Integer userId);
 
-    // Optional<Feedback> readById(int id);
+     Optional<Feedback> readById(int id);
 
    // Feedback updateFeedback(Feedback feedback);
 
@@ -24,7 +25,7 @@ public interface FeedbackService {
 
 
     /////
-    Feedback findFeedbackIdByInterviewId(int interviewid);
+    List<Feedback> findFeedbackIdByInterviewId(int interviewid);
 
 
 }

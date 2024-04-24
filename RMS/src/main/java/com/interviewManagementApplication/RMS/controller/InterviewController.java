@@ -127,19 +127,19 @@ public Optional<Interview> getInterviewDetails(@PathVariable Integer interviewid
         return interviewService.getInterviewsByCandidate(candidateid);
     }
 
-    //update interview status
-    @PutMapping("/{interviewID}/updateStatus")
-    public void updateInterviewStatus(@PathVariable int interviewID){
-        try{
-            interviewService.updateInterviewStatus(interviewID);
-        }catch(Exception e){
-            try {
-                throw e;
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
-        }
-    }
+//    //update interview status
+//    @PutMapping("/{interviewID}/updateStatus")
+//    public void updateInterviewStatus(@PathVariable int interviewID){
+//        try{
+//            interviewService.updateInterviewStatus(interviewID);
+//        }catch(Exception e){
+//            try {
+//                throw e;
+//            } catch (Exception ex) {
+//                throw new RuntimeException(ex);
+//            }
+//        }
+//    }
 
     //get candidate id of the interview
     @GetMapping("/{interviewid}/candidateId")
@@ -149,7 +149,7 @@ public Optional<Interview> getInterviewDetails(@PathVariable Integer interviewid
     }
 
     //update interview status
-    @GetMapping("/updateInterviewStatus/{interviewid}")
+    @PutMapping("/updateInterviewStatus/{interviewid}")
     public void updateInterviewStatus (@PathVariable Integer interviewid) throws Exception {
         interviewService.updateInterviewStatus(interviewid);
     }

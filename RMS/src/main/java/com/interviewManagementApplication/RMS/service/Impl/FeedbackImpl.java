@@ -76,24 +76,24 @@ public class FeedbackImpl implements FeedbackService {
     }
 
     @Override
-    public List<Feedback> findByUserid(Integer userid){
+    public List<Feedback> findByUserId(Integer userId){
         try{
-            return feedbackRepo.findByUserid(userid);
+            return feedbackRepo.findByUserId(userId);
         }catch (Exception e){
             logger.error("error - find bu user id");
             throw e;
         }
     }
 
-//    @Override
-//    public Optional<Feedback> readById(int id) {
-//        try{
-//            return feedbackRepo.findById(id);
-//        }catch (Exception e){
-//            logger.error("error - readbyid");
-//            throw e;
-//        }
-//    }
+    @Override
+    public Optional<Feedback> readById(int id) {
+        try{
+            return feedbackRepo.findById(id);
+        }catch (Exception e){
+            logger.error("error - readbyid");
+            throw e;
+        }
+    }
 
 //    @Override
 //    public Feedback updateFeedback(Feedback feedback) {
@@ -120,9 +120,10 @@ public class FeedbackImpl implements FeedbackService {
 
     //read feedbacks using interviewId
 
-    public Feedback findFeedbackIdByInterviewId(int interviewid) {
+    @Override
+    public List<Feedback> findFeedbackIdByInterviewId(int interviewid) {
         try {
-            return feedbackRepo.findFeedbackByInterviewId(interviewid);
+            return feedbackRepo.findByInterview_Interviewid(interviewid);
         }catch (Exception e){
             logger.error("error - findFeedbackIdByInterviewId");
             throw e;

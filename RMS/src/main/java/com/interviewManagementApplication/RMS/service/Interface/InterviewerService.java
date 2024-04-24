@@ -14,6 +14,6 @@ public interface InterviewerService {
 
 
     //update interviewStatus
-    void updateInterviewStatus(Integer interviewid);
+    //void updateInterviewStatus(Integer interviewid);
 
 }

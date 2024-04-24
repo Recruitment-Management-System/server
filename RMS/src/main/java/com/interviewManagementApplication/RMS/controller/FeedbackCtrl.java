@@ -5,11 +5,10 @@ import com.interviewManagementApplication.RMS.model.Feedback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/feedback")
@@ -44,7 +43,7 @@ public class FeedbackCtrl {
     @GetMapping("/{userid}")
     public List<Feedback> readAllFeedbacksForUser(Integer userid){
         try{
-            return feedbackService.findByUserid(userid);
+            return feedbackService.findByUserId(userid);
         }catch (Exception e){
             logger.error("error - find by user id");
             throw e;
@@ -75,12 +74,23 @@ public class FeedbackCtrl {
 
 
     @GetMapping("/interview/{interviewid}")
-    public ResponseEntity<Feedback> getFeedbackByInterviewId(@PathVariable int interviewid) {
-        Feedback feedback = feedbackService.findFeedbackIdByInterviewId(interviewid);
-        if (feedback != null) {
-            return new ResponseEntity<>(feedback, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public List<Feedback> getFeedbackByInterviewId(@PathVariable int interviewid) {
+        try{
+            return feedbackService.findFeedbackIdByInterviewId(interviewid);
+        }catch (Exception e){
+            logger.error("error - find by user id");
+            throw e;
         }
     }
+
+    @GetMapping("/all/{feedbackid}")
+    public Optional<Feedback> getFeedbackById(@PathVariable int feedbackid){
+        try{
+            return feedbackService.readById(feedbackid);
+        }catch(Exception e){
+            logger.error("error - find by id");
+            throw e;
+        }
+    }
+
 }

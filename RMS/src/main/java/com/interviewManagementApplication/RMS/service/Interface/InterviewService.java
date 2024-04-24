@@ -23,8 +23,7 @@ public interface InterviewService {
     //interviews for candidate
     List<Interview> getCandidates(int candidateid);
 
-    //update interview status
-    void updateInterviewStatus(int interviewID) throws Exception;
+
     List<Interview> getInterviewsByCandidate(Integer candidateId);
 
 
@@ -32,4 +31,7 @@ public interface InterviewService {
     int getCandidateIdOfInterview(int interviewid) throws Exception;
 
     List<Integer> getAllInterviewersForAnInterview(int interviewid) throws Exception;
+
+    //update interview status
+    void updateInterviewStatus(Integer interviewid);
 }

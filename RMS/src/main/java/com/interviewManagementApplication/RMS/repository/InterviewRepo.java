@@ -19,7 +19,11 @@ public interface InterviewRepo extends JpaRepository<Interview,Integer> {
     @Query("SELECT COUNT(f.feedbackid) FROM Feedback f WHERE f.interview.interviewid = :interviewid")
     int countFeedbacks(Integer interviewid);
 
-    @Modifying
-    @Query("UPDATE Interview i SET i.interviewStatus=:interviewStatus WHERE i.interviewid = :interviewid")
-    void updateInterviewStatus(Integer interviewid, InterviewStatus interviewStatus);
+//    @Modifying
+//    @Query("UPDATE Interview i SET i.interviewStatus =:interviewStatus WHERE i.interviewid = :interviewid")
+//    void updateInterviewStatus(Integer interviewid, InterviewStatus interviewStatus);
+
+//    @Modifying
+//    @Query("UPDATE Interview i SET i.interviewStatus =:interviewStatus WHERE i.interviewid = :interviewid")
+//    void updateInterviewStatus(Integer interviewid);
 }

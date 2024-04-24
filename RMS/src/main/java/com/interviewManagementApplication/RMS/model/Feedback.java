@@ -39,8 +39,8 @@ public class Feedback {
     @JoinColumn(name = "interviewid", nullable = false)
     private Interview interview;
 
-    @Column(name = "userid", nullable = false)
-    private Integer userid;
+    @Column(name = "userId", nullable = false)
+    private int userId;
 
 
 

@@ -42,14 +42,7 @@ public class interviewerServiceImpl implements InterviewerService {
 
 
 
-    public void updateInterviewStatus(Integer interviewid) {
-        int countInterviewInterviewer = interviewInterviewerRepo.countInterviewIdOfInterviewInterviewer(interviewid);
-        int countFeedbacks = interviewRepo.countFeedbacks(interviewid);
 
-        if(countFeedbacks != 0 && countInterviewInterviewer != 0 && countInterviewInterviewer == countFeedbacks){
-            interviewRepo.updateInterviewStatus(interviewid, InterviewStatus.ENDED);
-        }
-    }
 
 
 }

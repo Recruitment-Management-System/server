@@ -70,7 +70,6 @@ public class InterviewServiceImpl implements InterviewService {
     }
 
 
-
     public void assignUserToInterview(Integer interviewId, Integer userId) {
         Optional<Interview> optionalInterview = interviewRepo.findById(interviewId);
         Optional<User> optionalUser = userRepository.findById(userId);
@@ -89,36 +88,38 @@ public class InterviewServiceImpl implements InterviewService {
             throw new IllegalArgumentException("Invalid interviewId or userId");
         }
     }
+
     @Override
     public void addInterviewer(Integer candidateID, List<Integer> userIDs, Interview interview) {
-        try{
-        Optional<Candidate> candidateOptional = candidateRepo.findById(candidateID);
-        if (candidateOptional.isPresent()) {
-            Candidate savedCandidate = candidateOptional.get();
-            interview.setCandidate(savedCandidate);
+        try {
+            Optional<Candidate> candidateOptional = candidateRepo.findById(candidateID);
+            if (candidateOptional.isPresent()) {
+                Candidate savedCandidate = candidateOptional.get();
+                interview.setCandidate(savedCandidate);
 
-            if (interview.getUserList() == null) {
-                interview.setUserList(new ArrayList<>());
+                if (interview.getUserList() == null) {
+                    interview.setUserList(new ArrayList<>());
+                }
+
+                List<User> userList = interview.getUserList();
+
+                for (Integer userID : userIDs) {
+                    Optional<User> userOptional = userRepository.findById(userID);
+                    userOptional.ifPresent(userList::add);
+                }
+
+                interviewRepo.save(interview);
+            } else {
+                logger.error("Candidate not found");
             }
-
-            List<User> userList = interview.getUserList();
-
-            for (Integer userID : userIDs) {
-                Optional<User> userOptional = userRepository.findById(userID);
-                userOptional.ifPresent(userList::add);
-            }
-
-            interviewRepo.save(interview);
-        } else {
-            logger.error("Candidate not found");
-        }}catch (Exception exception){
-            logger.error("Error occurred while adding interview ",exception);
+        } catch (Exception exception) {
+            logger.error("Error occurred while adding interview ", exception);
 
         }
     }
 
     @Override
-    public void updateInterview(Integer candidateID,Integer interviewid,List<Integer> userIDs, Interview interview) {
+    public void updateInterview(Integer candidateID, Integer interviewid, List<Integer> userIDs, Interview interview) {
         try {
             Optional<Candidate> candidateOptional = candidateRepo.findById(candidateID);
             if (candidateOptional.isPresent()) {
@@ -160,10 +161,10 @@ public class InterviewServiceImpl implements InterviewService {
 
     @Override
     public List<Interview> getAllInterviewsByUserId(Integer userId) {
-        try{
+        try {
             return interviewRepo.findAllByUserList_Id(userId);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             logger.error("Error occurred while getting all interviews with id {}", userId);
             throw e;
         }
@@ -176,20 +177,64 @@ public class InterviewServiceImpl implements InterviewService {
     }
 
 
+    @Override
+    public List<Interview> getInterviewsByCandidate(Integer candidateId) {
+        try {
+            return interviewRepo.findByCandidateCandidateID(candidateId);
+        } catch (Exception e) {
+            logger.error("Error occurred while getting all candidates with id {}", candidateId);
+            throw e;
+        }
+    }
+
+
+    @Override
+    //get candidate id of the interview
+    public int getCandidateIdOfInterview(int interviewid) throws Exception {
+        Optional<Interview> interviewOptional = interviewRepo.findById(interviewid);
+
+        if (interviewOptional.isPresent()) {
+            Interview interview = interviewOptional.get();
+            return interview.getCandidate().getCandidateID();
+        }
+        throw new Exception("Interview with id " + interviewid + " not found");
+    }
+
+    @Override
+    public List getAllInterviewersForAnInterview(int interviewid) throws Exception {
+        return interviewInterviewerRepo.getInterviewerListForAnInterview(interviewid);
+    }
+
+    //update interview service
+//    public void updateInterviewStatus(Integer interviewid) {
+//        int countInterviewInterviewer = interviewInterviewerRepo.countInterviewIdOfInterviewInterviewer(interviewid);
+//        int countFeedbacks = interviewRepo.countFeedbacks(interviewid);
+//
+//        Interview interview = new Interview();
+//        interview.setInterviewStatus(InterviewStatus.ENDED);
+//
+//        if(countFeedbacks != 0 && countInterviewInterviewer != 0 && countInterviewInterviewer == countFeedbacks){
+//
+//            interviewRepo.updateInterviewStatus(interviewid);
+//        }
 
     //update interview status
     @Override
-    public void updateInterviewStatus(int interviewID) {
+    public void updateInterviewStatus(Integer interviewid) {
         try {
-            Optional<Interview> existingInterview = interviewRepo.findById(interviewID);
+            Optional<Interview> existingInterview = interviewRepo.findById(interviewid);
 
             if (existingInterview.isPresent()) {
                 Interview updatedInterview = existingInterview.get();
 
+                int countInterviewInterviewer = interviewInterviewerRepo.countInterviewIdOfInterviewInterviewer(interviewid);
+                int countFeedbacks = interviewRepo.countFeedbacks(interviewid);
 
-                updatedInterview.setInterviewStatus(InterviewStatus.ENDED);
+                if (countFeedbacks != 0 && countInterviewInterviewer != 0 && countInterviewInterviewer == countFeedbacks) {
+                    updatedInterview.setInterviewStatus(InterviewStatus.ENDED);
 
-                interviewRepo.save(updatedInterview);
+                    interviewRepo.save(updatedInterview);
+                }
             }
         } catch (Exception e) {
             logger.error("error - updating interview Status");
@@ -197,33 +242,4 @@ public class InterviewServiceImpl implements InterviewService {
     }
 
 
-
-        @Override
-    public List<Interview> getInterviewsByCandidate(Integer candidateId) {
-        try{
-            return interviewRepo.findByCandidateCandidateID(candidateId);
-        }catch(Exception e){
-            logger.error("Error occurred while getting all candidates with id {}", candidateId);
-            throw e;
-        }
-    }
-
-
-
-        @Override
-    //get candidate id of the interview
-    public int getCandidateIdOfInterview(int interviewid) throws Exception {
-        Optional<Interview> interviewOptional = interviewRepo.findById(interviewid);
-
-            if (interviewOptional.isPresent()) {
-                Interview interview = interviewOptional.get();
-                return interview.getCandidate().getCandidateID();
-            }
-            throw new Exception("Interview with id " + interviewid + " not found");
-    }
-
-    @Override
-    public List getAllInterviewersForAnInterview(int interviewid) throws Exception {
-        return interviewInterviewerRepo.getInterviewerListForAnInterview(interviewid);
-    }
 }

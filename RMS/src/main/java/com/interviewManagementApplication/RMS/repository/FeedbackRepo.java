@@ -11,10 +11,11 @@ import java.util.List;
 @Repository
 public interface FeedbackRepo extends JpaRepository<Feedback, Integer> {
 
-    List<Feedback> findByUserid(Integer userid);
+    List<Feedback> findByUserId(Integer userId);
 
-    @Query("SELECT f FROM Feedback f WHERE f.interview.interviewid = :interviewid")
-    Feedback findFeedbackByInterviewId(@Param("interviewid") int interviewid);
+    List<Feedback> findByInterview_Interviewid(int interviewid);
 
     List<Feedback> findBySecondinterviewTrue();
+
+
 }

@@ -34,4 +34,7 @@ public interface InterviewService {
 
     //update interview status
     void updateInterviewStatus(Integer interviewid);
+
+    //update interview status
+    void updateInterviewStatusHR(int interviewID);
 }

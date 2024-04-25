@@ -242,4 +242,23 @@ public class InterviewServiceImpl implements InterviewService {
     }
 
 
+    //update interview status
+    @Override
+    public void updateInterviewStatusHR(int interviewID) {
+        try {
+            Optional<Interview> existingInterview = interviewRepo.findById(interviewID);
+
+            if (existingInterview.isPresent()) {
+                Interview updatedInterview = existingInterview.get();
+
+
+                updatedInterview.setInterviewStatus(InterviewStatus.ENDED);
+
+                interviewRepo.save(updatedInterview);
+            }
+        } catch (Exception e) {
+            logger.error("error - updating interview Status");
+        }
+    }
+
 }

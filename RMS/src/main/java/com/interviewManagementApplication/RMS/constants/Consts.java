@@ -6,12 +6,12 @@ public interface Consts {
     //FTP server properties
 
     public final String SERVER = "localhost";
-//    public final String remoteDirectory = "/home/hsudusinghe/Desktop/Trainings/Task14/files/";
-    public final String REMOTE_DIRECTORY = "/home/hsudusinghe/Desktop/Sample/";
 
-    public final String USERNAME = "hsudusinghe";
+    public final String REMOTE_DIRECTORY = "/home/kpremarathne/Desktop/Trainings/Task14/files/";
 
-    public final String PASSWORD = "HansakaJayawarna123@";
+    public final String USERNAME = "kpremarathne";
+
+    public final String PASSWORD = "charuni40##K";
 
     public final int port = 21;
 }

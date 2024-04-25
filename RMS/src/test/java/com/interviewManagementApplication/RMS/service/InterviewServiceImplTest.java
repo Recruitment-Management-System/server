@@ -1,6 +1,7 @@
 package com.interviewManagementApplication.RMS.service;
 
 import com.interviewManagementApplication.RMS.model.*;
+import com.interviewManagementApplication.RMS.repository.CandidateRepo;
 import com.interviewManagementApplication.RMS.repository.InterviewRepo;
 import com.interviewManagementApplication.RMS.service.Impl.InterviewServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +14,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -23,6 +25,9 @@ public class InterviewServiceImplTest {
 
     @Mock
     private InterviewRepo interviewRepo;
+    @Mock
+    private CandidateRepo candidateRepo;
+
 
     @InjectMocks
     private InterviewServiceImpl interviewService;
@@ -38,12 +43,12 @@ public class InterviewServiceImplTest {
         user.setId(1);
 
         Interview interview1 = new Interview();
-        interview1.setInterviewID(1);
+        interview1.setInterviewid(1);
         interview1.setInterviewType(InterviewType.HR);
-        interview1.setInterviewStatus(InterviewStatus.HAPPENING);
+        interview1.setInterviewStatus(InterviewStatus.ENDED);
 
         Interview interview2 = new Interview();
-        interview2.setInterviewID(2);
+        interview2.setInterviewid(2);
         interview2.setInterviewType(InterviewType.TECHNICAL);
         interview2.setInterviewStatus(InterviewStatus.ENDED);
 
@@ -72,12 +77,12 @@ public class InterviewServiceImplTest {
         candidate.setCandidateID(1);
 
         Interview interview1 = new Interview();
-        interview1.setInterviewID(1);
+        interview1.setInterviewid(1);
         interview1.setInterviewType(InterviewType.HR);
-        interview1.setInterviewStatus(InterviewStatus.HAPPENING);
+        interview1.setInterviewStatus(InterviewStatus.PENDING);
 
         Interview interview2 = new Interview();
-        interview2.setInterviewID(2);
+        interview2.setInterviewid(2);
         interview2.setInterviewType(InterviewType.TECHNICAL);
         interview2.setInterviewStatus(InterviewStatus.ENDED);
 
@@ -98,4 +103,19 @@ public class InterviewServiceImplTest {
 
         assertEquals("Error occurred while getting all interviews", exception.getMessage());
     }
+
+
+    @Test
+    public void testGetCandidateIdOfInterview_Exception_InterviewNotFound() {
+        when(interviewRepo.findById(anyInt())).thenReturn(Optional.empty());
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            interviewService.getCandidateIdOfInterview(1);
+        });
+
+        // Assertion
+        assertEquals("Interview with id 1 not found", exception.getMessage());
+    }
+
+
 }

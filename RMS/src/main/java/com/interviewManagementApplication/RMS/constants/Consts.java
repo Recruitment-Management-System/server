@@ -7,11 +7,11 @@ public interface Consts {
 
     public final String SERVER = "localhost";
 
-    public final String REMOTE_DIRECTORY = "/home/kpremarathne/Desktop/Trainings/Task14/files/";
+    public final String REMOTE_DIRECTORY = "/home/hsudusinghe/Desktop/";
 
-    public final String USERNAME = "kpremarathne";
+    public final String USERNAME = "hsudusinghe";
 
-    public final String PASSWORD = "charuni40##K";
+    public final String PASSWORD = "HansakaJayawarna123@";
 
-    public final int port = 21;
+    public final int port = 22;
 }

@@ -153,4 +153,19 @@ public Optional<Interview> getInterviewDetails(@PathVariable Integer interviewid
     public void updateInterviewStatus (@PathVariable Integer interviewid) throws Exception {
         interviewService.updateInterviewStatus(interviewid);
     }
+
+    //update interview status hr
+
+    @PutMapping("/{interviewID}/updateStatus")
+    public void updateInterviewStatusHR(@PathVariable int interviewID){
+        try{
+            interviewService.updateInterviewStatusHR(interviewID);
+        }catch(Exception e){
+            try {
+                throw e;
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+    }
 }

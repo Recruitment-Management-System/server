@@ -1,8 +1,6 @@
 package com.interviewManagementApplication.RMS.service.Impl;
 
-import com.interviewManagementApplication.RMS.model.Feedback;
-import com.interviewManagementApplication.RMS.model.FeedbackHR;
-import com.interviewManagementApplication.RMS.model.Interview;
+import com.interviewManagementApplication.RMS.model.*;
 import com.interviewManagementApplication.RMS.repository.FeedbackHRRepo;
 import com.interviewManagementApplication.RMS.repository.InterviewRepo;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,8 +33,8 @@ class FeedbackHRImplTest {
 
     @Test
     public void readFeedbackHRByIdTest(){
-        Interview interview = new Interview(1, 1, 1, null, null, null, null, null, null);
-        FeedbackHR expectedFeedback = new FeedbackHR(1, new Date(),120000, "comment", interview);
+        Interview interview = new Interview(1, InterviewType.HR, InterviewStatus.ENDED, null, null, null, null, null, null);
+        FeedbackHR expectedFeedback = new FeedbackHR(1, new Date(),120000, "comment", interview, 1);
 
         // Mock - findById method
         when(feedbackHRRepo.findFeedbackhrByInterviewId(interview.getInterviewid())).thenReturn(expectedFeedback);
@@ -50,7 +48,7 @@ class FeedbackHRImplTest {
 
     @Test
     public void saveFeedbackHRTest(){
-        Interview interview = new Interview(1, 1, 1, null, null, null, null, null, null);
+        Interview interview = new Interview(1, InterviewType.HR, InterviewStatus.ENDED, null, null, null, null, null, null);
 
         FeedbackHR feedbackhr = new FeedbackHR();
         feedbackhr.setFeedbackidhr(1);

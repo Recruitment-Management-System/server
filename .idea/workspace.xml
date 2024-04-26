@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="fe956f1e-390d-4efa-af97-9aecb2b55274" name="Changes" comment="update 23">
       <change afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/exceptions/UserNotActiveException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_17_24,_5_41_AM_[Changes]/shelved.patch" beforeDir="false" />
@@ -12,6 +13,22 @@
       <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/controller/AuthenticationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/service/Interface/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/service/Interface/AuthenticationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RMS/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/resources/application.properties" afterDir="false" />
+
+    <list default="true" id="fe956f1e-390d-4efa-af97-9aecb2b55274" name="Changes" comment="test cases">
+      <change afterPath="$PROJECT_DIR$/RMS/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RMS/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RMS/src/test/java/com/interviewManagementApplication/RMS/service/AdminServiceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RMS/src/test/java/com/interviewManagementApplication/RMS/service/CandidateServiceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RMS/src/test/java/com/interviewManagementApplication/RMS/service/InterviewerServiceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RMS/src/test/java/com/interviewManagementApplication/RMS/service/UserDetailsServiceImpTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_17_24,_5_41_AM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_17_24__5_41_AM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/constants/Consts.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/constants/Consts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/model/Feedback.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/main/java/com/interviewManagementApplication/RMS/model/Feedback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RMS/src/test/java/com/interviewManagementApplication/RMS/service/InterviewServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/test/java/com/interviewManagementApplication/RMS/service/InterviewServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RMS/src/test/java/com/interviewManagementApplication/RMS/service/ProjectServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RMS/src/test/java/com/interviewManagementApplication/RMS/service/ProjectServiceImplTest.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +88,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/hsudusinghe/SpringBoot Projects/server/RMS/src/test/java/com/interviewManagementApplication/RMS/service&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -81,6 +99,9 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.interviewManagementApplication.RMS.exceptions" />
       <recent name="com.interviewManagementApplication.RMS.model" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/RMS/src/test/java/com/interviewManagementApplication/RMS/service" />
     </key>
   </component>
   <component name="RunManager" selected="Application.RmsApplication">
@@ -97,9 +118,60 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in RMS" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProjectServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RMS" />
-      <option name="PACKAGE_NAME" value="" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.interviewManagementApplication.RMS.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.interviewManagementApplication.RMS.service" />
+      <option name="MAIN_CLASS_NAME" value="com.interviewManagementApplication.RMS.service.ProjectServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserDetailsServiceImpTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RMS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.interviewManagementApplication.RMS.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.interviewManagementApplication.RMS.service" />
+      <option name="MAIN_CLASS_NAME" value="com.interviewManagementApplication.RMS.service.UserDetailsServiceImpTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VacancyServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RMS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.interviewManagementApplication.RMS.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.interviewManagementApplication.RMS.service" />
+      <option name="MAIN_CLASS_NAME" value="com.interviewManagementApplication.RMS.service.VacancyServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.interviewManagementApplication.RMS in RMS" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RMS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.interviewManagementApplication.RMS.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.interviewManagementApplication.RMS" />
       <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -108,14 +180,17 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.RmsApplication" />
-        <item itemvalue="JUnit.All in RMS" />
+        <item itemvalue="JUnit.ProjectServiceImplTest" />
+        <item itemvalue="JUnit.UserDetailsServiceImpTest" />
+        <item itemvalue="JUnit.VacancyServiceImplTest" />
+        <item itemvalue="JUnit.com.interviewManagementApplication.RMS in RMS" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="27d9bfce-91bf-484b-94d0-72af5793d075" name="Changes" comment="" />
+      <changelist id="fe956f1e-390d-4efa-af97-9aecb2b55274" name="Changes" comment="test cases" />
       <created>1711546088670</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -247,7 +322,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713707875992</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00023" summary="test cases">
+      <created>1713760005763</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1713760005763</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -285,7 +367,9 @@
     <MESSAGE value="ftp server configured" />
     <MESSAGE value="application.properties UPDATED" />
     <MESSAGE value="update 23" />
-    <option name="LAST_COMMIT_MESSAGE" value="update 23" />
+    <MESSAGE value="final commit" />
+    <MESSAGE value="test cases" />
+    <option name="LAST_COMMIT_MESSAGE" value="test cases" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
@@ -300,6 +384,7 @@
     <SUITE FILE_PATH="coverage/server$VacancyServiceImplTest_testGetVacanciesByProjectId.ic" NAME="VacancyServiceImplTest.testGetVacanciesByProjectId Coverage Results" MODIFIED="1712696960261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
     </SUITE>
+
     <SUITE FILE_PATH="coverage/server$VacancyServiceImplTest_testFindVacancy_Failure_VacancyNotNull.ic" NAME="VacancyServiceImplTest.testFindVacancy_Failure_VacancyNotNull Coverage Results" MODIFIED="1712698047018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
     </SUITE>
@@ -310,19 +395,63 @@
       <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/server$InterviewServiceImplTest_testGetAllInterviewsByCandidateId.ic" NAME="InterviewServiceImplTest.testGetAllInterviewsByCandidateId Coverage Results" MODIFIED="1712721043807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+
+    <SUITE FILE_PATH="coverage/server$FeedbackHRImplTest.ic" NAME="FeedbackHRImplTest Coverage Results" MODIFIED="1713763070136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.Impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$CandidateServiceImplTest.ic" NAME="CandidateServiceImplTest Coverage Results" MODIFIED="1713763120260" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$AdminServiceImplTest.ic" NAME="AdminServiceImplTest Coverage Results" MODIFIED="1713763105274" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$InterviewerServiceImplTest.ic" NAME="InterviewerServiceImplTest Coverage Results" MODIFIED="1713763136198" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$InterviewServiceImplTest.ic" NAME="InterviewServiceImplTest Coverage Results" MODIFIED="1713763150674" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+
       <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/server$VacancyServiceImplTest_testDeleteVacancy_Failure_VacancyNotFound.ic" NAME="VacancyServiceImplTest.testDeleteVacancy_Failure_VacancyNotFound Coverage Results" MODIFIED="1712698382259" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/server$ProjectServiceImplTest.ic" NAME="ProjectServiceImplTest Coverage Results" MODIFIED="1712717647160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/server$ProjectServiceImplTest.ic" NAME="ProjectServiceImplTest Coverage Results" MODIFIED="1713763268792" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/server$InterviewServiceImplTest_testGetAllInterviewsByCandidateId.ic" NAME="InterviewServiceImplTest.testGetAllInterviewsByCandidateId Coverage Results" MODIFIED="1712721043807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
+    </SUITE>
+
     <SUITE FILE_PATH="coverage/server$VacancyServiceImplTest.ic" NAME="VacancyServiceImplTest Coverage Results" MODIFIED="1712721861230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/server$RmsApplicationTests.ic" NAME="RmsApplicationTests Coverage Results" MODIFIED="1712696992992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.interviewManagementApplication.RMS.*</FILTER>
+
+    <SUITE FILE_PATH="coverage/server$com_interviewManagementApplication_RMS_in_RMS.ic" NAME="com.interviewManagementApplication.RMS in RMS Coverage Results" MODIFIED="1713763183690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$UserDetailsServiceImpTest.ic" NAME="UserDetailsServiceImpTest Coverage Results" MODIFIED="1713763247481" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$VacancyServiceImplTest_testFindAllVacancies_VacanciesNotFound.ic" NAME="VacancyServiceImplTest.testFindAllVacancies_VacanciesNotFound Coverage Results" MODIFIED="1712718320468" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$VacancyServiceImplTest_testFindVacancy_Failure_VacancyNotNull.ic" NAME="VacancyServiceImplTest.testFindVacancy_Failure_VacancyNotNull Coverage Results" MODIFIED="1712698047018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$RmsApplicationTests.ic" NAME="RmsApplicationTests Coverage Results" MODIFIED="1713763028371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$FeedbackImplTest.ic" NAME="FeedbackImplTest Coverage Results" MODIFIED="1713763087635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.Impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$VacancyServiceImplTest.ic" NAME="VacancyServiceImplTest Coverage Results" MODIFIED="1713763229776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$VacancyServiceImplTest_testFindVacancy_Failure_VacancyNotFound.ic" NAME="VacancyServiceImplTest.testFindVacancy_Failure_VacancyNotFound Coverage Results" MODIFIED="1712697794105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.interviewManagementApplication.RMS.service.*</FILTER>
+
     </SUITE>
   </component>
 </project>
